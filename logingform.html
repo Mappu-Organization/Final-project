@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login and Registration Form Example</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'>
+	<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<!-- FullCalendar CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css" />
+
+	<link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+	<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+	<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+	<link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+	<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+	<link href="assets/css/loging.css" rel="stylesheet" />
+
+</head>
+
+<body>
+	<div class="back_image">
+		<img src="assets/img/bottomBg.6c1af59d4fc99da7bca9.png" alt="">
+	</div>
+
+	<!-- partial:index.partial.html -->
+
+
+
+	<div class="user-modal">
+		<div class="user-modal-container">
+			<ul class="switcher">
+				<li><a href="#0">Sign in</a></li>
+				<li><a href="#0">New account</a></li>
+			</ul>
+
+			<div id="login" class="is-selected">
+				<form class="form">
+					<p class="fieldset">
+						<label class="image-replace email" for="signin-email">Student Registration Number</label>
+						<input class="full-width has-padding has-border" id="signin-email" type="email"
+							placeholder="Student Registration Number">
+						<span class="error-message">An account with this email address does not exist!</span>
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace password" for="signin-password">Password</label>
+						<input class="full-width has-padding has-border" id="signin-password" type="password"
+							placeholder="Password">
+						<a href="#0" class="hide-password">Show</a>
+						<span class="error-message">Wrong password! Try again.</span>
+					</p>
+
+					<p class="fieldset">
+						<!-- <input type="checkbox" id="remember-me" checked>
+						<label for="remember-me">Remember me</label> -->
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width" type="submit" value="Login">
+					</p>
+				</form>
+
+				<!-- <p class="form-bottom-message"><a href="#0">Forgot your password?</a></p> -->
+				<!-- <a href="#0" class="close-form">Close</a> -->
+			</div>
+
+			<div id="signup">
+				<form class="form">
+					<div class="dropdown user_type">
+						<a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false">
+							User Type
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="#">Student</a></li>
+							<li><a class="dropdown-item" href="#">Parent</a></li>
+							<!-- <li><a class="dropdown-item" href="#">Staff</a></li> -->
+						</ul>
+					</div>
+					<p class="fieldset">
+						<label class="image-replace username" for="signup-username">Registration Id</label>
+						<!-- Input Field -->
+						<input class="full-width has-padding has-border" id="signup-username" type="text"
+							placeholder="Registration Id">
+
+						<!-- Visible Button -->
+						<button id="submitBtn" onclick="submitAction()">ENTER</button>
+						<span class="error-message">Your username can only contain numeric and alphabetic
+							symbols!</span>
+					</p>
+					<p class="fieldset">
+						<label class="image-replace email" for="signup-email">Full Name</label>
+						<input disabled class="full-width has-padding has-border" id="signup-fullname" type="email"
+							placeholder="Full Name">
+					</p>
+					<p class="fieldset">
+						<label class="image-replace email" for="signup-email">Username</label>
+						<input disabled class="full-width has-padding has-border" id="signup-username" type="text"
+							placeholder="Username">
+					</p>
+					<p class="fieldset">
+						<label class="image-replace password" for="signup-password">Password</label>
+						<input disabled class="full-width has-padding has-border" id="signup-password" type="password"
+							placeholder="Password">
+						<a href="#0" class="hide-password">Show</a>
+						<span class="error-message">Your password has to be at least 6 characters long!</span>
+					</p>
+					<p class="fieldset">
+						<label class="image-replace password" for="signup-confirm-password">Confirm Password</label>
+						<input disabled class="full-width has-padding has-border" id="signup-confirm-password"
+							type="password" placeholder="Confirm Password">
+						<a href="#0" class="hide-password">Show</a>
+						<span class="error-message">Your password has to be at least 6 characters long!</span>
+					</p>
+					<p class="fieldset">
+						<!-- <input type="checkbox" id="accept-terms"> -->
+						<!-- <label for="accept-terms">I agree to the <a class="accept-terms" href="#0">Terms</a></label> -->
+					</p>
+					<p class="fieldset">
+						<input class="full-width has-padding" type="submit" value="Create account">
+					</p>
+				</form>
+			</div>
+			<div id="reset-password">
+				<p class="form-message">Lost your password? Please enter your email address.</br> You will receive a
+					link to create a new password.</p>
+
+				<form class="form">
+					<p class="fieldset">
+						<label class="image-replace email" for="reset-email">E-mail</label>
+						<input class="full-width has-padding has-border" id="reset-email" type="email"
+							placeholder="Student Registration Number">
+						<span class="error-message">An account with this email does not exist!</span>
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width has-padding" type="submit" value="Reset password">
+					</p>
+				</form>
+
+				<p class="form-bottom-message"><a href="#0">Back to log-in</a></p>
+			</div>
+			<a href="#0" class="close-form">Close</a>
+		</div>
+	</div>
+	<!-- partial -->
+	<!-- Vendor JS Files -->
+	<!-- jQuery (required by FullCalendar) -->
+	<!-- Moment.js (required for FullCalendar) -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js"></script>
+	<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+	<script src="assets/vendor/aos/aos.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+	<script src="assets/vendor/typed.js/typed.umd.js"></script>
+	<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+	<script src="assets/vendor/php-email-form/validate.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<!-- Template Main JS File -->
+	<script src="assets/js/loging form/loging form.js"></script>
+
+</body>
+
+</html>

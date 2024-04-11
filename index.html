@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>School Sysytem</title>
+
+  <!-- Favicons -->
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <!-- FullCalendar CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css" />
+  <!-- Font Awesome CDN link for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+
+    <div class="d-flex flex-column">
+      <div class="profile">
+
+        <div class="pr_image_field" id="prImageField">
+          <img src="assets/img/pr.jpg" alt="" class="img-fluid rounded-circle" data-bs-target="#studentDetailsModal" />
+        </div>
+        <span><i id="userIcon" class="fa fa-user" aria-hidden="true" data-bs-toggle="modal"
+            data-bs-target="#userModal"></i>
+        </span>
+        <!-- Bootstrap 5 Modal -->
+        <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Student Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>EKYC Number: <span id="ekycNumber"></span></p>
+                <p>Bulk Number: <span id="bulkNumber"></span></p>
+                <p>Registerd Number: <span id="RegisterdNumber"></span></p>
+                <p>First Name: <span id="firstName"></span></p>
+                <p>Last Name: <span id="lastName"></span></p>
+                <p>Full Name: <span id="fullName"></span></p>
+                <p>School Registration Number: <span id="registrationNumber"></span></p>
+                <p>Class Medium: <span id="classMedium"></span></p>
+                <p>Religion: <span id="religion"></span></p>
+                <p>Parent Name: <span id="parentName"></span></p>
+                <p>Parent Relation: <span id="parentRelation"></span></p>
+                <p>Mobile Number: <span id="mobileNumber"></span></p>
+                <p>Residence Number: <span id="residenceNumber"></span></p>
+                <p>Address: <span id="address"></span></p>
+                <!-- Add more fields as needed -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Icon -->
+        <h1 class="text-light"><a href="index.html">Navod Amarasighe </a></h1>
+      </div>
+
+
+      <nav id="navbar" class="nav-menu navbar student_details">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="link_buttons">
+              <div class="row justify-content-md-between">
+                <!-- Secondary Button Section -->
+                <div id="pannel_1" class="col-md-2 sec_button active_button">
+                  <p class="btn" href="" tabindex="0">Home</p>
+                </div>
+                <div id="pannel_2" class="col-md-2 sec_button ">
+                  <p class="btn" href="" tabindex="0">Past Papers</p>
+                </div>
+                <div id="pannel_5" class="col-md-2 sec_button active_button">
+                  <p class="btn" href="" tabindex="0">Library</p>
+                </div>
+                <div id="pannel_3" class="col-md-2 sec_button active_button">
+                  <p class="btn" href="" tabindex="0">Exam Results</p>
+                </div>
+                <div id="pannel_4" class="col-md-2 sec_button active_button">
+                  <p class="btn" href="" tabindex="0">Attendence</p>
+                </div>
+                <div id="pannel_6" class="col-md-2 sec_button active_button">
+                  <p class="btn" href="" tabindex="0">Request</p>
+                </div>
+                <div id="pannel_6" class="col-md-2 sec_button active_button logout">
+                  <p class="btn" href="" tabindex="0">Log Out</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- .nav-menu -->
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="row">
+
+      <div class="col-md-12 body_col">
+        <div class="content_container_90">
+          <div class="content_form">
+            <div class="header_form"></div>
+            <div class="row">
+              <!-- ////////////////////HOME PAGE //////////////// -->
+              <div id="pannel_1_content" class="pannel col-12 home_page">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-5 com_pd">
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="weekly_attendece_ta">
+                            <h4>Attendance</h4>
+                            <div class="table-responsive">
+                              <table class="weekly_attendance_table">
+                                <thead>
+                                  <tr>
+                                    <th>Date</th>
+                                    <th>Attendance</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <!-- Populate this section with attendance data -->
+                                  <tr>
+                                    <td>2023-12-01</td>
+                                    <td>Present</td>
+
+                                  </tr>
+                                  <tr>
+                                    <td>2023-12-02</td>
+                                    <td>Absent</td>
+                                  </tr>
+                                  <tr>
+                                    <td>2023-12-01</td>
+                                    <td>Present</td>
+                                  </tr>
+                                  <tr>
+                                    <td>2023-12-02</td>
+                                    <td>Absent</td>
+                                  </tr>
+                                  <tr>
+                                    <td>2023-12-01</td>
+                                    <td>Present</td>
+                                  </tr>
+                                  <tr>
+                                    <td>2023-12-02</td>
+                                    <td>Absent</td>
+                                  </tr>
+                                  <tr>
+                                    <td>2023-12-02</td>
+                                    <td>Absent</td>
+                                  </tr>
+                                  <!-- Add more rows as needed -->
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 com_pd">
+                          <div class="latest_library_details">
+                            <h4>Latest Library Details</h4>
+                            <div class="table-responsive">
+                              <table class="library_table">
+                                <thead>
+                                  <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Category</th>
+                                    <!-- Add more columns as needed -->
+                                  </tr>
+                                </thead>
+                                <tbody id="library_data_body">
+                                  <!-- Dummy data will be dynamically added here -->
+                                  <tr>
+                                    <td>Book 1</td>
+                                    <td>Author A</td>
+                                    <td>Fiction</td>
+                                    <!-- Add more columns as needed -->
+                                  </tr>
+                                  <tr>
+                                    <td>Book 2</td>
+                                    <td>Author B</td>
+                                    <td>Non-fiction</td>
+                                    <!-- Add more columns as needed -->
+                                  </tr>
+                                  <!-- Add more rows for dummy data -->
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-7 com_pd">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="time_table">
+                            <div class="table-responsive">
+                              <div class="time_table">
+                                <h4>Time Table</h4>
+                                <table class="timetable_table">
+                                  <thead>
+                                    <tr>
+                                      <th>Time</th>
+                                      <th>Monday</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>8:00 AM - 9:00 AM</td>
+                                      <td>Mathematics</td>
+                                    </tr>
+                                    <tr>
+                                      <td>9:00 AM - 10:00 AM</td>
+                                      <td>Science</td>
+                                    </tr>
+                                    <tr>
+                                      <td>10:00 AM - 11:00 AM</td>
+                                      <td>English Literature</td>
+                                    </tr>
+                                    <tr>
+                                      <td>11:00 AM - 12:00 PM</td>
+                                      <td>World History</td>
+                                    </tr>
+                                    <tr>
+                                      <td>12:00 PM - 1:00 PM</td>
+                                      <td>Geography</td>
+                                    </tr>
+                                    <tr>
+                                      <td>1:00 PM - 2:00 PM</td>
+                                      <td>Physics</td>
+                                    </tr>
+                                    <tr>
+                                      <td>2:00 PM - 3:00 PM</td>
+                                      <td>Chemistry</td>
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="time_table com_pd">
+                            <div class="table-responsive">
+                              <div class="notification_panel">
+                                <h4>Notification Panel</h4>
+                                <table class="table table-striped notification_table">
+                                  <thead>
+                                    <tr>
+                                      <th>Date</th>
+                                      <th>Notification</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>2023-12-01</td>
+                                      <td>New assignment added</td>
+                                    </tr>
+                                    <tr>
+                                      <td>2023-12-02</td>
+                                      <td>Reminder: Exam tomorrow</td>
+                                    </tr>
+                                    <!-- Add more notification rows as needed -->
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /////////////////PDF//////////////////// -->
+              <div id="pannel_2_content" class="pannel d-none  col-12 com_pd">
+                <section id="" class="passpaper section-bg">
+                  <div class="container">
+
+                    <h3>Past Papers</h3>
+                    <div class="row" data-aos="fade-up">
+                      <!-- <div class="col-lg-12 d-flex justify-content-center">
+                        <ul id="language-flters">
+                          <li data-filter="*" class="filter-active">All</li>
+                          <li data-filter=".filter-app">English</li>
+                          <li data-filter=".filter-card">සිංහල</li>
+                          <li data-filter=".filter-web">தமிழ்</li>
+                        </ul>
+                      </div> -->
+                    </div>
+
+                    <div class="row passpaper_co" data-aos="fade-up" data-aos-delay="100">
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card passpaper_wr" style="width: 18rem;">
+                          <img src="assets/img/images (1).jpg" class="card-img-top" alt="...">
+                          <div class="card-body pdf_description">
+
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                              bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card passpaper_wr" style="width: 18rem;">
+                          <img src="assets/img/images (2).jpg" class="card-img-top" alt="...">
+                          <div class="card-body pdf_description">
+
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                              bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card passpaper_wr" style="width: 18rem;">
+                          <img src="assets/img/images (3).jpg" class="card-img-top" alt="...">
+                          <div class="card-body pdf_description">
+
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                              bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card passpaper_wr" style="width: 18rem;">
+                          <img src="assets/img/7-Sinhala-Bashawa-Sahithya-Rs_300.jpg" class="card-img-top" alt="...">
+                          <div class="card-body pdf_description">
+
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                              bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card passpaper_wr" style="width: 18rem;">
+                          <img src="assets/img/2_483976.jpg" class="card-img-top" alt="...">
+                          <div class="card-body pdf_description">
+
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                              bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card passpaper_wr" style="width: 18rem;">
+                          <img src="assets/img/images.png" class="card-img-top" alt="...">
+                          <div class="card-body pdf_description">
+
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                              bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card passpaper_wr" style="width: 18rem;">
+                          <img src="assets/img/images (4).png" class="card-img-top" alt="...">
+                          <div class="card-body pdf_description">
+
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                              bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card passpaper_wr" style="width: 18rem;">
+                          <img src="assets/img/images (1).png" class="card-img-top" alt="...">
+                          <div class="card-body pdf_description">
+
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the
+                              bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Passpaper Id</th>
+                              <th>Passpaper Name</th>
+                              <th>Passpaper Type</th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
+                          <tbody id="paperTableBody">
+                            <!-- Table body will be populated dynamically -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <!-- ////////// LIBRARY ////////// -->
+              <div id="pannel_5_content" class="pannel d-none col-12 com_pd">
+                <section id="" class="passpaper section-bg">
+                  <div class="container">
+
+                    <h3>Library</h3>
+
+                    <div class="row" data-aos="fade-up">
+                      <!-- <div class="col-lg-12 d-flex justify-content-center">
+                        <ul id="language-flters">
+                          <li data-filter="*" class="filter-active">All</li>
+                          <li data-filter=".filter-app">English</li>
+                          <li data-filter=".filter-card">සිංහල</li>
+                          <li data-filter=".filter-web">தமிழ்</li>
+                        </ul>
+                      </div> -->
+                    </div>
+
+                    <div class="row passpaper_co" data-aos="fade-up" data-aos-delay="100">
+
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card" style="width: 18rem;">
+                          <img src="assets/img/download.jfif" class="card-img-top" alt="...">
+                          <div class="card-body library_description">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card" style="width: 18rem;">
+                          <img src="assets/img/book-cover-template-design_1201-30.avif" class="card-img-top" alt="...">
+                          <div class="card-body library_description">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card" style="width: 18rem;">
+                          <img src="assets/img/a7916230aedcdce47a4dfbff5247f0ce.jpg" class="card-img-top" alt="...">
+                          <div class="card-body library_description">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card" style="width: 18rem;">
+                          <img src="assets/img/images (1).jfif" class="card-img-top" alt="...">
+                          <div class="card-body library_description">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card" style="width: 18rem;">
+                          <img src="assets/img/Spell_of_RowansFinalblend23-640x1024.jpg" class="card-img-top" alt="...">
+                          <div class="card-body library_description">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card" style="width: 18rem;">
+                          <img src="assets/img/Spell_of_RowansFinalblend23-640x1024 (1).jpg" class="card-img-top"
+                            alt="...">
+                          <div class="card-body library_description">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card" style="width: 18rem;">
+                          <img
+                            src="assets/img/Fantasy-book-cover-design-P1475560878FAB-Dark-Sky-And-Moon-dreams-dreams-in-the-nigntDark-Sky-and-moon.jpg"
+                            class="card-img-top" alt="...">
+                          <div class="card-body library_description">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                        <div class="card" style="width: 18rem;">
+                          <img src="assets/img/book163.jpg" class="card-img-top" alt="...">
+                          <div class="card-body library_description">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                              of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Request</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Book Id</th>
+                              <th>Book Name</th>
+                              <th>Book Type</th>
+                              <th>Avalability</th>
+                            </tr>
+                          </thead>
+                          <tbody id="libraryTable">
+                            <!-- Table body will be populated dynamically -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <!-- /////////// EXAMP RESULTS ///////////// -->
+              <div id="pannel_3_content" class="pannel d-none  col-12 com_pd">
+                <section id="exam_an_attendance" class="skills section-bg">
+                  <div class="container">
+                    <h3>Exam Results</h3>
+                    <div class="row skills-content">
+                      <div class="col-lg-6 at_barchart" data-aos="fade-up">
+                        <canvas id="myChart" style="width: 100%; max-width: 100%"></canvas>
+                      </div>
+                      <div class="col-lg-6 table-responsive" id="resultsTableContainer" data-aos="fade-up">
+                        <!-- Add a select dropdown for year selection -->
+
+                        <span>
+                          Year
+                          <select id="yearSelection">
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <!-- Add more options for different years -->
+                          </select>
+                        </span>
+
+                        <span>
+                          Term
+                          <select id="termSelection">
+                            <option value="term1">Term 1</option>
+                            <option value="term2">Term 2</option>
+                            <option value="term3">Term 3</option>
+                            <!-- Add more options for different terms -->
+                          </select></span>
+
+                        <a id="downloadPDF" download="" onclick="generatePDF()">
+                          <a id="downloadresultseBtn" class="btn btn-success">Download Results</a>
+                        </a>
+                        <table id="resultsTable">
+                          <thead>
+                            <tr>
+                              <th>Subject</th>
+                              <th>Result</th>
+                              <th>Percentage</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Mathematics</td>
+                              <td>85</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>Science</td>
+                              <td>78</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>English</td>
+                              <td>10</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>History</td>
+                              <td>70</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>Geography</td>
+                              <td>65</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>Sinhala</td>
+                              <td>18</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>Tamil</td>
+                              <td>75</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>Art</td>
+                              <td>80</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>Information Technology</td>
+                              <td>20</td>
+                              <td></td>
+                            </tr>
+                            <!-- Add more rows for other subjects -->
+                          </tbody>
+                          <tfoot>
+                            <tr>
+                              <td><strong>Average</strong></td>
+                              <td id="averageResult"></td>
+                              <td></td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <!-- /////// ATTENDENCE /////////// -->
+              <div id="pannel_4_content" class="pannel d-none  col-12">
+                <h3>Attendence</h3>
+                <div class="row">
+                  <div class="col-md-5 attendance">
+                    <canvas id="attendanceChart" width="100%" height="100%"></canvas>
+                  </div>
+                  <div class="col-md-6 attendance">
+                    <table id="attendanceTable">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Attendance</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Attendance data will be populated here -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- ////////// REQUEST ////////// -->
+              <div id="pannel_6_content" class="pannel d-none col-12 com_pd">
+                <section class="section-bg">
+                  <div class="custom_container_80">
+                    <h3>Request</h3>
+                    <form id="notificationForm">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="requestType">Title</label>
+                            <select class="form-control" id="requestType">
+                              <option value="absentRequest">Absent Request</option>
+                              <option value="teacherRequest">Teacher Request</option>
+                              <option value="library">Library</option>
+                              <option value="examRequest">Exam Request</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" id="date">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" rows="3"></textarea>
+                      </div>
+                      <button type="button" class="btn btn-primary" onclick="addNotification()">Send</button>
+                    </form>
+
+                    <!-- Table for notifications -->
+                    <div class="table-container">
+                      <table id="notificationTable" class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Notification Title</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody id="notificationTableBody">
+                          <!-- Table rows will go here -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="credits">
+        Designed by <a href="">Navod Amarasighe</a>
+      </div>
+    </div>
+  </footer>
+  <!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <!-- jQuery (required by FullCalendar) -->
+  <!-- Moment.js (required for FullCalendar) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Template Main JS File -->
+  <!-- <script src="assets/js/main.js"></script> -->
+  <script src="assets/js/index page/index.js"></script>
+  <script src="assets/js/index exam results/exam results.js"></script>
+</body>
+
+</html>

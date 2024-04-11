@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>School Sysytem</title>
+
+  <!-- Favicons -->
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <!-- FullCalendar CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css" />
+  <!-- Font Awesome CDN link for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet" />
+
+</head>
+
+<body>
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+      <div class="profile modal-dialog modal-dialog-scrollable">
+        <div class="pr_image_field" id="prImageField">
+          <img src="assets/img/pr.jpg" alt="" class="img-fluid rounded-circle" data-bs-toggle="modal"
+            data-bs-target="#studentDetailsModal" />
+        </div>
+        <h1 class="text-light"><a href="index.html">Navod Amarasighe</a></h1>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="studentDetailsModal" tabindex="-1" aria-labelledby="studentDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="studentDetailsModalLabel">Student Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="studentDetailsContent">
+              <!-- Student details will be dynamically added here -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar student_details">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="link_buttons">
+              <div class="row justify-content-md-between">
+                <!-- Secondary Button Section -->
+                <div class="col-md-2 active_button dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#studentCollapse" aria-expanded="false" aria-controls="studentCollapse">
+                    Student Management
+                  </button>
+                  <div class="collapse" id="studentCollapse">
+                    <div class="card card-body">
+                      <a id="pannel_1" class="btn sec_button active_button" href="#">Student Management</a>
+                      <a id="pannel_12" class="btn sec_button active_button" href="#">Add Student</a>
+                      <p id="showPopupBtn"><a id="pannel_13" class="btn sec_button active_button" href="#">Registered
+                          Student</a></p>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 active_button dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#libraryCollapse" aria-expanded="false" aria-controls="libraryCollapse">
+                    Library Management
+                  </button>
+                  <div class="collapse" id="libraryCollapse">
+                    <div class="card card-body">
+                      <a id="pannel_2" class="btn sec_button active_button" href="#">Check Out Books</a>
+                      <a id="pannel_3" class="btn sec_button active_button" href="#">Add Books</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 active_button dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#courceCollapse" aria-expanded="false" aria-controls="courceCollapse">
+                    Cource Material Management
+                  </button>
+                  <div class="collapse" id="courceCollapse">
+                    <div class="card card-body">
+                      <a id="pannel_14" class="btn sec_button active_button" href="#">Check Out Paper</a>
+                      <a id="pannel_15" class="btn sec_button active_button" href="#">Add Paper</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 active_button dropdown">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#libraryCollapseat" aria-expanded="false" aria-controls="libraryCollapse">
+                    Attendence
+                  </button>
+                  <div class="collapse" id="libraryCollapseat">
+                    <div class="card card-body">
+                      <a id="pannel_6" class="btn sec_button active_button" href="#">Attendece</a>
+                      <a id="pannel_7" class="btn sec_button active_button" href="#">Attendece History</a>
+                    </div>
+                  </div>
+                </div>
+                <div id="pannel_8" class="col-md-2 sec_button active_button">
+                  <p class="btn" href="" tabindex="0">Time Table</p>
+                </div>
+                <div id="pannel_9" class="col-md-2 sec_button active_button">
+                  <p class="btn" href="" tabindex="0">Exam Results</p>
+                </div>
+                <div id="pannel_10" class="col-md-2 sec_button active_button">
+                  <p class="btn" href="" tabindex="0">Request Management</p>
+                </div>
+                <div id="pannel_11" class="col-md-2 sec_button active_button logout">
+                  <p class="btn" href="" tabindex="0">Log Out</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- .nav-menu -->
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="row">
+
+      <div class="col-md-12 body_col">
+        <div class="content_container_90">
+          <div class="content_form">
+            <div class="header_form"></div>
+            <div class="row">
+              <!-- ////////////////////HOME PAGE //////////////// -->
+              <div id="pannel_1_content" class="pannel col-12 home_page">
+                <div class="container">
+                  <div class="row">
+                    <!-- <div class="col-md-4 com_pd comm_buttons">
+                      <h3>Student Management</h3>
+                      <p>Bulk User Uploader</p>
+                      <button
+                        onclick="window.location.href='assets/csv files/First Name,Last Name,Full Name,Scl_.csv';">Download</button>
+                    </div>
+                    <div class="col-md-4 com_pd comm_buttons">
+                      <button class="upload-btn" onclick="document.getElementById('formFile').click()">Upload
+                        Document</button>
+                      <input type="file" id="formFile" style="display:none" onchange="handleFiles(this.files)">
+                    </div> -->
+                    <div class="col-md-4 sec_button com_pd comm_buttons registed_student" id="">
+                      <!-- <button id="showPopupBtn">Registered Student</button> -->
+                    </div>
+                  </div>
+                  <div class="reg_student pd_top_bot_50">
+                    <p><b>Create Register Student</b></p>
+                    <div class="find_student">
+                      <p class="serch_sec">Enter Student Register ID</p>
+                      <div class="input-group rounded">
+                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                          aria-describedby="search-addon" />
+                        <span class="input-group-text border-0" id="search-addon">
+                          <i class="fas fa-search"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 pd_top_bot_50">
+                      <label for="formFile" class="form-label">Bulk User Record</label>
+                      <div class="scrollable-table overflow-x:auto;">
+                        <table style="width:100%" id="myTable">
+                          <thead>
+                            <tr>
+                              <th>First Name</th>
+                              <th>Last Name</th>
+                              <th>Full Name</th>
+                              <th>Scl_Reg_Number</th>
+                              <th>Class</th>
+                              <th>Medium</th>
+                              <th>Religion</th>
+                              <th>Residence Number</th>
+                              <th>Address</th>
+                              <th>Parent Name</th>
+                              <th>Parent Relation</th>
+                              <th>Mobile No</th>
+                            </tr>
+                          </thead>
+                          <tbody id="bulktablBody">
+                            <!-- Data will be dynamically added here -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="formFile" class="form-label">Kyc User Record</label>
+                      <div class="scrollable-table overflow-x:auto;">
+                        <table style="width:100%" id="myTable">
+                          <thead>
+                            <tr>
+                              <th>First Name</th>
+                              <th>Last Name</th>
+                              <th>Full Name</th>
+                              <th>Scl_Reg_Number</th>
+                              <th>Class</th>
+                              <th>Medium</th>
+                              <th>Religion</th>
+                              <th>Parent Name</th>
+                              <th>Parent Relation</th>
+                              <th>Mobile No</th>
+                              <th class="hidecol">KYC Status</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody id="tableBod">
+                            <!-- Data will be dynamically added here -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="reg_student pd_top_bot_50">
+                    <div class="row justify-content-md-between Kyc User Recordn">
+                      <!-- <div class="col-md-6 bulk_user_record_col">
+                        <h5>Bulk User record</h5>
+                        <div class="col-md-6 bulk_user_record"></div>
+                      </div> -->
+                      <div class="col-md-3 ">
+                        <h5>Add Student Image</h5>
+                        <div class="kyc_student_image">
+                          <img id="previewImage" src="" alt="">
+                          <!-- <input type="file" id="imageUploader" accept="image/*" onchange="uploadstImage(event)"> -->
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 kyc_user_record_col">
+                        <h5>kyc user record</h5>
+                        <div class="col-md-6 kyc_user_record">
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="d-flex button_sec pd_top_bot_50">
+                      <div class="comm_buttons reg_stu_btn"><button onclick="registerStudent()">Register
+                          Student</button>
+                      </div>
+                      <div class="comm_buttons reject_stu_btn"><button onclick="rejectStudent()">Reject Student</button>
+                      </div>
+                    </div>
+                    <!-- Success Message Box -->
+                    <div class="success-message" id="successMessage">Student successfully registered!</div>
+                  </div>
+                </div>
+                <!-- Popup Box for Reject Student -->
+                <div class="popup" id="rejectPopup">
+                  <h2>Reject Student</h2>
+                  <label for="reason">Reason:</label>
+                  <textarea id="reason" rows="4" cols="50"></textarea><br>
+                  <button onclick="submitRejection()">Submit</button>
+                </div>
+              </div>
+              <!-- /////////////////PDF//////////////////// -->
+              <div id="pannel_2_content" class="pannel d-none  col-12 com_pd">
+                <section id="" class="passpaper section-bg">
+                  <div class="container">
+                    <h3>Check Out Books</h3>
+                    <div class="lib_table">
+                      <table id="libraryTable" class="table">
+                        <thead>
+                          <tr>
+                            <th>Book ID</th>
+                            <th>Book Name</th>
+                            <th>Book Type</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Table rows will be dynamically added here using JavaScript -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- Modal for book details -->
+                <div class="modal fade" id="bookDetailsModal" tabindex="-1" aria-labelledby="bookDetailsModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="bookDetailsModalLabel">Book Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p id="studentName"></p>
+                        <p id="borrowedDate"></p>
+                        <p id="returnDate"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="container">
+                  <h3>Request</h3>
+                  <div class="row">
+                    <div class="col-md-">
+                      <table id="requesttable" class="table">
+                        <thead>
+                          <tr>
+                            <th>Student Reg Id</th>
+                            <th>Book Id</th>
+                            <th>Request No</th>
+                            <th>Student Name</th>
+                            <th>Class</th>
+                            <th>Book Name</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Attendance data will be populated here -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ////////// Add Book ////////// -->
+              <div id="pannel_3_content" class="pannel d-none col-12 com_pd">
+                <section id="" class="passpaper section-bg">
+                  <div class="container">
+                    <h3>Add Books</h3>
+                    <div class="row">
+                      <label for="validationServerImage" class="form-label">Book Image</label>
+                      <!-- <div id="imageBox" onclick="document.getElementById('finput').click()">
+                        <img id="displayedImage" alt="Uploaded Image">
+                      </div> -->
+                      <div class="kyc_student_image">
+                        <img id="dpaperbookImage" src="" alt="">
+                        <input type="file" id="imagebookUploader" accept="image/*" onchange="uploadbookImage(event)">
+                      </div>
+                      <div class="col-md-8 book_details">
+                        <form id="bookForm" onsubmit="updateTable(); return false;" novalidate>
+                          <!-- Book ID -->
+                          <div class="form-group">
+                            <input type="text" id="bookId" name="bookId" class="form-control" placeholder="Book ID"
+                              pattern="[A-Za-z0-9]+" required>
+                            <div class="invalid-feedback">Please enter a valid Book ID (letters and numbers only).</div>
+                          </div>
+                          <!-- Book Name -->
+                          <div class="form-group">
+                            <input type="text" id="bookName" name="bookName" class="form-control"
+                              placeholder="Book Name" pattern="[A-Za-z\s]+" required>
+                            <div class="invalid-feedback">Please enter a valid Book Name (letters and whitespace only).
+                            </div>
+                          </div>
+                          <!-- Book Description -->
+                          <div class="form-group">
+                            <textarea id="bookDescription" name="bookDescription" class="form-control" rows="3"
+                              placeholder="Book Description" required></textarea>
+                            <div class="invalid-feedback">Please enter a Book Description.</div>
+                          </div>
+                          <div class="form-group">
+                            <select id="bookType" name="bookType" class="form-control dropdown-toggle" required>
+                              <option value="none" selected disabled>Select Book Type</option>
+                              <option value="pdf">PDF</option>
+                              <option value="hardCopy">Hard Copy</option>
+                            </select>
+                          </div>
+
+                          <div class="mb-3" id="fileUploader" style="display: none;">
+                            <label for="formFileMd" class="form-label">File input for PDF</label>
+                            <input class="form-control" id="formFileMd" type="file">
+                          </div>
+                          <button id="nextBtn3" type="submit" class="btn active_button">Submit</button>
+                        </form>
+                        <div class="book_detail_table">
+                          <table id="bookTable">
+                            <thead>
+                              <tr>
+                                <th>Book ID</th>
+                                <th>Book Name</th>
+                                <th>Book Description</th>
+                                <th>Book Type</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!-- Table content will be dynamically added here -->
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <!-- /////// ATTENDENCE /////////// -->
+              <div id="pannel_6_content" class="pannel d-none  col-12">
+                <h3>Attendence</h3>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="class_filter">
+                      <h3>Class Filter</h3>
+                      <select id="classSelect" class="form-control">
+                        <option value="">Select Class</option>
+                        <option value="Grade 10 A">Grade 10 A</option>
+                        <option value="Grade 10 B">Grade 10 B</option>
+                        <option value="Grade 10 C">Grade 10 C</option>
+                      </select>
+                    </div>
+                    <table id="AtTable" class="table">
+                      <thead>
+                        <tr>
+                          <th>Student ID</th>
+                          <th>Student Name</th>
+                          <th>Class</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Table content will be dynamically added here -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- ////////ATTENDENCE HISTORY///////////// -->
+              <div id="pannel_7_content" class="pannel d-none col-12">
+                <h3>Attendence History</h3>
+                <div class="row">
+                  <div class="col-md-9">
+
+                    <table id="attendanceHistoryTable" class="table">
+                      <thead>
+                        <tr>
+                          <th>Student ID</th>
+                          <th>Student Name</th>
+                          <th>Class</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Table content will be dynamically added here -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- /////////////TIME TABLE//////////////// -->
+              <div id="pannel_8_content" class="pannel d-none col-12">
+                <h3>Time Table</h3>
+                <div class="row">
+                  <div id="col-md-12 timetableteacher">
+                    <div class="row" novalidate>
+                      <div class="col-md-5">
+                        <input type="text" class="form-control" placeholder="Table Id" id="tableId" />
+                      </div>
+                      <div class="col-md-5">
+                        <select class="form-control" id="day">
+                          <option value="Sunday">Sunday</option>
+                          <option value="Monday">Monday</option>
+                          <option value="Tuesday">Tuesday</option>
+                          <option value="Wednesday">Wednesday</option>
+                          <option value="Thursday">Thursday</option>
+                          <option value="Friday">Friday</option>
+                          <option value="Saturday">Saturday</option>
+                        </select>
+                      </div>
+                      <div class="col-md-5 form-group">
+                        <select class="form-control" id="subject" required>
+                          <option value="" selected disabled>Select Period</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <!-- Add more options as needed -->
+                        </select>
+                        <div class="invalid-feedback">Please select a subject.</div>
+                      </div>
+                      <div class="col-md-5 form-group">
+                        <select class="form-control" id="classId" required>
+                          <option value="" selected disabled>Select Class Id</option>
+                          <option value="class1">Class 1</option>
+                          <option value="class2">Class 2</option>
+                          <!-- Add more options as needed -->
+                        </select>
+                        <div class="invalid-feedback">Please select a Class Id.</div>
+                      </div>
+                      <div class="col-md-5 form-group">
+                        <select class="form-control" id="year" required>
+                          <option value="" selected disabled>Select Year</option>
+                          <option value="2024">2024</option>
+                          <option value="2025">2025</option>
+                          <!-- Add more options as needed -->
+                        </select>
+                        <div class="invalid-feedback">Please select a year.</div>
+                      </div>
+                      <div class="col-md-5 form-group">
+                        <select class="form-control" id="subject" required>
+                          <option value="" selected disabled>Select Subject</option>
+                          <option value="Math">Math</option>
+                          <option value="Science">Science</option>
+                          <option value="History">History</option>
+                          <option value="English">English</option>
+                          <!-- Add more options as needed -->
+                        </select>
+                        <div class="invalid-feedback">Please select a subject.</div>
+                      </div>
+                      <div class="col-md-5">
+                        <button id="addRecordBtn" class="btn btn-primary">Add Timetable Record</button>
+                      </div>
+                      <div class="col-md-2">
+                        <button id="downloadCSVBtn" class="btn btn-success ms-2">Download Results</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="time_table">
+                      <!-- Dropdowns for filters -->
+                      <div class="timetable d-flex">
+                        <table id="timetable_table" class="table">
+                          <thead>
+                            <tr>
+                              <th>Table Id</th>
+                              <th>Day</th>
+                              <th>Period</th>
+                              <th>Class Id</th>
+                              <th>Year</th>
+                              <th>Subject</th>
+                            </tr>
+                          </thead>
+                          <tbody id="timetable_body">
+                            <!-- Table data will be populated here -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ////////////// EXAM RESULTS ////////////////////// -->
+              <div id="pannel_9_content" class="pannel d-none col-12">
+                <h3>Exam Results</h3>
+                <div class="row">
+                  <!-- Form for adding new results -->
+                  <div class="col-md-12">
+                    <div id="resultForm">
+                      <div class="row" novalidate>
+                        <div class="col-md-5 form-group">
+                          <select class="form-control" id="yearInput" required>
+                            <option value="" selected disabled>Select Period</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                          </select>
+                        </div>
+                        <div class="col-md-5 form-group">
+                          <select class="form-control" id="termInput" required>
+                            <option value="" selected disabled>Select Term</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                          </select>
+                        </div>
+                        <div class="col-md-5 form-group">
+                          <input placeholder="Student ID Name" type="text" class="form-control" id="studentIdInput"
+                            pattern="[A-Za-z0-9\s]+" required>
+                          <div class="invalid-feedback">Please enter the student ID name (letters, numbers, and
+                            whitespace only).</div>
+                        </div>
+                        <div class="col-md-5 form-group">
+                          <select class="form-control" id="subjectInput" required>
+                            <option value="" selected disabled>Select Subject</option>
+                            <option value="Maths">Maths</option>
+                            <option value="Science">Science</option>
+                            <option value="Bio">Bio</option>
+                          </select>
+                        </div>
+                        <div class="col-md-5 form-group">
+                          <input placeholder="Results" type="text" class="form-control" id="resultsInput"
+                            pattern="[A-Za-z0-9\s]+" required>
+                          <div class="invalid-feedback">Please enter the results (letters, numbers, and whitespace
+                            only).</div>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-primary" onclick="saveResult()">Save</button>
+                      <div class="col-md-2">
+                        <button id="downloadexBtn" class="btn btn-success" onclick="downloadResults()">Download
+                          Results</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <p style="text-align: center; padding-top: 20px;" for="studentIdInput"><b>Exam Results Table</b></p>
+                    <table id="examresults" class="table">
+                      <thead>
+                        <tr>
+                          <th>Year</th>
+                          <th>Term</th>
+                          <th>Student Id</th>
+                          <th>Subject</th>
+                          <th>Results</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Table content will be dynamically added here -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- /////////////////////KYC FORM //////////////////// -->
+              <div id="pannel_12_content" class="pannel d-none col-12 kycforme">
+                <section id="hero">
+                  <div class="container_1000">
+                    <div class="form_title">
+                      <h2>Student Registration Form</h2>
+                      <p>Enter your information below</p>
+                    </div>
+
+                    <div class="fo_spacing row">
+                      <!-- Form for adding new student information -->
+                      <form class="row g-3" novalidate>
+                        <!-- Student Image -->
+                        <div class="col-md-6 ky_st_image">
+                          <label for="validationServerImage" class="form-label">Student Image</label>
+                          <div class="kyc_student_image">
+                            <img id="kycpreviewImage" src="" alt="">
+                            <input type="file" id="imageUploader" accept="image/*" onchange="uploadImagekyc(event)">
+                          </div>
+                        </div>
+                        <!-- Full Name -->
+                        <div class="col-md-12">
+                          <label for="validationServerFullname" class="form-label">Full name</label>
+                          <input type="text" class="form-control" id="validationServerFullname" pattern="[A-Za-z\s]+" required>
+                          <div class="invalid-feedback">Please enter English Characters only.</div>
+                        </div>
+                        <!-- First Name -->
+                        <div class="col-md-6">
+                          <label for="validationServer01" class="form-label">First name</label>
+                          <input type="text" class="form-control" id="validationServer01" pattern="[A-Za-z]+" required>
+                          <div class="invalid-feedback">Please enter English Characters only.</div>
+                        </div>
+                        <!-- Last Name -->
+                        <div class="col-md-6">
+                          <label for="validationServer02" class="form-label">Last name</label>
+                          <input type="text" class="form-control" id="validationServer02" pattern="[A-Za-z]+" required>
+                          <div class="invalid-feedback">Please enter English Characters only.</div>
+                        </div>
+                        <!-- Address -->
+                        <div class="col-md-12">
+                          <label for="validationServerAddress" class="form-label">Address</label>
+                          <input type="text" class="form-control" id="validationServerAddress" required>
+                          <div class="invalid-feedback">Please enter your address.</div>
+                        </div>
+                        <!-- School Registration Number -->
+                        <div class="col-md-6">
+                          <label for="validationServerRegistration" class="form-label">School Registration
+                            Number</label>
+                          <input type="text" class="form-control" id="validationServerRegistration" pattern="\d{4}" required>
+                          <div class="invalid-feedback">Please enter a valid school registration number with exactly
+                            four digits. Ex:0001
+                          </div>
+                        </div>
+                        <!-- Class -->
+                        <div class="col-md-6">
+                          <label for="validationServerClass" class="form-label">Class</label>
+                          <input type="text" class="form-control" id="validationServerClass" pattern="\d{2}[A-Za-z]?" required>
+                          <div class="invalid-feedback">Please enter a valid class (e.g., 01A).</div>
+                        </div>
+                        <!-- Medium -->
+                        <div class="col-md-6">
+                          <label for="validationServerMedium" class="form-label">Medium</label>
+                          <select class="form-select" id="validationServerMedium" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option>English</option>
+                            <option>Sinhala</option>
+                            <option>Tamil</option>
+                          </select>
+                          <div class="invalid-feedback">Please select a medium.</div>
+                        </div>
+                        <!-- Registration Number -->
+                        <div class="col-md-6">
+                          <label for="validationServerRegistrationNo" class="form-label">Registration Number</label>
+                          <input type="text" class="form-control" id="validationServerRegistrationNo" pattern="\d{4}" required>
+                          <div class="invalid-feedback">Please enter a valid registration number with exactly four
+                            digits.
+                          </div>
+                        </div>
+                        <!-- Parent Name -->
+                        <div class="col-md-6">
+                          <label for="validationServerParentName" class="form-label">Parent Name</label>
+                          <input type="text" class="form-control" id="validationServerParentName" pattern="[A-Za-z\s]+" required>
+                          <div class="invalid-feedback">Please enter only English words.</div>
+                        </div>
+                        <!-- Parent Relation -->
+                        <div class="col-md-6">
+                          <label for="validationServerParentRelation" class="form-label">Parent Relation</label>
+                          <input type="text" class="form-control" id="validationServerParentRelation" pattern="[A-Za-z0-9]+" required>
+                          <div class="invalid-feedback">Please enter a valid parent relation (letters and numbers only).
+                          </div>
+                        </div>
+                        <!-- Mobile Number -->
+                        <div class="col-md-6">
+                          <label for="validationServerMobileNumber" class="form-label">Mobile Number</label>
+                          <input type="text" class="form-control" id="validationServerMobileNumber" pattern="\d+" required>
+                          <div class="invalid-feedback">Please enter a valid mobile number (numbers only).</div>
+                        </div>
+                        <!-- Residence Number -->
+                        <div class="col-md-6">
+                          <label for="validationServerResidenceNumber" class="form-label">Residence Number</label>
+                          <input type="text" class="form-control" id="validationServerResidenceNumber" pattern="\d+" required>
+                          <div class="invalid-feedback">Please enter a valid residence number (numbers only).</div>
+                        </div>
+                        <div class="col-12">
+                          <div class="form-check">
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <button id="nextBtn3" class="btn btn-primary" type="button" onclick="saveStudent()">Save</button>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 com_pd comm_buttons">
+                        <h3>Student Management</h3>
+                        <p>Bulk User Uploader</p>
+                        <button
+                          onclick="window.location.href='assets/csv files/First Name,Last Name,Full Name,Scl_.csv';">Download</button>
+                      </div>
+                      <div class="col-md-6 com_pd comm_buttons">
+                        <button class="upload-btn" onclick="document.getElementById('formFile').click()">Upload
+                          Document</button>
+                        <input type="file" id="formFile" style="display:none" onchange="handleFiles(this.files)">
+                      </div>
+                      <!-- <div class="col-md-4 sec_button com_pd comm_buttons registed_student" id="pannel_13">
+                                          <button id="showPopupBtn">Registered Student</button>
+                                        </div> -->
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12 pd_top_bot_50">
+                        <label for="formFile" class="form-label">Bulk User Record</label>
+                        <div class="scrollable-table overflow-x:auto;">
+                          <table style="width:100%" id="myTable">
+                            <thead>
+                              <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Full Name</th>
+                                <th>Scl_Reg_Number</th>
+                                <th>Class</th>
+                                <th>Medium</th>
+                                <th>Religion</th>
+                                <th>Residence Number</th>
+                                <th>Address</th>
+                                <th>Parent Name</th>
+                                <th>Parent Relation</th>
+                                <th>Mobile No</th>
+                              </tr>
+                            </thead>
+                            <tbody id="bulktableBody">
+                              <!-- Data will be dynamically added here -->
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button id="nextBtn3" class="btn btn-primary" type="button">Save Record</button>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <!-- /////// ATTENDENCE /////////// -->
+              <div id="pannel_13_content" class="pannel d-none  col-12">
+                <h3>Registered Student</h3>
+                <div class="row">
+                  <div class="modal-body">
+                    <div class="form-row row pd_top_bot_50 align-items-end">
+                      <!-- <div class="col-md-4 filter">
+                        <label class="label" for="filterYear">Filter by Year:</label>
+                        <select id="filterYear" class="filter form-control">
+                          <option value="">All</option>
+                       
+                        </select>
+                      </div> -->
+                      <!-- <div class="col-md-4 filter">
+                        <label class="label" for="filterClass">Filter by Class:</label>
+                        <select id="filterClass" class=" form-control">
+                          <option value="">All</option>
+                        
+                        </select>
+                      </div> -->
+                      <div class="col-md-3">
+                        <button id="downloadDataBtn">
+                          Download Table Data
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Popup Table -->
+                    <div class="popup-table" id="popupTable">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Registered Id</th>
+                            <th>Bulk Student Id</th>
+                            <th>School reg No</th>
+                            <th>Full Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Class</th>
+                            <th>Address</th>
+                            <th>Kyc Id</th>
+                            <th>Medium</th>
+                            <th>Region</th>
+                            <th>Parent Name</th>
+                            <th>Parent Relations</th>
+                            <th>Mobile Number</th>
+                            <th>Residence Number</th>
+                          </tr>
+                        </thead>
+                        <tbody id="popupTableBody">
+                          <!-- Table body will be dynamically populated here -->
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ////////// REQUEST ////////// -->
+              <div id="pannel_10_content" class="pannel d-none col-12 com_pd">
+                <section class="section-bg">
+                  <div class="custom_container_80">
+                    <h3>Request Management</h3>
+                    <div class="table-container">
+                      <table id="notificationTable" class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Request Id</th>
+                            <th>Request Type</th>
+                            <th>Student Id</th>
+                            <th>Description</th>
+                            <th>View</th>
+                          </tr>
+                        </thead>
+                        <tbody id="requestTableBody">
+                          <!-- Table rows will be dynamically added here -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div id="pannel_14_content" class="pannel d-none  col-12 com_pd">
+                <section id="" class="passpaper section-bg">
+                  <div class="container">
+                    <h3>Check Out Paper</h3>
+                    <div class="lib_table">
+                      <table id="choutpaperTable" class="table">
+                        <thead>
+                          <tr>
+                            <th>Paper ID</th>
+                            <th>Paper Name</th>
+                            <th>Paper Type</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Table rows will be dynamically added here using JavaScript -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- Modal for book details -->
+                <div class="modal fade" id="courceDetailsModal" tabindex="-1" aria-labelledby="bookDetailsModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="bookDetailsModalLabel">Book Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p id="studentName"></p>
+                        <p id="borrowedDate"></p>
+                        <p id="returnDate"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="container">
+                  <h3>Request</h3>
+                  <div class="row">
+                    <div class="col-md-">
+                      <table id="corerequesttable" class="table">
+                        <thead>
+                          <tr>
+                            <th>Request No</th>
+                            <th>Student Name</th>
+                            <th>Class</th>
+                            <th>Paper Name</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Attendance data will be populated here -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ////////// Add Paper ////////// -->
+              <div id="pannel_15_content" class="pannel d-none  col-12 com_pd">
+                <section id="" class="passpaper section-bg">
+                  <div class="container">
+                    <h3>Add Paper</h3>
+                    <div class="row">
+                      <label for="validationServerImage" class="form-label">paper Image</label>
+                      <div class="kyc_student_image">
+                        <img id="dpaperImage" src="" alt="">
+                        <input type="file" id="imageUploader" accept="image/*" onchange="uploadImage(event)">
+                      </div>
+
+                      <div class="col-md-8 book_details">
+                        <form id="bookForm" onsubmit="updatePaperTable(); return false;">
+                          <div class="form-group">
+                            <input type="text" id="paperId" name="bookId" class="form-control" placeholder="Paper ID"
+                              required>
+                          </div>
+                          <div class="form-group">
+                            <input type="text" id="paperName" name="bookName" class="form-control"
+                              placeholder="Paper Name" required>
+                          </div>
+                          <div class="form-group">
+                            <textarea id="paperDescription" name="bookDescription" class="form-control" rows="3"
+                              placeholder="Paper Description" required></textarea>
+                          </div>
+                          <div class="form-group">
+                            <select id="paperType" name="bookType" class="form-control dropdown-toggle" required>
+                              <option value="none" selected disabled>Select Paper Type</option>
+                              <option value="pdf">PDF</option>
+                              <option value="hardCopy">Hard Copy</option>
+                            </select>
+                          </div>
+
+                          <div class="mb-3" id="fileUploader1" style="display: none;">
+                            <label for="formFileMd" class="form-label">File input for PDF</label>
+                            <input class="form-control" id="formFileMd" type="file">
+                          </div>
+                          <button type="submit" id="nextBtn4" class="btn active_button">Submit</button>
+                        </form>
+                        <div class="book_detail_table">
+                          <table id="paperTable">
+                            <thead>
+                              <tr>
+                                <th>Paper ID</th>
+                                <th>Paper Name</th>
+                                <th>Paper Description</th>
+                                <th>Paper Type</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!-- Table content will be dynamically added here -->
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="credits">
+        Designed by <a href="">Navod Amarasighe</a>
+      </div>
+    </div>
+  </footer>
+  <!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <!-- jQuery (required by FullCalendar) -->
+  <!-- Moment.js (required for FullCalendar) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/js/student management/student management.js"></script>
+  <script src="assets/js/download_add paper/addpaper.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/download page/download.js"></script>
+  <script src="assets/js/time table/timetable.js"></script>
+  <script src="assets/js/exam results/examresults.js"></script>
+  <script src="assets/js/library page/library.js"></script>
+  <script src="assets/js/chechout paper/checkoutpaper.js"></script>
+  <script src="assets/js/cource material/courcematerial.js"></script>
+  <script>
+    // Add event listener for input fields
+    document.querySelectorAll('input').forEach(item => {
+      item.addEventListener('input', event => {
+        // Reset invalid feedback
+        const feedback = event.target.nextElementSibling;
+        feedback.style.display = 'none';
+        // Check if input is invalid and show feedback
+        if (!event.target.checkValidity()) {
+          feedback.style.display = 'block';
+        }
+      });
+    });
+
+    /////////////validation/////////////////
+
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   // Select the form and button
+    //   var form = document.querySelector("form");
+    //   var saveButton = document.getElementById("nextBtn3");
+
+    //   // Function to check if the form is valid
+    //   function updateButtonState() {
+    //     var isValid = form.checkValidity();
+    //     saveButton.disabled = !isValid;
+    //   }
+
+    //   // Add click event listener to the Save button
+    //   saveButton.addEventListener("click", function () {
+    //     if (form.checkValidity()) {
+    //       // Form is valid, proceed with saving
+    //       alert("Form saved successfully!");
+    //     } else {
+    //       // Form is invalid, display error message or prevent submission
+    //       alert("Please fill out all required fields correctly.");
+    //     }
+    //   });
+
+    //   // Add change and input event listeners to form inputs and select elements
+    //   var inputs = form.querySelectorAll("input, select");
+    //   inputs.forEach(function (input) {
+    //     input.addEventListener("change", updateButtonState);
+    //     input.addEventListener("input", updateButtonState);
+    //   });
+
+    //   // Initial check (optional, in case you want to check validity when the form is first displayed)
+    //   updateButtonState();
+    // });
+
+  </script>
+
+</body>
+
+</html>

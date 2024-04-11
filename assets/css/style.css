@@ -1,0 +1,1613 @@
+/**
+* Template Name: iPortfolio
+* Updated: Nov 17 2023 with Bootstrap v5.3.2
+* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #272829;
+}
+
+a {
+  color: #149ddd;
+  text-decoration: none;
+}
+
+.fa-user {
+  color: white;
+}
+
+a:hover {
+  color: #37b3ed;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 1.75rem;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.custom_container_80 {
+  width: 70%;
+  margin: auto;
+}
+
+form label {
+  color: black;
+}
+
+form input {
+  color: black !important;
+}
+
+.fo_spacing {
+  padding-left: 20px;
+}
+
+/*--------------------------------------------------------------
+# loging form
+--------------------------------------------------------------*/
+.login_form {
+  background-color: #f2f2f2;
+  /* Fallback color if the background image doesn't load */
+  background-image: url('your-background-image.jpg');
+  /* Replace 'your-background-image.jpg' with your image path */
+  background-size: cover;
+  background-position: center;
+  /* Text color */
+}
+
+.login_form .row>* {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.background_image {
+  background-image: url(../img/средняя-школа-магнита-baton-rouge-26021071.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+/* Your existing CSS styles */
+
+.password-input {
+  position: relative;
+}
+
+.login_form .row {
+  height: 100%;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  /* Change the eye icon color */
+}
+
+.toggle-password i {
+  pointer-events: none;
+}
+
+.logout :hover.btn {
+  color: red;
+  border: 2px solid red;
+}
+
+.logout .btn {
+  background-color: red;
+  border: 2px solid red;
+}
+
+.transparent-form {
+  display: flex;
+  align-items: center;
+  background-color: #2c4565;
+  /* Adjust the last value for transparency */
+  padding: 20px;
+  border-radius: 8px;
+  height: 100%;
+}
+
+.pr_image_field {
+  display: flex;
+  align-items: end;
+}
+
+.transparent-form h2 {
+  text-align: center;
+  color: white;
+  /* Header text color */
+}
+
+.form-group {
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: white;
+  /* Label text color */
+}
+
+
+
+input[type="text"],
+input[type="password"],
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+.form-group button {
+  max-width: 40%;
+}
+
+.container_1000 {
+  max-width: 1000px;
+}
+
+.form_title {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#imagebookUploader {
+  padding-top: 20px;
+}
+
+canvas {
+  height: 175px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+input[type="text"],
+input[type="password"] {
+  background-color: rgba(255, 255, 255, 0.5);
+  /* Text field background color */
+  color: #fff;
+  /* Text color for text fields */
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: #ddd;
+  /* Placeholder text color */
+}
+
+button {
+  background-color: #2196F3;
+  /* Change button color */
+  color: white;
+  cursor: pointer;
+  height: 50px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0b7dda;
+  /* Change button color on hover */
+}
+
+/* Style for the download icon */
+#downloadIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  /* Adjust as needed */
+}
+
+.transparent-form {
+  background-color: #2c4565;
+  /* Adjust the last value for transparency */
+  padding: 20px;
+  border-radius: 11px;
+}
+
+/* Increased padding for input fields */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  margin-bottom: 10px;
+  /* Space between input fields */
+}
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996;
+  background: #149ddd;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.back-to-top i {
+  font-size: 28px;
+  color: #fff;
+  line-height: 0;
+}
+
+.back-to-top:hover {
+  background: #2eafec;
+  color: #fff;
+}
+
+.back-to-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 340px;
+  transition: all ease-in-out 0.5s;
+  z-index: 9997;
+  transition: all 0.5s;
+  padding: 0 15px;
+  background: #2c4565;
+  overflow-y: auto;
+}
+
+.loging_body #header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: max-content;
+  transition: all ease-in-out 0.5s;
+  z-index: 9997;
+  transition: all 0.5s;
+  padding: 0 15px;
+  overflow-y: auto;
+}
+
+#header .profile img {
+  margin: 15px auto;
+  display: block;
+  width: 120px;
+  border: 8px solid #2c2f3f;
+}
+
+#header .profile h1 {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  -moz-text-align-last: center;
+  text-align-last: center;
+  font-family: "Poppins", sans-serif;
+}
+
+#header .profile h1 a,
+#header .profile h1 a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+#header .profile .social-links a {
+  font-size: 18px;
+  display: inline-block;
+  background: #212431;
+  color: #fff;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+
+#header .profile .social-links a:hover {
+  background: #149ddd;
+  color: #fff;
+  text-decoration: none;
+}
+
+#main {
+  margin-left: 300px;
+}
+
+/* .container,
+.container-fluid {
+  padding-left: 30px;
+  padding-right: 30px;
+} */
+
+@media (max-width: 1199px) {
+  #header {
+    left: -350px;
+  }
+
+  #main {
+    margin-left: 0;
+  }
+
+  .container,
+  .container-fluid {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Desktop Navigation */
+.nav-menu {
+  padding: 30px 0 0 0;
+  padding-top: 17px;
+  font-size: 12px;
+}
+
+.nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Custom styles for the navbar and button */
+#navbar {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#navbar ul li {
+  margin-bottom: 5px;
+}
+
+.btn-download {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 11px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-download:hover {
+  background-color: #0056b3;
+}
+
+.nav-menu a,
+.nav-menu a:focus {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  padding: 5px 15px;
+  margin-bottom: 8px;
+  transition: 0.3s;
+  font-size: 15px;
+  background: darkblue;
+}
+
+.nav-menu a i,
+.nav-menu a:focus i {
+  font-size: 24px;
+  padding-right: 8px;
+  color: #6f7180;
+}
+
+.nav-menu a:hover,
+.nav-menu .active,
+.nav-menu .active:focus,
+.nav-menu li:hover>a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-menu a:hover i,
+.nav-menu .active i,
+.nav-menu .active:focus i,
+.nav-menu li:hover>a i {
+  color: #149ddd;
+}
+
+/* Mobile Navigation */
+.mobile-nav-toggle {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  z-index: 9998;
+  border: 0;
+  font-size: 24px;
+  transition: all 0.4s;
+  outline: none !important;
+  background-color: #149ddd;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.mobile-nav-active {
+  overflow: hidden;
+}
+
+.mobile-nav-active #header {
+  left: 0;
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+/* CSS for the table */
+.weekly_attendance_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.weekly_attendance_table th,
+.weekly_attendance_table td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: left;
+}
+
+.weekly_attendance_table thead {
+  background-color: #f2f2f2;
+}
+
+.table-responsive {
+  overflow-x: unset;
+  -webkit-overflow-scrolling: touch;
+}
+
+.com_pd {
+  padding-top: 40px;
+}
+
+/* CSS for the library table */
+.library_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.library_table th,
+.library_table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.library_table thead {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.library_table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.library_table tbody tr:hover {
+  background-color: #eaeaea;
+}
+
+/* CSS for the timetable */
+.timetable_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.timetable_table th,
+.timetable_table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.timetable_table thead th {
+  background-color: #f2f2f2;
+}
+
+.reject_stu_btn button {
+  background-color: #ff4d4d;
+}
+
+.reject_stu_btn button:hover {
+  background-color: transparent;
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
+}
+
+.sec_button {
+  padding-top: 10px;
+  width: max-content;
+}
+
+.active_button {
+  width: max-content;
+  padding-top: 10px;
+}
+
+.sec_button p {
+  font-size: 18px;
+}
+
+.card.card-body {
+  background: none;
+  padding-top: 10px;
+  border: none;
+}
+
+.link_buttons {
+  padding-top: 20px;
+}
+
+.btn {
+  color: #ffffff;
+
+  background-color: #3ca3e7;
+  outline: none;
+  border: 2px solid #3ca3e7;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 11px;
+  cursor: pointer;
+  position: relative;
+  min-width: 292px;
+}
+
+.btn:hover {
+  color: var(--bs-btn-hover-color);
+  background-color: transparent;
+  border-color: rgb(60, 163, 231);
+  color: rgb(60, 163, 231);
+  font-weight: 600;
+}
+
+.sec_button :hover {
+  background-color: initial;
+  border-color: rgb(60, 163, 231);
+  color: white;
+  font-weight: 600;
+}
+
+input[type="text"] {
+  color: black !important;
+}
+
+.active_button :hover {
+  background-color: initial;
+  border-color: rgb(60, 163, 231);
+  color: white;
+  font-weight: 600;
+}
+
+#downloadexBtn {
+  margin-top: 15px;
+}
+
+.pdf_description .btn-primary {
+  width: inherit;
+}
+
+.pdf_description .btn {
+  min-width: 0;
+}
+
+.library_description .btn-primary {
+  width: inherit;
+}
+
+
+
+.library_description .btn {
+  min-width: 0;
+}
+
+#hero {
+  width: 100%;
+  background-size: cover;
+  padding-left: 25%;
+  /* padding-right: 25%; */
+  padding-bottom: 50px;
+}
+
+#loging {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+}
+
+.da_buttons a {
+  padding: 30px 64px;
+  background: #7e5ddf;
+  border-radius: 11px;
+  font-size: 13px;
+  color: white;
+  font-weight: 600;
+}
+
+.da_buttons a span {
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+}
+
+.login_form:before {
+  content: "";
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+
+#hero .hero-container {
+  position: relative;
+  z-index: 2;
+  min-width: 300px;
+}
+
+#hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
+}
+
+
+#hero p span {
+  color: #fff;
+  padding-bottom: 4px;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #149ddd;
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+
+  .kycform {
+    background-color: mintcream;
+    padding: 6px;
+    border: 2px solid black;
+  }
+}
+
+@media (max-width: 768px) {
+  #hero {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .kyc #hero {
+    padding-left: 15px;
+    padding-right: 15px !important;
+  }
+
+  .kycform {
+    background-color: mintcream;
+    padding: 6px !important;
+    border: 2px solid black;
+  }
+
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+  overflow: hidden;
+}
+
+.section-bg {
+  background: #f5f8fd;
+}
+
+.section-title {
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #173b6c;
+}
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #149ddd;
+  bottom: 0;
+  left: 0;
+}
+
+.section-title p {
+  margin-bottom: 0;
+}
+
+/*-------------------------------------------------------------
+  Exam Results and Table
+--------------------------------------------------------------*/
+#resultsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#resultsTable th,
+#resultsTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#resultsTable th {
+  background-color: #f2f2f2;
+}
+
+#resultsTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Styles for the span elements */
+span {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* Styles for the select elements */
+select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#resultsTable tr:hover {
+  background-color: #f5f5f5;
+}
+
+.attendance {
+  font-family: Arial, sans-serif;
+  border-radius: 5px;
+  padding: 20px;
+  padding-top: 70px;
+  background-color: #f9f9f9;
+}
+
+#myChart {
+  height: 80% !important;
+  width: 90% !important
+}
+
+.kycforme #hero {
+  padding-left: 10%;
+}
+
+/* Style for invalid labels */
+label.invalid {
+  color: red;
+}
+
+/* Style for invalid feedback */
+.invalid-feedback {
+  color: red;
+  font-size: 0.8em;
+}
+
+#attendanceTable {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  margin-top: initial;
+}
+
+#attendanceTable th,
+#attendanceTable td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+#attendanceTable th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+#attendanceTable tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+/*--------------------------------------------------------------
+# passpaper
+--------------------------------------------------------------*/
+.same_btn {
+  width: 150px;
+}
+
+.reject {
+  background-color: red;
+  color: white;
+  margin: 2px;
+}
+
+.approve {
+  margin: 2px;
+}
+
+.reject:hover {
+  background: none;
+  border: 2px solid red;
+  color: red;
+  font-weight: 600;
+}
+
+.approve {
+  color: white;
+}
+
+.passpaper .passpaper_view {
+  margin-bottom: 30px;
+}
+
+.request_btn a {
+  font-size: 12px;
+}
+
+.passpaper #language-flters {
+  padding: 0;
+  margin: 0 auto 35px auto;
+  list-style: none;
+  text-align: center;
+  background: #fff;
+  border-radius: 50px;
+  padding: 2px 15px;
+}
+
+.passpaper #language-flters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 15px 8px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #272829;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+.passpaper #language-flters li:hover,
+.passpaper #language-flters li.filter-active {
+  color: #149ddd;
+}
+
+.passpaper #language-flters li:last-child {
+  margin-right: 0;
+}
+
+/* 
+.passpaper .passpaper_wr {
+  transition: 0.3s;
+  height: 240px;
+
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.passpaper .passpaper_wr img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+} */
+/* 
+.passpaper .passpaper_wr::before {
+  content: "";
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transition: all ease-in-out 0.3s;
+  z-index: 2;
+  opacity: 0;
+}
+
+
+.passpaper .passpaper_wr .paper-links {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  bottom: -60px;
+  z-index: 3;
+  position: absolute;
+  transition: all ease-in-out 0.3s;
+  display: flex;
+  justify-content: center;
+} */
+
+
+/* 
+.pdf_description {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  position: absolute;
+  transition: all ease-in-out 0.3s;
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.75);
+  height: 100%;
+}
+
+.pdf_description a {
+  text-align: center;
+  align-items: center;
+  width: 150px;
+  background: yellow;
+  border: 2px solid yellow;
+  color: black;
+  border-radius: 11px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+} */
+
+/* .passpaper .passpaper_wr .paper-links a:hover {
+  background: none;
+  color: yellow;
+}
+
+.passpaper .passpaper_wr:hover::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 1;
+}
+
+.passpaper .passpaper_wr:hover .paper-links {
+  opacity: 1;
+  bottom: 0;
+  height: 100%;
+} */
+
+img.card-img-top {
+  height: 14pc;
+  object-fit: cover;
+}
+
+/* Additional styles for table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+th,
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+td:last-child {
+  text-align: center;
+}
+
+.time-table {
+  border: 1px solid #dee2e6;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+.time-table th,
+.time-table td {
+  border: 1px solid #dee2e6;
+  padding: 10px;
+}
+
+.time-table th {
+  background-color: #f2f2f2;
+}
+
+.timetable select {
+  margin: 10px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Style for input fields */
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* CSS for the "Sent" button */
+#sentButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#sentButton:hover {
+  background-color: #0056b3;
+}
+
+/* CSS Styles for Past Papers Table */
+#pastpapers table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#pastpapers table th,
+#pastpapers table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#pastpapers table th {
+  background-color: #f2f2f2;
+}
+
+#pastpapers table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#pastpapers table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Button Style */
+.passpaper-button {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.passpaper-button:hover {
+  background-color: #0056b3;
+}
+
+
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .breadcrumbs .d-flex {
+    display: block !important;
+  }
+
+  .breadcrumbs ol {
+    display: block;
+  }
+
+  .breadcrumbs ol li {
+    display: inline-block;
+  }
+}
+
+/*--------------------------------------------------------------
+# Request
+--------------------------------------------------------------*/
+#request input[type="text"],
+input[type="password"] {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000000;
+}
+
+#notificationForm label {
+  color: black;
+}
+
+/* Custom styles for the form */
+#panel_5_content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 50px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.filter {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.filter .label {
+  color: black;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+.loging_form {
+  padding: 15px;
+  color: #f4f6fd;
+  font-size: 14px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 9999;
+  background: #040b14;
+}
+
+.pa_div {
+  width: 100%;
+}
+
+.loging_form .container {
+  text-align: center;
+}
+
+#footer {
+  padding: 15px;
+  color: #f4f6fd;
+  font-size: 14px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 9999;
+  background: #040b14;
+}
+
+#footer .copyright {
+  text-align: center;
+}
+
+/* ///DOWNLOAD PAGE///// */
+.comm_buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+#footer .credits {
+  padding-top: 5px;
+  text-align: center;
+  font-size: 13px;
+  color: #eaebf0;
+}
+
+.comm_next_pre {
+  min-width: 150px
+}
+
+#notificationTable button {
+  max-width: 100px
+}
+
+td.view_btn {
+  width: 36%;
+}
+
+.kyc #hero {
+  padding-right: 25%;
+}
+
+.reg_student input {
+  width: 200px;
+}
+
+.view_btn {
+  width: 30%;
+}
+
+#imageUploader {
+  padding-top: 20px;
+}
+
+.find_student {
+
+  display: flex;
+}
+
+.input-group {
+  width: 300px;
+  margin-left: 20px;
+}
+
+.pd_top_bot_50 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.serch_sec {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.bulk_user_record {
+  height: 500px;
+  width: 100%;
+  border: 2px solid black;
+  margin-right: 20px;
+}
+
+.kyc_user_record {
+  height: 500px;
+  width: 100%;
+  border: 2px solid black;
+  padding-left: 20px;
+}
+
+.comm_buttons {
+  min-width: 150px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.success-message {
+  background-color: #4CAF50;
+  /* Green color */
+  color: #fff;
+  /* White text */
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  display: none;
+  /* Initially hide the success message */
+}
+
+/* Add your styles here */
+.popup {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  width: 405px;
+  /* Adjust the distance from the bottom as needed */
+  right: 20px;
+  /* Adjust the distance from the right as needed */
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+#reason {
+  width: 100%;
+}
+
+/* Add your custom styles here */
+.popup-table {
+  display: none;
+}
+
+.btn-danger {
+  width: 59px;
+}
+
+.available-btn {
+  background-color: green;
+  color: white;
+  width: 150px;
+  text-align: center;
+}
+
+.not-available-btn {
+  background-color: black;
+  color: white;
+  width: 150px;
+  text-align: center;
+}
+
+#imageBox {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+}
+
+#displayedImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Ensure the image covers the entire container */
+}
+
+#finput {
+  display: none;
+}
+
+form {
+  max-width: 400px;
+  margin: auto;
+}
+
+form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+form button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.form-label {
+  color: black;
+}
+
+.registed_student button:hover {
+  background-color: initial;
+  border-color: none;
+  color: #4CAF50;
+  border: 2px solid #4CAF50;
+  font-weight: 600;
+}
+
+.scrollable-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.scrollable-content {
+  white-space: nowrap;
+  /* Prevent line breaks within cells */
+}
+
+/* Add this style to make only the last 6 columns scrollable */
+.scrollable-content td:nth-last-child(-n+6),
+.scrollable-content th:nth-last-child(-n+6) {
+  min-width: 150px;
+  /* Set a minimum width for each column */
+  display: inline-block;
+}
+
+.bulk_user_record {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.bulk_user_record p {
+  margin-bottom: 1rem;
+
+}
+
+.kyc_user_record {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.kycform {
+  background-color: mintcream;
+  padding: 50px;
+  border: 2px solid black;
+  margin-top: 20px;
+}
+
+.kycform h2 {
+  border-bottom: 2px solid black;
+}
+
+.kyc_student_image {
+  height: 200px;
+  width: 200px;
+  border: 2px solid slategray;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.ky_st_image {
+  padding-bottom: 40px;
+}
+
+.kyc_student_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.kyc_user_recordl {
+  margin: 5px 0;
+}
+
+.reg_student h5 {
+  font-weight: bold;
+}
+
+@media (max-width: 1199px) {
+  #footer {
+    position: static;
+    width: auto;
+    padding-right: 20px 15px;
+  }
+}

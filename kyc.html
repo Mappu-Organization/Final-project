@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>School Sysytem</title>
+
+  <!-- Favicons -->
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <!-- FullCalendar CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.0/css/boxicons.min.css" />
+  <!-- Font Awesome CDN link for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet" />
+  <link href="assets/css/slick.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="assets/slick/slick.css" />
+  <link rel="stylesheet" type="text/css" href="assets/slick/slick-theme.css" />
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section class="kyc">
+    <section id="hero">
+      <div class="container_800 kycform">
+        <div class="form_title">
+          <h2>Student Registration Form</h2>
+        </div>
+
+        <div class="fo_spacing row">
+          <form class="row g-3" novalidate>
+            <!-- <div class="col-md-12">
+                            <canvas id="canv1"></canvas>
+                          </div> -->
+            <!-- Student Image -->
+            <div class="col-md-6 ky_st_image">
+              <label for="validationServerImage" class="form-label">Student Image</label>
+              <div class="kyc_student_image">
+                <img id="kycpagepreviewImage" src="" alt="">
+                <input type="file" id="imageUploader" accept="image/*" onchange="uploadImagekycpage(event)">
+              </div>
+            </div>
+            <!-- Full Name -->
+            <div class="col-md-12">
+              <label for="validationServerFullname" class="form-label">Full name</label>
+              <input type="text" class="form-control" id="validationServerFullname" pattern="[A-Za-z\s]+" required>
+              <div class="invalid-feedback">Please enter English Characters only.</div>
+            </div>
+            <!-- First Name -->
+            <div class="col-md-6">
+              <label for="validationServer01" class="form-label">First name</label>
+              <input type="text" class="form-control" id="validationServer01" pattern="[A-Za-z]+" required>
+              <div class="invalid-feedback">Please enter English Characters only.</div>
+            </div>
+            <!-- Last Name -->
+            <div class="col-md-6">
+              <label for="validationServer02" class="form-label">Last name</label>
+              <input type="text" class="form-control" id="validationServer02" pattern="[A-Za-z]+" required>
+              <div class="invalid-feedback">Please enter English Characters only.</div>
+            </div>
+            <!-- Address -->
+            <div class="col-md-12">
+              <label for="validationServerAddress" class="form-label">Address</label>
+              <input type="text" class="form-control" id="validationServerAddress" required>
+              <div class="invalid-feedback">Please enter your address.</div>
+            </div>
+
+            <!-- School Registration Number -->
+            <div class="col-md-6">
+              <label for="validationServerRegistration" class="form-label">School Registration
+                Number</label>
+              <input type="text" class="form-control" id="validationServerRegistration" pattern="[0-9]{4}" required>
+              <div class="invalid-feedback">Please enter a valid school registration number with exactly
+                four digits.Ex:0001</div>
+            </div>
+
+            <!-- Class -->
+            <div class="col-md-6">
+              <label for="validationServerClass" class="form-label">Class</label>
+              <input type="text" class="form-control" id="validationServerClass" pattern="\d{2}[A-Za-z]?" required>
+              <div class="invalid-feedback">Please enter a valid class (e.g., 01A).</div>
+            </div>
+
+            <!-- Medium -->
+            <div class="col-md-6">
+              <label for="validationServerMedium" class="form-label">Medium</label>
+              <select class="form-select" id="validationServerMedium">
+                <option selected disabled value="">Choose...</option>
+                <option>English</option>
+                <option>Sinhala</option>
+                <option>Tamil</option>
+              </select>
+            </div>
+
+            <!-- Registration Number -->
+            <div class="col-md-6">
+              <label for="validationServerRegistrationNo" class="form-label">Religion</label>
+              <input type="text" class="form-control" id="validationServerRegistrationNo" pattern="[0-9]{4}" required>
+              <div class="invalid-feedback">Please enter a valid registration number with exactly four
+                digits.</div>
+            </div>
+
+
+            <!-- Parent Name -->
+            <div class="col-md-6">
+              <label for="validationServerFullname" class="form-label">Parent Name</label>
+              <input type="text" class="form-control" id="validationServerFullname" pattern="[A-Za-z\s]+" required>
+              <div class="invalid-feedback">Please enter only English words.</div>
+            </div>
+
+            <!-- Parent Relation -->
+            <div class="col-md-6">
+              <label for="validationServerRegistration" class="form-label">Parent Relation</label>
+              <input type="text" class="form-control" id="validationServerRegistration" pattern="[A-Za-z0-9]+" required>
+              <div class="invalid-feedback">Please enter a valid parent relation (letters and numbers only).
+              </div>
+            </div>
+
+            <!-- Mobile Number -->
+            <div class="col-md-6">
+              <label for="validationServerClass" class="form-label">Mobile Number</label>
+              <input type="text" class="form-control" id="validationServerClass" pattern="[0-9]+" required>
+              <div class="invalid-feedback">Please enter a valid mobile number (numbers only).</div>
+            </div>
+
+            <!-- Residence Number -->
+            <div class="col-md-6">
+              <label for="validationServerAddress" class="form-label">Residence Number</label>
+              <input type="text" class="form-control" id="validationServerAddress" pattern="[0-9]+" required>
+              <div class="invalid-feedback">Please enter a valid residence number (numbers only).</div>
+            </div>
+          </form>
+
+          <div class="col-12">
+            <div class="form-check">
+
+            </div>
+          </div>
+          <div class="col-12">
+            <button id="nextBtn7" class="btn btn-primary" type="button">Submit</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- End Hero -->
+
+
+  <!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <script>
+    // Function to handle form submission
+    function handleSubmit() {
+      // Get all form elements
+      var inputs = document.querySelectorAll('.kycform input, .kycform select');
+
+      // Check if any required field is empty
+      var isEmpty = false;
+      inputs.forEach(function (input) {
+        if (input.hasAttribute('required') && !input.value.trim()) {
+          isEmpty = true;
+        }
+      });
+
+      // If any required field is empty, display popup message
+      if (isEmpty) {
+        alert("Please fill in all required fields.");
+      } else {
+        
+        alert("Form submitted successfully!");
+      }
+    }
+
+    // Add event listener to the submit button
+    document.getElementById('nextBtn7').addEventListener('click', handleSubmit);
+  </script>
+
+
+  <!-- Vendor JS Files -->
+  <!-- jQuery (required by FullCalendar) -->
+  <!-- Moment.js (required for FullCalendar) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/js/student management/student management.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="text/javascript" src="assets/slick/slick.js"></script>
+  <script type="text/javascript" src="assets/slick/slick.min.js"></script>
+  <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js">
+  </script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
