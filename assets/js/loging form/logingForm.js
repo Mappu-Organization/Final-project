@@ -98,7 +98,6 @@ jQuery(document).ready(function ($) {
     $form_forgot_password.addClass("is-selected");
   }
 
-  //REMOVE THIS - it's just to show error messages
   $form_login.find('input[type="submit"]').on("click", function (event) {
     event.preventDefault();
     $form_login
@@ -107,6 +106,7 @@ jQuery(document).ready(function ($) {
       .next("span")
       .toggleClass("is-visible");
   });
+
   $form_signup.find('input[type="submit"]').on("click", function (event) {
     event.preventDefault();
     $form_signup
@@ -114,6 +114,10 @@ jQuery(document).ready(function ($) {
       .toggleClass("has-error")
       .next("span")
       .toggleClass("is-visible");
+  });
+
+  $('#submitBtn').click(function() {
+    console.log('hello reg id');
   });
 
   //IE9 placeholder fallback
@@ -146,8 +150,10 @@ jQuery(document).ready(function ($) {
           });
       });
   }
-});
 
+
+
+});
 //credits https://css-tricks.com/snippets/jquery/move-cursor-to-end-of-textarea-or-input/
 jQuery.fn.putCursorAtEnd = function () {
   return this.each(function () {
