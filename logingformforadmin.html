@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login and Registration Form Example</title>
+	<title>Login and Registration For Admin</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'>
 	<!-- Google Fonts -->
@@ -40,7 +40,7 @@
 	<div class="user-modal">
 		<div class="user-modal-container">
 			<ul class="switcher">
-				<li><a href="#0">Staff Sign In</a></li>
+				<li><a href="#0">Admin Log In</a></li>
 			<!--	<li><a href="#0">Staff Account Creation</a></li>-->
 			</ul>
 
@@ -48,7 +48,7 @@
 				<form class="form">
 					<p class="fieldset">
 						<label class="image-replace email" for="signin-email">Admin username</label>
-						<input class="full-width has-padding has-border" id="signin-email" type="email"
+						<input class="full-width has-padding has-border" id="signin-username" type="text"
 							placeholder="Admin username">
 						<span class="error-message">An admin user with this username not exist!</span>
 					</p>
@@ -62,96 +62,10 @@
 					</p>
 
 					<p class="fieldset">
-						<!-- <input type="checkbox" id="remember-me" checked>
-						<label for="remember-me">Remember me</label> -->
-					</p>
-
-					<p class="fieldset">
-						<input class="full-width" type="submit" value="Login">
+						<input class="full-width" type="submit" value="Login as admin">
 					</p>
 				</form>
-
-				<!-- <p class="form-bottom-message"><a href="#0">Forgot your password?</a></p> -->
-				<!-- <a href="#0" class="close-form">Close</a> -->
 			</div>
-
-			<!--<div id="signup">
-				<form class="form">
-					<div class="dropdown user_type">
-						<a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-							aria-expanded="false">
-							User Type
-						</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Teacher</a></li>
-							<li><a class="dropdown-item" href="#">Library Staff</a></li>
-							<li><a class="dropdown-item" href="#">Staff</a></li>
-						</ul> 
-					</div>
-					<p class="fieldset">
-						<label class="image-replace username" for="signup-username">Registration Id</label>
-						<!-- Input Field 
-						<input class="full-width has-padding has-border" id="signup-username" type="text"
-							placeholder="Registration Id">
-
-						<!-- Visible Button 
-						<button id="submitBtn" onclick="submitAction()">ENTER</button>
-						<span class="error-message">Your username can only contain numeric and alphabetic
-							symbols!</span>
-					</p>
-					<p class="fieldset">
-						<label class="image-replace email" for="signup-email">Full Name</label>
-						<input disabled class="full-width has-padding has-border" id="signup-fullname" type="email"
-							placeholder="Full Name">
-					</p>
-					<p class="fieldset">
-						<label class="image-replace email" for="signup-email">Username</label>
-						<input disabled class="full-width has-padding has-border" id="signup-username" type="text"
-							placeholder="Username">
-					</p>
-					<p class="fieldset">
-						<label class="image-replace password" for="signup-password">Password</label>
-						<input disabled class="full-width has-padding has-border" id="signup-password" type="password"
-							placeholder="Password">
-						<a href="#0" class="hide-password">Show</a>
-						<span class="error-message">Your password has to be at least 6 characters long!</span>
-					</p>
-					<p class="fieldset">
-						<label class="image-replace password" for="signup-confirm-password">Confirm Password</label>
-						<input disabled class="full-width has-padding has-border" id="signup-confirm-password"
-							type="password" placeholder="Confirm Password">
-						<a href="#0" class="hide-password">Show</a>
-						<span class="error-message">Your password has to be at least 6 characters long!</span>
-					</p>
-					<p class="fieldset">
-						<!-- <input type="checkbox" id="accept-terms"> -->
-						<!-- <label for="accept-terms">I agree to the <a class="accept-terms" href="#0">Terms</a></label> 
-					</p>
-					<p class="fieldset">
-						<input class="full-width has-padding" type="submit" value="Create account">
-					</p>
-				</form>
-			</div> 
-			<div id="reset-password">
-				<p class="form-message">Lost your password? Please enter your email address.</br> You will receive a
-					link to create a new password.</p>
-
-				<form class="form">
-					<p class="fieldset">
-						<label class="image-replace email" for="reset-email">E-mail</label>
-						<input class="full-width has-padding has-border" id="reset-email" type="email"
-							placeholder="Student Registration Number">
-						<span class="error-message">An account with this email does not exist!</span>
-					</p>
-
-					<p class="fieldset">
-						<input class="full-width has-padding" type="submit" value="Reset password">
-					</p>
-				</form>
-
-				<p class="form-bottom-message"><a href="#0">Back to log-in</a></p>
-			</div>
-			<a href="#0" class="close-form">Close</a>-->
 		</div>
 	</div>
 	<!-- partial -->
@@ -174,7 +88,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 	<!-- Template Main JS File -->
-	<script src="assets/js/loging form admin/loging form.js"></script>
+	<script src="assets/js/loging form admin/logingFormAdmin.js"></script>
 
 </body>
 

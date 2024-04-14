@@ -1,4 +1,5 @@
 jQuery(document).ready(function ($) {
+
   var $form_modal = $(".user-modal"),
     $form_login = $form_modal.find("#login"),
     $form_signup = $form_modal.find("#signup"),
@@ -98,22 +99,45 @@ jQuery(document).ready(function ($) {
     $form_forgot_password.addClass("is-selected");
   }
 
-  //REMOVE THIS - it's just to show error messages
+
   $form_login.find('input[type="submit"]').on("click", function (event) {
+    
     event.preventDefault();
-    $form_login
-      .find('input[type="email"]')
-      .toggleClass("has-error")
-      .next("span")
-      .toggleClass("is-visible");
-  });
-  $form_signup.find('input[type="submit"]').on("click", function (event) {
-    event.preventDefault();
-    $form_signup
-      .find('input[type="email"]')
-      .toggleClass("has-error")
-      .next("span")
-      .toggleClass("is-visible");
+  
+      let username = $form_login.find('input[type="text"]').val();
+      let password = $form_login.find('input[type="password"]').val();
+
+      if (username && password) {
+
+        $.ajax({
+          url: `http://localhost:8080/api/v1/admin-bff/login/admin?userName=${username}&password=${password}`,
+          method: "GET",
+          // dataType: "json",
+          success: function(data) {
+            console.log(data);
+            const stringifiedObj = JSON.stringify(data)
+            localStorage.setItem("userInfo",stringifiedObj);
+            window.location.href = "downloads.html"
+          },
+          error: function(req, err) {
+            console.log(req);
+          }
+        });
+
+      }else {
+          $form_login
+        .find('input[type="text"]')
+        .toggleClass("has-error")
+        .next("span")
+        .toggleClass("is-visible");
+
+      $form_login
+        .find('input[type="password"]')
+        .toggleClass("has-error")
+        .next("span")
+        .toggleClass("is-visible");
+      }
+
   });
 
   //IE9 placeholder fallback
@@ -146,6 +170,8 @@ jQuery(document).ready(function ($) {
           });
       });
   }
+
+
 });
 
 //credits https://css-tricks.com/snippets/jquery/move-cursor-to-end-of-textarea-or-input/
@@ -165,7 +191,8 @@ jQuery.fn.putCursorAtEnd = function () {
   });
 };
 
- $(document).ready(function () {
+$(document).ready(function () {
+
    $("#signup-username").on("input", function () {
      var registrationId = $(this).val();
      if (registrationId.trim() !== "") {
@@ -178,4 +205,4 @@ jQuery.fn.putCursorAtEnd = function () {
        ).prop("disabled", true);
      }
    });
- });
+});
