@@ -364,13 +364,13 @@
                         <input type="file" id="imagebookUploader" accept="image/*" onchange="uploadbookImage(event)">
                       </div>
                       <div class="col-md-8 book_details">
-                        <form id="bookForm" onsubmit="updateTable(); return false;" novalidate>
+                        <form id="bookForm" onsubmit="updateTableAddBook(); return false;" novalidate>
                           <!-- Book ID -->
-                          <div class="form-group">
+                          <!-- <div class="form-group">
                             <input type="text" id="bookId" name="bookId" class="form-control" placeholder="Book ID"
                               pattern="[A-Za-z0-9]+" required>
                             <div class="invalid-feedback">Please enter a valid Book ID (letters and numbers only).</div>
-                          </div>
+                          </div> -->
                           <!-- Book Name -->
                           <div class="form-group">
                             <input type="text" id="bookName" name="bookName" class="form-control"
@@ -399,7 +399,7 @@
                           <button id="nextBtn3" type="submit" class="btn active_button">Submit</button>
                         </form>
                         <div class="book_detail_table">
-                          <table id="bookTable">
+                          <table id="bookTable" class="table">
                             <thead>
                               <tr>
                                 <th>Book ID</th>

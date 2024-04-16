@@ -511,51 +511,51 @@ activeButtons.forEach((button) => {
 
 ////////TABLE TO LOAD DATA ADD BOOK//////////////////
 
- function updateTable() {
-   // Get form values
-   var bookId = document.getElementById("bookId").value.trim();
-   var bookName = document.getElementById("bookName").value.trim();
-   var bookDescription = document
-     .getElementById("bookDescription")
-     .value.trim();
-   var bookType = document.getElementById("bookType").value;
+//  function updateTableAddBook() {
+//    // Get form values
+//    var bookId = document.getElementById("bookId").value.trim();
+//    var bookName = document.getElementById("bookName").value.trim();
+//    var bookDescription = document
+//      .getElementById("bookDescription")
+//      .value.trim();
+//    var bookType = document.getElementById("bookType").value;
 
-   // Check if any field is missing
-   if (!bookId || !bookName || !bookDescription || bookType === "none") {
-     alert("Please fill in all required fields.");
-     return false; // Stop execution and prevent form submission if any field is missing
-   }
+//    // Check if any field is missing
+//    if (!bookId || !bookName || !bookDescription || bookType === "none") {
+//      alert("Please fill in all required fields.");
+//      return false; // Stop execution and prevent form submission if any field is missing
+//    }
 
-   // Proceed with adding to the table
-   var table = document
-     .getElementById("bookTable")
-     .getElementsByTagName("tbody")[0];
-   var newRow = table.insertRow();
+//    // Proceed with adding to the table
+//    var table = document
+//      .getElementById("bookTable")
+//      .getElementsByTagName("tbody")[0];
+//    var newRow = table.insertRow();
 
-   // Insert cells and assign them the input values
-   var cell1 = newRow.insertCell(0);
-   var cell2 = newRow.insertCell(1);
-   var cell3 = newRow.insertCell(2);
-   var cell4 = newRow.insertCell(3);
+//    // Insert cells and assign them the input values
+//    var cell1 = newRow.insertCell(0);
+//    var cell2 = newRow.insertCell(1);
+//    var cell3 = newRow.insertCell(2);
+//    var cell4 = newRow.insertCell(3);
 
-   cell1.innerHTML = bookId;
-   cell2.innerHTML = bookName;
-   cell3.innerHTML = bookDescription;
-   // Optionally show a user-friendly value for the book type
-   cell4.innerHTML = bookType === "pdf" ? "PDF" : "Hard Copy";
+//    cell1.innerHTML = bookId;
+//    cell2.innerHTML = bookName;
+//    cell3.innerHTML = bookDescription;
+//    // Optionally show a user-friendly value for the book type
+//    cell4.innerHTML = bookType === "pdf" ? "PDF" : "Hard Copy";
 
-   // Reset form for next input, ensuring book type defaults back properly
-   document.getElementById("bookId").value = "";
-   document.getElementById("bookName").value = "";
-   document.getElementById("bookDescription").value = "";
-   document.getElementById("bookType").selectedIndex = 0; // Reset to the first option
+//    // Reset form for next input, ensuring book type defaults back properly
+//    document.getElementById("bookId").value = "";
+//    document.getElementById("bookName").value = "";
+//    document.getElementById("bookDescription").value = "";
+//    document.getElementById("bookType").selectedIndex = 0; // Reset to the first option
 
-   // Optionally, you might want to hide the file uploader if it's not relevant
-   document.getElementById("fileUploader").style.display = "none";
+//    // Optionally, you might want to hide the file uploader if it's not relevant
+//    document.getElementById("fileUploader").style.display = "none";
 
-   alert("Book details saved successfully!");
-   return false; // Prevent form submission
- }
+//    alert("Book details saved successfully!");
+//    return false; // Prevent form submission
+//  }
 
 
 $(document).ready(function () {

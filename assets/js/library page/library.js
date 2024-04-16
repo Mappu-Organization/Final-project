@@ -72,6 +72,8 @@ $(document).ready(function () {
 
     // Call the function to populate the table with dummy data
     populateTable();
+
+    loadTableBooks();
 });
 
 /////STUDENT REGISTRATION ////////////////
@@ -203,51 +205,83 @@ function rejectRequestbook(button) {
     }
 }
 
-////////////////// ADD PAPER /////////////////////
+////////////////// ADD BOOK /////////////////////
+function updateTableAddBook() {
 
-function updateTable() {
     // Get form values
-    var bookId = document.getElementById("bookId").value.trim();
-    var bookName = document.getElementById("bookName").value.trim();
-    var bookDescription = document.getElementById("bookDescription").value.trim();
-    var bookType = document.getElementById("bookType").value;
-
+    var book_name = document.getElementById("bookName").value.trim();
+    var book_description = document
+      .getElementById("bookDescription")
+      .value.trim();
+    var book_type = document.getElementById("bookType").value;
+ 
     // Check if any field is missing
-    if (!bookId || !bookName || !bookDescription || bookType === "none") {
-        alert("Please fill in all required fields.");
-        return false; // Stop execution and prevent form submission if any field is missing
+    if (!book_name || !book_description || book_type === "none") {
+      alert("Please fill in all required fields.");
+      return false; // Stop execution and prevent form submission if any field is missing
     }
 
-    // Proceed with adding to the table
-    var table = document
-        .getElementById("bookTable")
-        .getElementsByTagName("tbody")[0];
-    var newRow = table.insertRow();
+    //create formData object for send data to back end
+    var formData = new FormData();
+    formData.append('fileImage', $('#imagebookUploader')[0].files[0]);
+    formData.append('bookDto', JSON.stringify({
+        "bookName": book_name,
+        "bookType": book_type,
+        "bookDescription": book_description,
+        "availability": true
+    }));
+    formData.append('filePDF', $('#formFileMd')[0].files[0]);
 
-    // Insert cells and assign them the input values
-    var cell1 = newRow.insertCell(0);
-    var cell2 = newRow.insertCell(1);
-    var cell3 = newRow.insertCell(2);
-    var cell4 = newRow.insertCell(3);
-
-    cell1.innerHTML = bookId;
-    cell2.innerHTML = bookName;
-    cell3.innerHTML = bookDescription;
-    // Optionally show a user-friendly value for the book type
-    cell4.innerHTML = bookType === "pdf" ? "PDF" : "Hard Copy";
-
-    // Reset form for next input, ensuring book type defaults back properly
-    document.getElementById("bookId").value = "";
-    document.getElementById("bookName").value = "";
-    document.getElementById("bookDescription").value = "";
-    document.getElementById("bookType").selectedIndex = 0; // Reset to the first option
-
-    // Optionally, you might want to hide the file uploader if it's not relevant
-    document.getElementById("fileUploader").style.display = "none";
-
-    alert("Book details saved successfully!");
-    return false; // Prevent form submission
+    // ajax call to add a book
+    $.ajax({
+        url: `http://localhost:8080/api/v1/admin-bff/book/add-book`,
+        method: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(data) {
+          console.log(data);
+          loadTableBooks();
+        },
+        error: function(req, err) {
+          console.log(req);
+        }
+    });
 }
+
+////////////////// LOAD ALL BOOKS /////////////////////
+function loadTableBooks() {
+    // ajax call to get all book
+    $.ajax({
+        url: `http://localhost:8080/api/v1/admin-bff/book`,
+        method: "GET",
+        success: function(data) {
+
+          let bookList = data;
+
+          const tableBody = $("#bookTable tbody");
+
+          bookList.forEach((book) => {
+            const row = $("<tr>");
+
+            row.html(`
+                <td>${book.bookId}</td>
+                <td>${book.bookName}</td>
+                <td>${book.bookDescription}</td>
+                <td>${book.bookType}</td>`);
+
+                tableBody.append(row);
+
+            });
+
+        },
+        error: function(req, err) {
+          console.log(req);
+        }
+    });
+}
+
+
 
 //File uploader visible and hidden
 $(document).ready(function () {
