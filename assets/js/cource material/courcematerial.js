@@ -75,6 +75,8 @@ $(document).ready(function () {
 
   // Call the function to populate the table with dummy data
   populateTable();
+
+  loadTablePapers();
 });
 
 /////STUDENT REGISTRATION ////////////////
@@ -165,48 +167,81 @@ $(document).ready(function () {
 
 function updatePaperTable() {
   // Get form values
-  var paperId = document.getElementById("paperId").value.trim();
-  var paperName = document.getElementById("paperName").value.trim();
-  var paperDescription = document
+  // var paperId = document.getElementById("paperId").value.trim();
+  var paper_name = document.getElementById("paperName").value.trim();
+  var paper_description = document
     .getElementById("paperDescription")
     .value.trim();
-  var paperType = document.getElementById("paperType").value;
+  var paper_type = document.getElementById("paperType").value;
 
   // Check if any field is missing
-  if (!paperId || !paperName || !paperDescription || paperType === "none") {
+  if (!paper_name || !paper_description || paper_type === "none") {
     alert("Please fill in all required fields.");
     return false; // Stop execution and prevent form submission if any field is missing
   }
 
-  // Proceed with adding to the table
-  var table = document
-    .getElementById("paperTable")
-    .getElementsByTagName("tbody")[0];
-  var newRow = table.insertRow();
+  //create formData object for send data to back end
+  var formData = new FormData();
+  formData.append('fileImage', $('#imageUploaderPaper')[0].files[0]);
+  formData.append('paperDto', JSON.stringify({
+      "paperName": paper_name,
+      "paperType": paper_type,
+      "paperDescription": paper_description,
+      "availability": true
+  }));
+  formData.append('filePDF', $('#formFileMdPaper')[0].files[0]);
 
-  // Insert cells and assign them the input values
-  var cell1 = newRow.insertCell(0);
-  var cell2 = newRow.insertCell(1);
-  var cell3 = newRow.insertCell(2);
-  var cell4 = newRow.insertCell(3);
+  // ajax call to add a paper
+  $.ajax({
+      url: `http://localhost:8080/api/v1/admin-bff/papers/add`,
+      method: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(data) {
+        console.log(data);
+        loadTablePapers();
+      },
+      error: function(req, err) {
+        console.log(req);
+      }
+  });
 
-  cell1.innerHTML = paperId;
-  cell2.innerHTML = paperName;
-  cell3.innerHTML = paperDescription;
-  // Optionally show a user-friendly value for the paper type
-  cell4.innerHTML = paperType === "pdf" ? "PDF" : "Hard Copy";
+}
 
-  // Reset form for next input, ensuring paper type defaults back properly
-  document.getElementById("paperId").value = "";
-  document.getElementById("paperName").value = "";
-  document.getElementById("paperDescription").value = "";
-  document.getElementById("paperType").selectedIndex = 0; // Reset to the first option
+////////////////// LOAD ALL PAPERS /////////////////////
+function loadTablePapers() {
 
-  // Optionally, you might want to hide the file uploader if it's not relevant
-  document.getElementById("fileUploader1").style.display = "none";
+  $("#paperTable tbody").empty();
+  
+  // ajax call to get all papers
+  $.ajax({
+      url: `http://localhost:8080/api/v1/admin-bff/papers`,
+      method: "GET",
+      success: function(data) {
 
-  alert("Paper details saved successfully!");
-  return false; // Prevent form submission
+        let paperList = data;
+
+        const tableBody = $("#paperTable tbody");
+
+        paperList.forEach((papers) => {
+          const row = $("<tr>");
+
+          row.html(`
+              <td>${papers.paperId}</td>
+              <td>${papers.paperName}</td>
+              <td>${papers.paperDescription}</td>
+              <td>${papers.paperType}</td>`);
+
+              tableBody.append(row);
+
+          });
+
+      },
+      error: function(req, err) {
+        console.log(req);
+      }
+  });
 }
 
 //Paper File uploader visible and hidden
