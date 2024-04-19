@@ -11,24 +11,24 @@ jQuery(document).ready(function ($) {
     $new_account_link = $form_modal.find("ul.switcher li:nth-child(2) a"); // Selecting "New account" link
 
   // Function to hide all forms except for the specified one
-  function showForm(formToShow) {
-    $form_modal
-      .find("div[id^=signup], div[id^=login], div[id^=reset-password]")
-      .removeClass("is-selected");
-    formToShow.addClass("is-selected");
-  }
+  // function showForm(formToShow) {
+  //   $form_modal
+  //     .find("div[id^=signup], div[id^=login], div[id^=reset-password]")
+  //     .removeClass("is-selected");
+  //   formToShow.addClass("is-selected");
+  // }
 
   // Function to show the "Reset password" form
-  function resetPasswordForm() {
-    showForm($form_forgot_password);
-    // Trigger a click on the "New account" link
-    $new_account_link.click();
-  }
+  // function resetPasswordForm() {
+  //   showForm($form_forgot_password);
+  //   // Trigger a click on the "New account" link
+  //   $new_account_link.click();
+  // }
 
   // Click event handler for "New account" link
   $new_account_link.on("click", function (event) {
     event.preventDefault();
-    resetPasswordForm(); // Show "Reset password" form
+    // resetPasswordForm(); // Show "Reset password" form
   });
 
   //close modal
@@ -73,7 +73,7 @@ jQuery(document).ready(function ($) {
   //back to login from the forgot-password form
   $back_to_login_link.on("click", function (event) {
     event.preventDefault();
-    login_selected();
+    // login_selected();
   });
 
   function login_selected() {
@@ -118,6 +118,27 @@ jQuery(document).ready(function ($) {
 
   $('#submitBtn').click(function() {
     console.log('hello reg id');
+
+    var regStuId = $("#signup-reg-id").val();
+
+    console.log(regStuId);
+
+    // ajax call to check student reg id
+    $.ajax({
+      url: `http://localhost:8080/api/v1/admin-bff/register/check-reg-id?studentRegId=${regStuId}`,
+      method: "GET",
+      success: function(data) {
+        console.log(data);
+        if (data == false) {
+          $(".error-message").show();
+        }
+        // loadTableBooks();
+      },
+      error: function(req, err) {
+        console.log(req);
+      }
+  });
+
   });
 
   //IE9 placeholder fallback

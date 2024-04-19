@@ -1,5 +1,19 @@
 //////REQUEST MANAGEMENT SYSTEM/////////////
 $(document).ready(function () {
+
+    // Retrieve userInfo from localStorage
+    const userInfoString = localStorage.getItem("userInfo");
+
+    // Parse the JSON string back to an object
+    const userInfo = JSON.parse(userInfoString);
+
+    // Now you can use the userInfo object
+    console.log(userInfo);
+
+    $("#userId").text(userInfo.userId);
+    $("#userName").text(userInfo.fullName);
+
+
     var dummyData = [
         {
             requestId: 1,
@@ -80,6 +94,14 @@ $(document).ready(function () {
         // Implement actions for when the "Absent" button is clicked
         console.log("Absent button clicked");
     });
+
+    // $("#logOutBtn").on("click", function() {
+    //     console.log("log out btn click");
+    //     // Remove the userInfo item from localStorage
+    //     // localStorage.removeItem("userInfo");
+    //     // window.location.href = "logingformforadmin.html";
+    // });
+
 });
 
 
@@ -378,6 +400,7 @@ $(document).ready(function () {
         });
     });
 });
+
 ////////bulk user record//////////
 $(document).ready(function () {
     // Function to handle file upload
@@ -522,7 +545,6 @@ $(document).ready(function () {
         });
     });
 });
-
 
 
 
