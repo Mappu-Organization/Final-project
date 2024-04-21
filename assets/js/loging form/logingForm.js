@@ -192,17 +192,17 @@ jQuery.fn.putCursorAtEnd = function () {
   });
 };
 
- $(document).ready(function () {
-   $("#signup-username").on("input", function () {
-     var registrationId = $(this).val();
-     if (registrationId.trim() !== "") {
-       $(
-         "#signup-fullname, #signup-username, #signup-password, #signup-confirm-password"
-       ).prop("disabled", false);
-     } else {
-       $(
-         "#signup-fullname, #signup-username, #signup-password, #signup-confirm-password"
-       ).prop("disabled", true);
-     }
-   });
- });
+//  $(document).ready(function () {
+//    $("#signup-username").on("input", function () {
+//      var registrationId = $(this).val();
+//      if (registrationId.trim() !== "") {
+//        $(
+//          "#signup-fullname, #signup-username, #signup-password, #signup-confirm-password"
+//        ).prop("disabled", false);
+//      } else {
+//        $(
+//          "#signup-fullname, #signup-username, #signup-password, #signup-confirm-password"
+//        ).prop("disabled", true);
+//      }
+//    });
+//  });

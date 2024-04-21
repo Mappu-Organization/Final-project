@@ -94,6 +94,9 @@ li {
     bottom: 0;
     top: 0;
     margin: auto;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
     /* display: flex; */
     /* align-items: center; */
 }
