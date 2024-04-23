@@ -12,11 +12,10 @@ $.ajax({
         const row = $("<tr>");
   
         row.html(`
-            <td>${addrequest.yearInput}</td>
-            <td>${addrequest.termInput}</td>
-            <td>${addrequest.studentIdInput}</td>
-            <td>${addrequest.subjectInput}</td>
-            <td>${addrequest.resultsInput}</td>`);
+            <td>${addrequest.requestId}</td>
+            <td>${addrequest.requestType}</td>
+            <td>${addrequest.studentId}</td>
+            <td>${addrequest.description}</td>`);
   
             tableBody.append(row);
   
