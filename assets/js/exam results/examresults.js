@@ -1,5 +1,5 @@
 // button action pass to ajax call
-$("#nextBtn7").click(function(){
+$("#addExamResults").click(function(){
   //method includes the ajax method
   saveResult();
   });
