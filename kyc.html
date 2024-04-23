@@ -119,7 +119,7 @@
             <!-- Registration Number -->
             <div class="col-md-6">
               <label for="validationServerRegistrationNo" class="form-label">Religion</label>
-              <input type="text" class="form-control" id="validationServerRegistrationNo" pattern="[0-9]{4}" required>
+              <input type="text" class="form-control" id="validationServerReligion" pattern="[0-9]{4}" required>
               <div class="invalid-feedback">Please enter a valid registration number with exactly four
                 digits.</div>
             </div>
@@ -128,14 +128,14 @@
             <!-- Parent Name -->
             <div class="col-md-6">
               <label for="validationServerFullname" class="form-label">Parent Name</label>
-              <input type="text" class="form-control" id="validationServerFullname" pattern="[A-Za-z\s]+" required>
+              <input type="text" class="form-control" id="validationServerParentname" pattern="[A-Za-z\s]+" required>
               <div class="invalid-feedback">Please enter only English words.</div>
             </div>
 
             <!-- Parent Relation -->
             <div class="col-md-6">
               <label for="validationServerRegistration" class="form-label">Parent Relation</label>
-              <input type="text" class="form-control" id="validationServerRegistration" pattern="[A-Za-z0-9]+" required>
+              <input type="text" class="form-control" id="validationServerParentRelation" pattern="[A-Za-z0-9]+" required>
               <div class="invalid-feedback">Please enter a valid parent relation (letters and numbers only).
               </div>
             </div>
@@ -143,14 +143,14 @@
             <!-- Mobile Number -->
             <div class="col-md-6">
               <label for="validationServerClass" class="form-label">Mobile Number</label>
-              <input type="text" class="form-control" id="validationServerClass" pattern="[0-9]+" required>
+              <input type="text" class="form-control" id="validationServerMobileNumber" pattern="[0-9]+" required>
               <div class="invalid-feedback">Please enter a valid mobile number (numbers only).</div>
             </div>
 
             <!-- Residence Number -->
             <div class="col-md-6">
               <label for="validationServerAddress" class="form-label">Residence Number</label>
-              <input type="text" class="form-control" id="validationServerAddress" pattern="[0-9]+" required>
+              <input type="text" class="form-control" id="validationServerResidenceNumber" pattern="[0-9]+" required>
               <div class="invalid-feedback">Please enter a valid residence number (numbers only).</div>
             </div>
           </form>
@@ -230,6 +230,7 @@
   </script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src = "assets/js/kyc page/kyc.js"></script>
 </body>
 
 </html>

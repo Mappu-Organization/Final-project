@@ -485,17 +485,15 @@
                       </div>
                       <div class="col-md-5">
                         <select class="form-control" id="day">
-                          <option value="Sunday">Sunday</option>
                           <option value="Monday">Monday</option>
                           <option value="Tuesday">Tuesday</option>
                           <option value="Wednesday">Wednesday</option>
                           <option value="Thursday">Thursday</option>
                           <option value="Friday">Friday</option>
-                          <option value="Saturday">Saturday</option>
                         </select>
                       </div>
                       <div class="col-md-5 form-group">
-                        <select class="form-control" id="subject" required>
+                        <select class="form-control" id="period" required>
                           <option value="" selected disabled>Select Period</option>
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -617,7 +615,7 @@
                             only).</div>
                         </div>
                       </div>
-                      <button type="button" class="btn btn-primary" onclick="saveResult()">Save</button>
+                      <button id="addExamResults" type="button" class="btn btn-primary" onclick="saveResult()">Save</button>
                       <div class="col-md-2">
                         <button id="downloadexBtn" class="btn btn-success" onclick="downloadResults()">Download
                           Results</button>
@@ -643,51 +641,51 @@
                   </div>
                 </div>
               </div>
-              <!-- /////////////////////KYC FORM //////////////////// -->
+              <!-- /////////////////////Userwise registration //////////////////// -->
               <div id="pannel_12_content" class="pannel d-none col-12 kycforme">
                 <section id="hero">
                   <div class="container_1000">
                     <div class="form_title">
-                      <h2>Student Registration Form</h2>
+                      <h2>Add Student</h2>
                       <p>Enter your information below</p>
                     </div>
 
                     <div class="fo_spacing row">
                       <!-- Form for adding new student information -->
                       <form class="row g-3" novalidate>
+
+                        <!-- No need to add a upload image to bulk user table -->
                         <!-- Student Image -->
-                        <div class="col-md-6 ky_st_image">
+                        <!-- <div class="col-md-6 ky_st_image">
                           <label for="validationServerImage" class="form-label">Student Image</label>
                           <div class="kyc_student_image">
                             <img id="kycpreviewImage" src="" alt="">
                             <input type="file" id="imageUploader" accept="image/*" onchange="uploadImagekyc(event)">
                           </div>
-                        </div>
+                        </div> -->
+
                         <!-- Full Name -->
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                           <label for="validationServerFullname" class="form-label">Full name</label>
                           <input type="text" class="form-control" id="validationServerFullname" pattern="[A-Za-z\s]+" required>
                           <div class="invalid-feedback">Please enter English Characters only.</div>
                         </div>
+
                         <!-- First Name -->
                         <div class="col-md-6">
                           <label for="validationServer01" class="form-label">First name</label>
                           <input type="text" class="form-control" id="validationServer01" pattern="[A-Za-z]+" required>
                           <div class="invalid-feedback">Please enter English Characters only.</div>
                         </div>
+
                         <!-- Last Name -->
                         <div class="col-md-6">
                           <label for="validationServer02" class="form-label">Last name</label>
                           <input type="text" class="form-control" id="validationServer02" pattern="[A-Za-z]+" required>
                           <div class="invalid-feedback">Please enter English Characters only.</div>
                         </div>
-                        <!-- Address -->
-                        <div class="col-md-12">
-                          <label for="validationServerAddress" class="form-label">Address</label>
-                          <input type="text" class="form-control" id="validationServerAddress" required>
-                          <div class="invalid-feedback">Please enter your address.</div>
-                        </div>
-                        <!-- School Registration Number -->
+
+                        <!-- School Registration Number -->imageUploaderPaper
                         <div class="col-md-6">
                           <label for="validationServerRegistration" class="form-label">School Registration
                             Number</label>
@@ -696,12 +694,30 @@
                             four digits. Ex:0001
                           </div>
                         </div>
+
+                        <!-- Address -->
+                        <div class="col-md-12">
+                          <label for="validationServerAddress" class="form-label">Address</label>
+                          <input type="text" class="form-control" id="validationServerAddress" required>
+                          <div class="invalid-feedback">Please enter your address.</div>
+                        </div>
+
                         <!-- Class -->
                         <div class="col-md-6">
                           <label for="validationServerClass" class="form-label">Class</label>
                           <input type="text" class="form-control" id="validationServerClass" pattern="\d{2}[A-Za-z]?" required>
                           <div class="invalid-feedback">Please enter a valid class (e.g., 01A).</div>
                         </div>
+
+                        <!-- Registration Number -->
+                        <div class="col-md-6">
+                          <label for="validationServerRegistrationNo" class="form-label">Registration Number</label>
+                          <input type="text" class="form-control" id="validationServerRegistrationNo" pattern="\d{4}" required>
+                          <div class="invalid-feedback">Please enter a valid registration number with exactly four
+                            digits.
+                          </div>
+                        </div>
+
                         <!-- Medium -->
                         <div class="col-md-6">
                           <label for="validationServerMedium" class="form-label">Medium</label>
@@ -713,39 +729,44 @@
                           </select>
                           <div class="invalid-feedback">Please select a medium.</div>
                         </div>
+
                         <!-- Registration Number -->
                         <div class="col-md-6">
-                          <label for="validationServerRegistrationNo" class="form-label">Registration Number</label>
-                          <input type="text" class="form-control" id="validationServerRegistrationNo" pattern="\d{4}" required>
+                          <label for="validationServerMedium" class="form-label">Religion</label>
+                          <input type="text" class="form-control" id="validationServerReligion" pattern="[A-Za-z\s]+" required>
                           <div class="invalid-feedback">Please enter a valid registration number with exactly four
                             digits.
                           </div>
                         </div>
+        
                         <!-- Parent Name -->
                         <div class="col-md-6">
                           <label for="validationServerParentName" class="form-label">Parent Name</label>
                           <input type="text" class="form-control" id="validationServerParentName" pattern="[A-Za-z\s]+" required>
                           <div class="invalid-feedback">Please enter only English words.</div>
                         </div>
+
                         <!-- Parent Relation -->
                         <div class="col-md-6">
                           <label for="validationServerParentRelation" class="form-label">Parent Relation</label>
                           <input type="text" class="form-control" id="validationServerParentRelation" pattern="[A-Za-z0-9]+" required>
-                          <div class="invalid-feedback">Please enter a valid parent relation (letters and numbers only).
-                          </div>
+                          <div class="invalid-feedback">Please enter a valid parent relation (letters and numbers only).</div>
                         </div>
+
                         <!-- Mobile Number -->
                         <div class="col-md-6">
                           <label for="validationServerMobileNumber" class="form-label">Mobile Number</label>
-                          <input type="text" class="form-control" id="validationServerMobileNumber" pattern="\d+" required>
+                          <input type="text" class="form-control" id="validationServerMobileNumber" pattern="\d{10}" required>
                           <div class="invalid-feedback">Please enter a valid mobile number (numbers only).</div>
                         </div>
+
                         <!-- Residence Number -->
                         <div class="col-md-6">
                           <label for="validationServerResidenceNumber" class="form-label">Residence Number</label>
-                          <input type="text" class="form-control" id="validationServerResidenceNumber" pattern="\d+" required>
+                          <input type="text" class="form-control" id="validationServerResidenceNumber" pattern="\d{10}" required>
                           <div class="invalid-feedback">Please enter a valid residence number (numbers only).</div>
                         </div>
+
                         <div class="col-12">
                           <div class="form-check">
                           </div>
@@ -1049,7 +1070,7 @@
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="assets/js/student management/student management.js"></script>
+  <script src="assets/js/student management/studentmanagement.js"></script>
   <script src="assets/js/download_add paper/addpaper.js"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/download page/download.js"></script>
@@ -1058,6 +1079,7 @@
   <script src="assets/js/library page/library.js"></script>
   <script src="assets/js/chechout paper/checkoutpaper.js"></script>
   <script src="assets/js/cource material/courcematerial.js"></script>
+  <script src="assets/js/Request/Request.js"></script>
   <script>
     // Add event listener for input fields
     document.querySelectorAll('input').forEach(item => {
