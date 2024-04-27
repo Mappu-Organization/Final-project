@@ -146,11 +146,69 @@ jQuery(document).ready(function ($) {
     }
   });
 
+  // Use jQuery to select the dropdown menu
+  let dropdown = $("#signup .dropdown-menu");
+
+  // Add a click event listener to the dropdown items
+  dropdown.find(".dropdown-item").on("click", function() {
+      // Get the text of the clicked item
+      let selectedValue = $(this).text();
+      
+      // Log the selected value
+      console.log(selectedValue);
+
+      $("#drop-select-value").text(selectedValue);
+
+      let value = $form_login.find('#drop-select-value').val();
+      console.log(value);
+  });
+
   $form_signup.find('input[type="submit"]').on("click", function (event) {
     event.preventDefault();
 
     console.log('clicked');
+
+    //first method
+    // let stuRegNumber = $form_login.find('input[type="text"]').val();
+    // let password = $form_login.find('input[type="password"]').val();
     
+    //second method
+    var regStuId = $("#signup-reg-id").val();
+    var fullName = $("#signup-fullname").val();
+    var userName = $("#signup-username").val();
+    var password = $("#signup-password").val();
+    // var user = $("#drop-select-value").val();
+    var user = $form_login.find('#drop-select-value').val();
+    
+    // if (fullName && userName && password && user) {
+
+      let userDto = {
+        fullName: fullName,
+        userName: userName,
+        password: password,
+        rolesDto: {
+          id: 2,
+          roleName: "student"
+        },
+        registerStudentId: regStuId
+      }
+
+      console.log(userDto);
+
+      $.ajax({
+        url: `http://localhost:8080/api/v1/admin-bff/register`,
+        method: "POST",
+        contentType: 'application/json',
+        data: JSON.stringify(userDto),
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(req, err) {
+          console.log(req);
+        }
+      });
+
+    // }
     // $form_signup
     //   .find('input[type="email"]')
     //   .toggleClass("has-error")
@@ -158,12 +216,11 @@ jQuery(document).ready(function ($) {
     //   .toggleClass("is-visible");
   });
 
+
+  //onclick to check enterd student regid is exist
   $('#submitBtn').click(function() {
-    console.log('hello reg id');
 
     var regStuId = $("#signup-reg-id").val();
-
-    console.log(regStuId);
 
     // ajax call to check student reg id
     $.ajax({
@@ -175,7 +232,7 @@ jQuery(document).ready(function ($) {
           $(".error-message1").show();
           // $(".fieldset input").prop("disabled", true);
       } else {
-          $(".error-message").hide();
+          $(".error-message1").hide();
           // $(".fieldset input").prop("disabled", false);
       }
       },
