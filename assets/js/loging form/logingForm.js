@@ -1,4 +1,7 @@
 jQuery(document).ready(function ($) {
+
+  $(".error-message1").hide();
+
   var $form_modal = $(".user-modal"),
     $form_login = $form_modal.find("#login"),
     $form_signup = $form_modal.find("#signup"),
@@ -100,20 +103,59 @@ jQuery(document).ready(function ($) {
 
   $form_login.find('input[type="submit"]').on("click", function (event) {
     event.preventDefault();
-    $form_login
-      .find('input[type="email"]')
+
+    let stuRegNumber = $form_login.find('input[type="text"]').val();
+    let password = $form_login.find('input[type="password"]').val();
+
+    if (stuRegNumber && password) {
+
+      console.log(stuRegNumber);
+      console.log(password);
+
+      $.ajax({
+        url: `http://localhost:8080/api/v1/admin-bff/login/student?userName=${stuRegNumber}&password=${password}`,
+        method: "GET",
+        // dataType: "json",
+        success: function(data) {
+          if(data != "User Not Found"){
+            // console.log(data);
+            const stringifiedObj = JSON.stringify(data)
+            localStorage.setItem("studentInfo",stringifiedObj);
+            window.location.href = "index.html";
+          }else{
+            console.log("data: - " + data);
+          }
+        },
+        error: function(req, err) {
+          console.log(req);
+        }
+      });
+
+    }else {
+        $form_login
+      .find('input[type="text"]')
       .toggleClass("has-error")
       .next("span")
       .toggleClass("is-visible");
+
+    $form_login
+      .find('input[type="password"]')
+      .toggleClass("has-error")
+      .next("span")
+      .toggleClass("is-visible");
+    }
   });
 
   $form_signup.find('input[type="submit"]').on("click", function (event) {
     event.preventDefault();
-    $form_signup
-      .find('input[type="email"]')
-      .toggleClass("has-error")
-      .next("span")
-      .toggleClass("is-visible");
+
+    console.log('clicked');
+    
+    // $form_signup
+    //   .find('input[type="email"]')
+    //   .toggleClass("has-error")
+    //   .next("span")
+    //   .toggleClass("is-visible");
   });
 
   $('#submitBtn').click(function() {
@@ -128,11 +170,14 @@ jQuery(document).ready(function ($) {
       url: `http://localhost:8080/api/v1/admin-bff/register/check-reg-id?studentRegId=${regStuId}`,
       method: "GET",
       success: function(data) {
-        console.log(data);
-        if (data == false) {
-          $(".error-message").show();
-        }
-        // loadTableBooks();
+        // console.log(data);
+        if (data === false) {
+          $(".error-message1").show();
+          // $(".fieldset input").prop("disabled", true);
+      } else {
+          $(".error-message").hide();
+          // $(".fieldset input").prop("disabled", false);
+      }
       },
       error: function(req, err) {
         console.log(req);

@@ -337,6 +337,9 @@ populateTable(attendanceData);
 generateChart(attendanceData);
 
 $(document).ready(function () {
+
+  console.log('first ready');
+
   const numVisibleColumns = 8;
   const columnWidth = 100; // Set the width of each column
   const $table = $(".scrollable-table table");
@@ -559,6 +562,9 @@ activeButtons.forEach((button) => {
 
 
 $(document).ready(function () {
+
+  console.log('second ready');
+
   // Initialize slick slider
   var slider = $(".form_slide");
 
@@ -945,45 +951,45 @@ function upload() {
 
 ///////STUDENT DETAILS///////////////
 $(document).ready(function () {
-  // Sample data (replace with your actual data)
-  var userData = {
-    ekycNumber:"0000",
-    bulkNumber: "0000",
-    RegisterdNumber: "0000",
-    firstName: "Navod",
-    lastName: "Amarasinghe",
-    address: "123 Main St, City",
-    fullName: "Navod Amarasinghe",
-    registrationNumber: "123456",
-    classMedium: "English",
-    religion: "Buddhism",
-    parentName: "John Doe",
-    parentRelation: "Father",
-    mobileNumber: "123-456-7890",
-    residenceNumber: "987-654-3210",
-    // Add more fields as needed
-  };
 
+  // Retrieve userInfo from localStorage
+  const stuInfoString = localStorage.getItem("studentInfo");
+
+  // Parse the JSON string back to an object
+  const studentInfo = JSON.parse(stuInfoString);
+
+  // Now you can use the userInfo object
+  console.log(studentInfo);
+
+  console.log('thired ready');
+
+  console.log(studentInfo.rolesDto.roleName);
+
+  $("#stuFullName").text(studentInfo.fullName);
+  $("#stuid").text(studentInfo.userId);
+
+  let imgElement = document.getElementById("prImageField").getElementsByTagName("img")[0];
+    // Set the src attribute of the img element to the URL of the image
+  imgElement.src = studentInfo.studentImage;
 
   // Icon click event handler
   $("#userIcon").click(function () {
-    // Populate modal with data
-    $("#ekycNumber").text(userData.ekycNumber);
-    $("#bulkNumber").text(userData.bulkNumber);
-    $("#RegisterdNumber").text(userData.RegisterdNumber);
-    $("#firstName").text(userData.firstName);
-    $("#lastName").text(userData.lastName);
-    $("#fullName").text(userData.fullName);
-    $("#registrationNumber").text(+ userData.registrationNumber);
-    $("#classMedium").text(userData.classMedium);
-    $("#religion").text(userData.religion);
-    $("#parentName").text(userData.parentName);
-    $("#parentRelation").text(userData.parentRelation);
-    $("#mobileNumber").text(userData.mobileNumber);
-    $("#residenceNumber").text(userData.residenceNumber);
-    $("#address").text(userData.address);
-
     // Show the modal
-
+    
+    // Populate modal with data
+    $("#ekycNumber").text(studentInfo.userName);
+    $("#bulkNumber").text(studentInfo.userName);
+    $("#RegisterdNumber").text(studentInfo.userName);
+    $("#firstName").text(studentInfo.firstName);
+    $("#lastName").text(studentInfo.lastName);
+    $("#fullName").text(studentInfo.fullName);
+    $("#registrationNumber").text(+ studentInfo.userName);
+    $("#classMedium").text(studentInfo.className + studentInfo.medium);
+    $("#religion").text(studentInfo.religion);
+    $("#parentName").text(studentInfo.parentName);
+    $("#parentRelation").text(studentInfo.parentRelation);
+    $("#mobileNumber").text(studentInfo.mobileNumber);
+    $("#residenceNumber").text(studentInfo.residenceNumber);
+    $("#address").text(studentInfo.address);
   });
 });
