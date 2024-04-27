@@ -15,7 +15,7 @@ li {
     object-fit: contain;
     position: absolute;
     bottom: 0;
-    z-index: 10000;
+    z-index: 1;
 }
 
 .main-nav {
@@ -365,6 +365,12 @@ li {
     visibility: visible;
     -webkit-transition: opacity 0.2s 0, visibility 0 0;
     transition: opacity 0.2s 0, visibility 0 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .back_image{
+        background-image: none;
+    }
 }
 
 @media only screen and (min-width: 600px) {
