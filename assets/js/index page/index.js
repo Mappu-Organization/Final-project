@@ -954,22 +954,16 @@ $(document).ready(function () {
 
   // Retrieve userInfo from localStorage
   const stuInfoString = localStorage.getItem("studentInfo");
-
   // Parse the JSON string back to an object
   const studentInfo = JSON.parse(stuInfoString);
 
-  // Now you can use the userInfo object
-  console.log(studentInfo);
-
   console.log('thired ready');
-
-  console.log(studentInfo.rolesDto.roleName);
 
   $("#stuFullName").text(studentInfo.fullName);
   $("#stuid").text(studentInfo.userId);
 
   let imgElement = document.getElementById("prImageField").getElementsByTagName("img")[0];
-    // Set the src attribute of the img element to the URL of the image
+  // Set the src attribute of the img element to the URL of the image
   imgElement.src = studentInfo.studentImage;
 
   // Icon click event handler
@@ -977,14 +971,14 @@ $(document).ready(function () {
     // Show the modal
     
     // Populate modal with data
-    $("#ekycNumber").text(studentInfo.userName);
-    $("#bulkNumber").text(studentInfo.userName);
+    $("#ekycNumber").text(studentInfo.ekycNumber);
+    $("#bulkNumber").text(studentInfo.bulkNumber);
     $("#RegisterdNumber").text(studentInfo.userName);
     $("#firstName").text(studentInfo.firstName);
     $("#lastName").text(studentInfo.lastName);
     $("#fullName").text(studentInfo.fullName);
     $("#registrationNumber").text(+ studentInfo.userName);
-    $("#classMedium").text(studentInfo.className + studentInfo.medium);
+    $("#classMedium").text(studentInfo.className +" " + studentInfo.medium);
     $("#religion").text(studentInfo.religion);
     $("#parentName").text(studentInfo.parentName);
     $("#parentRelation").text(studentInfo.parentRelation);
