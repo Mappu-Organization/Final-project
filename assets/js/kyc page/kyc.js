@@ -30,8 +30,9 @@ function upload() {
     alert("No file selected!");
   }
 }
-function addKycUser() {
 
+function addKycUser() {
+ 
   // Get form values
   var firstName = document.getElementById("validationServer01").value.trim();
   var lastName = document.getElementById("validationServer02").value.trim();
@@ -44,7 +45,8 @@ function addKycUser() {
   var parentName = document.getElementById("validationServerParentname").value.trim();
   var parentRelation = document.getElementById("validationServerParentRelation").value.trim();
   var mobileNo = document.getElementById("validationServerMobileNumber").value.trim();
-  var religion = getElementById("validationServerReligion").value.trim();
+  var religion = document.getElementById("validationServerReligion").value.trim();
+  // var imgVal = $('#imageUploader')[0].files[0];
 
    // Validate if all required fields are filled
    if (
@@ -65,28 +67,24 @@ function addKycUser() {
     return;
 }
 
-// upsupported media type error occurs 
 //create formData object for send data to back end
 var formData = new FormData();
     //need insert the users image object
     formData.append('fileImage', $('#imageUploader')[0].files[0]);
-    formData.append('paperDto', JSON.stringify({
-    first_Name: firstName,
-    last_Name: lastName,
-    full_Name: fullName,
-    scl_Reg_Number: sclRegNumber,
-    class_Val: classVal,
-    Medium: medium,
-    Religion: religion,
-    parent_Name: parentName,
-    parent_Relation: parentRelation,
-    mobile_No: mobileNo,
-    residence_Number: residenceNumber,
-    Address: address
+    formData.append('kycStudentRecordsDto', JSON.stringify({
+      firstName: firstName,
+      lastName: lastName,
+      fullName: fullName,
+      schoolRegNumber: sclRegNumber,
+      classNumber: classVal,
+      medium: medium,
+      religion: religion,
+      parentName: parentName,
+      parentRelation: parentRelation,
+      mobileNumber: mobileNo,
+      residenceNumber: residenceNumber,
+      address: address
   }));
-
-// Log the bulkuser object to the console for debugging
-console.log("KYC User Object:", kycStudentRecord);
 
 // AJAX call to add the student record
 $.ajax({
@@ -97,27 +95,27 @@ $.ajax({
     contentType: false,
     success: function(data) {
         console.log("Response from Server:", data);
-        alert("You have submitted successfully");
-        //loadTableBooks(); // Assuming this function loads or updates the table
+        clearData();
+        window.location.href = "dashboard.html";
     },
     error: function(req, err) {
         console.log("Error:", req, err);
     }
 });
-alert("You have submitted successfully");
+}
 
-// Clear the form fields after saving
-document.getElementById("validationServer01").value = "";
-document.getElementById("validationServer02").value = "";
-document.getElementById("validationServerFullname").value = "";
-document.getElementById("validationServerRegistration").value = "";
-document.getElementById("validationServerClass").value = "";
-document.getElementById("validationServerMedium").value = "";
-document.getElementById("validationServerReligion").value = "";
-document.getElementById("validationServerParentname").value = "";
-document.getElementById("validationServerParentRelation").value = "";
-document.getElementById("validationServerMobileNumber").value = "";
-document.getElementById("validationServerResidenceNumber").value = "";
-document.getElementById("validationServerAddress").value = "";
-
+function clearData(){
+    // Clear the form fields after saving
+  document.getElementById("validationServer01").value = "";
+  document.getElementById("validationServer02").value = "";
+  document.getElementById("validationServerFullname").value = "";
+  document.getElementById("validationServerRegistration").value = "";
+  document.getElementById("validationServerClass").value = "";
+  document.getElementById("validationServerMedium").value = "";
+  document.getElementById("validationServerReligion").value = "";
+  document.getElementById("validationServerParentname").value = "";
+  document.getElementById("validationServerParentRelation").value = "";
+  document.getElementById("validationServerMobileNumber").value = "";
+  document.getElementById("validationServerResidenceNumber").value = "";
+  document.getElementById("validationServerAddress").value = "";
 }
