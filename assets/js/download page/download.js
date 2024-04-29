@@ -14,43 +14,6 @@ $(document).ready(function () {
     $("#userName").text(userInfo.fullName);
 
 
-    var dummyData = [
-        {
-            requestId: 1,
-            requestType: "Registration",
-            studentId: "STU001",
-            description: "Student wants to register for course X",
-        },
-        {
-            requestId: 2,
-            requestType: "Library",
-            studentId: "STU002",
-            description: "Student requests access to borrow books",
-        },
-        // Add more dummy data objects as needed
-    ];
-
-    function populateTable() {
-        var tableBody = $("#requestTableBody");
-
-        dummyData.forEach(function (item) {
-            var row = `
-                <tr>
-                    <td>${item.requestId}</td>
-                    <td>${item.requestType}</td>
-                    <td>${item.studentId}</td>
-                    <td>${item.description}</td>
-                    <td class="view_btn">
-                        <button class="approve same_btn">Approve</button>
-                        <button class="reject btn-reject same_btn" data-toggle="modal" data-target="#commentModal">Reject</button>
-                    </td>
-                </tr>
-            `;
-            tableBody.append(row);
-        });
-    }
-
-    populateTable();
     // Handle the Reject button click to show modal
     $(document).on("click", ".btn-reject", function () {
         // Clear the textarea inside the modal when the Reject button is clicked
@@ -64,25 +27,7 @@ $(document).ready(function () {
         $("#commentModal").modal("hide");
     });
 
-    // Event listener for the "View" buttons
-    $(document).on("click", ".viewButton", function () {
-        var row = $(this).closest("tr");
-        var requestId = row.find("td:first").text();
-        var requestType = row.find("td:eq(1)").text();
-        var studentId = row.find("td:eq(2)").text();
-        var description = row.find("td:eq(3)").text();
-
-        alert(
-            "Request ID: " +
-            requestId +
-            "\nRequest Type: " +
-            requestType +
-            "\nStudent ID: " +
-            studentId +
-            "\nDescription: " +
-            description
-        );
-    });
+    
 
     // Add event listeners for the new "Present" and "Absent" buttons if needed
     $(document).on("click", ".presentButton", function () {

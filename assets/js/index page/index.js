@@ -459,26 +459,59 @@ $(document).ready(function () {
   populateTableWithDummyData();
 });
 
-
+ 
 //////////// REQUEST ///////////
 
 function addNotification() {
-  var title = document.getElementById("requestType").value;
-  var date = document.getElementById("date").value;
-  var description = document.getElementById("description").value;
+  var request_type = document.getElementById("requestType").value;
+  var request_date = document.getElementById("date").value;
+  var request_description = document.getElementById("description").value;
+  // var userId = document.getElementById("stuid").value;
+  // var userId = $("#stuid").val();
+  const stuInfoString = localStorage.getItem("studentInfo");
+  // Parse the JSON string back to an object
+  const studentInfo = JSON.parse(stuInfoString);
 
-  var tableBody = document.getElementById("notificationTableBody");
-  var newRow = tableBody.insertRow();
+  let notificationRequestDto = {
+    userDto:{
+      userId:studentInfo.userId
+    },
+    requestType:request_type,
+    date:request_date,
+    description:request_description
+  }
 
-  var cell1 = newRow.insertCell(0);
-  var cell2 = newRow.insertCell(1);
-  var cell3 = newRow.insertCell(2);
-  var cell4 = newRow.insertCell(3);
+  console.log(notificationRequestDto);
 
-  cell1.innerHTML = title;
-  cell2.innerHTML = date;
-  cell3.innerHTML = description;
-  cell4.innerHTML = "Pending";
+
+  // AJAX call to add the student record
+  $.ajax({
+    url: "http://localhost:8080/api/v1/admin-bff/request/notification/save",
+    method: "POST",
+    data: JSON.stringify(notificationRequestDto),
+    contentType: 'application/json',
+    success: function(data) {
+        console.log("Response from Server:", data);
+        // clearData();
+        // window.location.href = "dashboard.html";
+    },
+    error: function(req, err) {
+        console.log("Error:", req, err);
+    }
+  });
+
+  // var tableBody = document.getElementById("notificationTableBody");
+  // var newRow = tableBody.insertRow();
+
+  // var cell1 = newRow.insertCell(0);
+  // var cell2 = newRow.insertCell(1);
+  // var cell3 = newRow.insertCell(2);
+  // var cell4 = newRow.insertCell(3);
+
+  // cell1.innerHTML = title;
+  // cell2.innerHTML = date;
+  // cell3.innerHTML = description;
+  // cell4.innerHTML = "Pending";
 }
 //////////end Request
 
