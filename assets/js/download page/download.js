@@ -51,8 +51,6 @@ $(document).ready(function () {
 
 
 
-
-
 $(document).ready(function () {
     // Function to add a row to the attendance table
     function addRow(tableID, studentID, studentName, className, date) {
@@ -496,85 +494,147 @@ $(document).ready(function () {
 /////////// registered student /////////////
 
 $(document).ready(function () {
-    var dataset = []; // Initialize an empty dataset
+
+    let stuRegDetailList = [];
+
+    // ajax call to add get registered student records
+    $.ajax({
+        url: `http://localhost:8080/api/v1/admin-bff/register-student`,
+        method: 'GET',
+        // data: formData,
+        // processData: false,
+        // contentType: false,
+        success: function(data) {
+        
+            console.log(data);
+
+            stuRegDetailList = data;
+        
+            $("#popupTableBody").empty();
+
+            for (var i = 0; i < stuRegDetailList.length; i++) {
+                var row = $("<tr>");
+                row.append($("<td>").text(stuRegDetailList[i].regStudId));
+                row.append($("<td>").text(stuRegDetailList[i].bulkStudentId));
+                row.append($("<td>").text(stuRegDetailList[i].schoolRegNo));
+                row.append($("<td>").text(stuRegDetailList[i].fullName));
+                row.append($("<td>").text(stuRegDetailList[i].firstName));
+                row.append($("<td>").text(stuRegDetailList[i].lastName));
+                row.append($("<td>").text(stuRegDetailList[i].classStudy));
+                row.append($("<td>").text(stuRegDetailList[i].address));
+                row.append($("<td>").text(stuRegDetailList[i].kycStudentId));
+                row.append($("<td>").text(stuRegDetailList[i].medium));
+                row.append($("<td>").text(stuRegDetailList[i].region));
+                row.append($("<td>").text(stuRegDetailList[i].parentName));
+                row.append($("<td>").text(stuRegDetailList[i].parentRelations));
+                row.append($("<td>").text(stuRegDetailList[i].mobileNumber));
+                row.append($("<td>").text(stuRegDetailList[i].residenceNumber));
+
+                $("#popupTableBody").append(row);
+            }
+        // loadTablePapers();
+        },
+        error: function(req, err) {
+        console.log(req);
+        }
+    });
+
+    // Show popup when the "Show Popup" button is clicked
+    $("#showPopupBtn").click(function () {
+        // updateTable();
+        $("#popupTable").toggle();
+    });
+
+    // Add data when the "Add Data" button is clicked
+    $("#addDataBtn").click(function () {
+        addRandomData();
+        updateTable();
+    });
+
+    // Download table data when the "Download Table Data" button is clicked
+    $("#downloadDataBtn").click(function () {
+        downloadTableData();
+    });
+
+    // var dataset = []; // Initialize an empty dataset
 
     // Function to initialize the table with the provided dataset
-    function initializeTable(data) {
-        dataset = data; // Set the dataset
+    // function initializeTable(data) {
+    //     // dataset = data; // Set the dataset
 
-        // Initialize filter options if needed
+    //     // Initialize filter options if needed
 
-        // Show popup when the "Show Popup" button is clicked
-        $("#showPopupBtn").click(function () {
-            updateTable();
-            $("#popupTable").toggle();
-        });
+    //     // Show popup when the "Show Popup" button is clicked
+    //     $("#showPopupBtn").click(function () {
+    //         updateTable();
+    //         $("#popupTable").toggle();
+    //     });
 
-        // Add data when the "Add Data" button is clicked
-        $("#addDataBtn").click(function () {
-            addRandomData();
-            updateTable();
-        });
+    //     // Add data when the "Add Data" button is clicked
+    //     $("#addDataBtn").click(function () {
+    //         addRandomData();
+    //         updateTable();
+    //     });
 
-        // Download table data when the "Download Table Data" button is clicked
-        $("#downloadDataBtn").click(function () {
-            downloadTableData();
-        });
-    }
+    //     // Download table data when the "Download Table Data" button is clicked
+    //     $("#downloadDataBtn").click(function () {
+    //         downloadTableData();
+    //     });
+    // }
 
     // Function to update the table based on the dataset
-    function updateTable() {
-        $("#popupTableBody").empty();
+    // function updateTable() {
+    //     $("#popupTableBody").empty();
 
-        for (var i = 0; i < dataset.length; i++) {
-            var row = $("<tr>");
-            row.append($("<td>").text(dataset[i].bulkStudentId));
-            row.append($("<td>").text(dataset[i].registeredId));
-            row.append($("<td>").text(dataset[i].schoolRegNo));
-            row.append($("<td>").text(dataset[i].fullName));
-            row.append($("<td>").text(dataset[i].firstName));
-            row.append($("<td>").text(dataset[i].lastName));
-            row.append($("<td>").text(dataset[i].class));
-            row.append($("<td>").text(dataset[i].address));
-            row.append($("<td>").text(dataset[i].kycId));
-            row.append($("<td>").text(dataset[i].medium));
-            row.append($("<td>").text(dataset[i].region));
-            row.append($("<td>").text(dataset[i].parentName));
-            row.append($("<td>").text(dataset[i].parentRelations));
-            row.append($("<td>").text(dataset[i].mobileNo));
-            row.append($("<td>").text(dataset[i].residenceTel));
+    //     for (var i = 0; i < dataset.length; i++) {
+    //         var row = $("<tr>");
+    //         row.append($("<td>").text(dataset[i].bulkStudentId));
+    //         row.append($("<td>").text(dataset[i].registeredId));
+    //         row.append($("<td>").text(dataset[i].schoolRegNo));
+    //         row.append($("<td>").text(dataset[i].fullName));
+    //         row.append($("<td>").text(dataset[i].firstName));
+    //         row.append($("<td>").text(dataset[i].lastName));
+    //         row.append($("<td>").text(dataset[i].class));
+    //         row.append($("<td>").text(dataset[i].address));
+    //         row.append($("<td>").text(dataset[i].kycId));
+    //         row.append($("<td>").text(dataset[i].medium));
+    //         row.append($("<td>").text(dataset[i].region));
+    //         row.append($("<td>").text(dataset[i].parentName));
+    //         row.append($("<td>").text(dataset[i].parentRelations));
+    //         row.append($("<td>").text(dataset[i].mobileNo));
+    //         row.append($("<td>").text(dataset[i].residenceTel));
 
-            $("#popupTableBody").append(row);
-        }
-    }
+    //         $("#popupTableBody").append(row);
+    //     }
+    // }
 
     // Function to add random data to the dataset
-    function addRandomData() {
-        var randomData = {
-            bulkStudentId: generateRandomId(),
-            registeredId: generateRandomId(),
-            schoolRegNo: generateRandomId(),
-            fullName: "Random Name " + Math.floor(Math.random() * 100),
-            firstName: "Random First Name",
-            lastName: "Random Last Name",
-            class: "Class " + Math.floor(Math.random() * 10),
-            address: "Random Address",
-            kycId: generateRandomId(),
-            medium: "Medium " + Math.floor(Math.random() * 5),
-            region: "Region " + Math.floor(Math.random() * 5),
-            parentName: "Random Parent Name",
-            parentRelations: "Random Relation",
-            mobileNo: "Random Mobile No",
-            residenceTel: "Random Residence Tel",
-        };
+    // function addRandomData() {
+    //     var randomData = {
+    //         bulkStudentId: generateRandomId(),
+    //         registeredId: generateRandomId(),
+    //         schoolRegNo: generateRandomId(),
+    //         fullName: "Random Name " + Math.floor(Math.random() * 100),
+    //         firstName: "Random First Name",
+    //         lastName: "Random Last Name",
+    //         class: "Class " + Math.floor(Math.random() * 10),
+    //         address: "Random Address",
+    //         kycId: generateRandomId(),
+    //         medium: "Medium " + Math.floor(Math.random() * 5),
+    //         region: "Region " + Math.floor(Math.random() * 5),
+    //         parentName: "Random Parent Name",
+    //         parentRelations: "Random Relation",
+    //         mobileNo: "Random Mobile No",
+    //         residenceTel: "Random Residence Tel",
+    //     };
 
-        dataset.push(randomData);
-    }
+    //     dataset.push(randomData);
+    // }
 
     // Function to generate a random ID
-    function generateRandomId() {
-        return Math.random().toString(36).substr(2, 9); // Generates a random alphanumeric string
-    }
+    // function generateRandomId() {
+    //     return Math.random().toString(36).substr(2, 9); // Generates a random alphanumeric string
+    // }
 
     // Function to download table data as CSV
     function downloadTableData() {
@@ -582,7 +642,7 @@ $(document).ready(function () {
         csvContent +=
             "Bulk Student Id,Registered Id,School reg No,Full Name,First Name,Last Name,Class,Address,Kyc Id,Medium,Region,Parent Name,Parent Relations,Mobile No,Residence tel\n";
 
-        dataset.forEach(function (row) {
+        stuRegDetailList.forEach(function (row) {
             csvContent += Object.values(row).join(",") + "\n";
         });
 
@@ -595,45 +655,45 @@ $(document).ready(function () {
     }
 
     // Example dataset
-    var exampleData = [
-        {
-            bulkStudentId: "BSID001",
-            registeredId: "RID001",
-            schoolRegNo: "SRN001",
-            fullName: "John Doe",
-            firstName: "John",
-            lastName: "Doe",
-            class: "Class A",
-            address: "123 Main St",
-            kycId: "KYC001",
-            medium: "English",
-            region: "North",
-            parentName: "Jane Doe",
-            parentRelations: "Parent",
-            mobileNo: "1234567890",
-            residenceTel: "0987654321",
-        },
-        {
-            bulkStudentId: "BSID002",
-            registeredId: "RID002",
-            schoolRegNo: "SRN002",
-            fullName: "Jane Smith",
-            firstName: "Jane",
-            lastName: "Smith",
-            class: "Class B",
-            address: "456 Oak St",
-            kycId: "KYC002",
-            medium: "French",
-            region: "South",
-            parentName: "John Smith",
-            parentRelations: "Parent",
-            mobileNo: "9876543210",
-            residenceTel: "0123456789",
-        },
-    ];
+    // var exampleData = [
+    //     {
+    //         bulkStudentId: "BSID001",
+    //         registeredId: "RID001",
+    //         schoolRegNo: "SRN001",
+    //         fullName: "John Doe",
+    //         firstName: "John",
+    //         lastName: "Doe",
+    //         class: "Class A",
+    //         address: "123 Main St",
+    //         kycId: "KYC001",
+    //         medium: "English",
+    //         region: "North",
+    //         parentName: "Jane Doe",
+    //         parentRelations: "Parent",
+    //         mobileNo: "1234567890",
+    //         residenceTel: "0987654321",
+    //     },
+    //     {
+    //         bulkStudentId: "BSID002",
+    //         registeredId: "RID002",
+    //         schoolRegNo: "SRN002",
+    //         fullName: "Jane Smith",
+    //         firstName: "Jane",
+    //         lastName: "Smith",
+    //         class: "Class B",
+    //         address: "456 Oak St",
+    //         kycId: "KYC002",
+    //         medium: "French",
+    //         region: "South",
+    //         parentName: "John Smith",
+    //         parentRelations: "Parent",
+    //         mobileNo: "9876543210",
+    //         residenceTel: "0123456789",
+    //     },
+    // ];
 
     // Initialize the table with the example dataset
-    initializeTable(exampleData);
+    // initializeTable(exampleData);
 });
 
 // UPLOAD IMAGE ADD BOOK
@@ -652,6 +712,8 @@ function displayImage() {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+
 function displaypaperImage() {
     var input = document.getElementById("finbookput");
     var displayedImage = document.getElementById("displayedbookImage");
