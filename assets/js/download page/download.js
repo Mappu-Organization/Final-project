@@ -7,12 +7,8 @@ $(document).ready(function () {
     // Parse the JSON string back to an object
     const userInfo = JSON.parse(userInfoString);
 
-    // Now you can use the userInfo object
-    console.log(userInfo);
-
     $("#userId").text(userInfo.userId);
     $("#userName").text(userInfo.fullName);
-
 
     // Handle the Reject button click to show modal
     $(document).on("click", ".btn-reject", function () {
@@ -346,141 +342,247 @@ $(document).ready(function () {
 
 ////////bulk user record//////////
 $(document).ready(function () {
-    // Function to handle file upload
-    $("#formFile").change(function (event) {
-        var file = event.target.files[0];
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            var csv = e.target.result;
-            var data = $.csv.toArrays(csv);
-            populateTable(data);
-        };
-        reader.readAsText(file);
+
+    let kycStudentDetailList = [];
+    let bulkStudentDetailList = [];
+
+    // ajax call to get All KycStudent details
+    $.ajax({
+        url: `http://localhost:8080/api/v1/admin-bff/kyc-student-records`,
+        method: 'GET',
+        success: function(data) {
+            kycStudentDetailList = data;
+            $("#tableBod").empty();
+            for (var i = 0; i < kycStudentDetailList.length; i++) {
+                var row = $("<tr>");
+                row.append($("<td>").text(kycStudentDetailList[i].firstName));
+                row.append($("<td>").text(kycStudentDetailList[i].lastName));
+                row.append($("<td>").text(kycStudentDetailList[i].fullName));
+                row.append($("<td>").text(kycStudentDetailList[i].schoolRegNumber));
+                row.append($("<td>").text(kycStudentDetailList[i].classNumber));
+                row.append($("<td>").text(kycStudentDetailList[i].medium));
+                row.append($("<td>").text(kycStudentDetailList[i].religion));
+                row.append($("<td>").text(kycStudentDetailList[i].parentName));
+                row.append($("<td>").text(kycStudentDetailList[i].parentRelation));
+                row.append($("<td>").text(kycStudentDetailList[i].mobileNumber));
+                row.append($("<td>").text('Active'));
+
+                $("#tableBod").append(row);
+
+                // Apply styles based on KYC status for the last added row
+                // var lastRow = $("#btableBod tr:last"); // Updated here
+                // var kycStatus = lastRow.find(".kyc-status").text();
+                // var selectButton = lastRow.find(".action-column button");
+
+                // if (kycStatus === "Active") {
+                //     // KYC is active, set button color to green
+                //     selectButton.css("background-color", "green");
+
+                //     // Attach a click event handler to the "Select" button
+                //     selectButton.on("click", function () {
+                //         // Call the function to handle the "Select" button click
+                //         handleSelectButtonClick(data);
+                //     });
+                // } else {
+                //     // KYC is not active, disable the button and set a different color
+                //     selectButton.prop("disabled", true);
+                //     selectButton.css("background-color", "gray");
+                // }
+            }
+        },
+        error: function(req, err) {
+            console.log(req);
+        }
     });
 
-    // Function to populate table with data from CSV
-    function populateTable(data) {
-        // Clear previous data
-        $("#bulktableBody").empty(); // Updated here
+    // ajax call to get All bulkStudent details
+    $.ajax({
+        url: `http://localhost:8080/api/v1/admin-bff/bulk-student-records`,
+        method: 'GET',
+        success: function(data) {
+            console.log(data);
+            bulkStudentDetailList = data;
+            $("#bulktablBody").empty();
+            for (var i = 0; i < bulkStudentDetailList.length; i++) {
+                var row = $("<tr>");
+                row.append($("<td>").text(bulkStudentDetailList[i].firstName));
+                row.append($("<td>").text(bulkStudentDetailList[i].lastName));
+                row.append($("<td>").text(bulkStudentDetailList[i].fullName));
+                row.append($("<td>").text(bulkStudentDetailList[i].schoolRegNumber));
+                row.append($("<td>").text(bulkStudentDetailList[i].className));
+                row.append($("<td>").text(bulkStudentDetailList[i].medium));
+                row.append($("<td>").text(bulkStudentDetailList[i].religion));
+                row.append($("<td>").text(bulkStudentDetailList[i].residenceNumber));
+                row.append($("<td>").text(bulkStudentDetailList[i].address));
+                row.append($("<td>").text(bulkStudentDetailList[i].parentName));
+                row.append($("<td>").text(bulkStudentDetailList[i].parentRelation));
+                row.append($("<td>").text(bulkStudentDetailList[i].mobileNumber));
 
-        // Loop through each row in the CSV data
-        for (var i = 0; i < data.length; i++) {
-            var row = data[i];
-            var rowData = {
-                column1: row[0], // Assuming the first column contains First Name
-                column2: row[1], // Assuming the second column contains Last Name
-                column3: row[2], // Assuming the third column contains Full Name
-                column4: row[3], // Assuming the fourth column contains Scl_reg_number
-                column5: row[4], // Assuming the fifth column contains Class
-                column6: row[5], // Assuming the sixth column contains Medium
-                column7: row[6], // Assuming the seventh column contains religion
-                column8: row[7], // Assuming the eighth column contains Parent Name
-                column9: row[8], // Assuming the ninth column contains Parent Relation
-                column10: row[9], // Assuming the tenth column contains Mobile No
+                $("#bulktablBody").append(row);
 
-            };
-            addRow(rowData); // Add the row to the table
+                // // Apply styles based on KYC status for the last added row
+                // var lastRow = $("#btableBod tr:last"); // Updated here
+                // var kycStatus = lastRow.find(".kyc-status").text();
+                // var selectButton = lastRow.find(".action-column button");
+
+                // if (kycStatus === "Active") {
+                //     // KYC is active, set button color to green
+                //     selectButton.css("background-color", "green");
+
+                //     // Attach a click event handler to the "Select" button
+                //     selectButton.on("click", function () {
+                //         // Call the function to handle the "Select" button click
+                //         handleSelectButtonClick(data);
+                //     });
+                // } else {
+                //     // KYC is not active, disable the button and set a different color
+                //     selectButton.prop("disabled", true);
+                //     selectButton.css("background-color", "gray");
+                // }
+            }
+        },
+        error: function(req, err) {
+            console.log(req);
         }
-    }
+    });
+
+
+    // Function to handle file upload
+    // $("#formFile").change(function (event) {
+    //     var file = event.target.files[0];
+    //     var reader = new FileReader();
+    //     reader.onload = function (e) {
+    //         var csv = e.target.result;
+    //         var data = $.csv.toArrays(csv);
+    //         populateTable(data);
+    //     };
+    //     reader.readAsText(file);
+    // });
+
+    // Function to populate table with data from CSV
+    // function populateTable(data) {
+    //     // Clear previous data
+    //     $("#bulktableBody").empty(); // Updated here
+
+    //     // Loop through each row in the CSV data
+    //     for (var i = 0; i < data.length; i++) {
+    //         var row = data[i];
+    //         var rowData = {
+    //             column1: row[0], // Assuming the first column contains First Name
+    //             column2: row[1], // Assuming the second column contains Last Name
+    //             column3: row[2], // Assuming the third column contains Full Name
+    //             column4: row[3], // Assuming the fourth column contains Scl_reg_number
+    //             column5: row[4], // Assuming the fifth column contains Class
+    //             column6: row[5], // Assuming the sixth column contains Medium
+    //             column7: row[6], // Assuming the seventh column contains religion
+    //             column8: row[7], // Assuming the eighth column contains Parent Name
+    //             column9: row[8], // Assuming the ninth column contains Parent Relation
+    //             column10: row[9], // Assuming the tenth column contains Mobile No
+
+    //         };
+    //         addRow(rowData); // Add the row to the table
+    //     }
+    // }
 
     // Function to add a row to the table
-    function addRow(data) {
-        var newRow = `<tr>
-            <td>${data.column1}</td>
-            <td>${data.column2}</td>
-            <td>${data.column3}</td>
-            <td>${data.column4}</td>
-            <td>${data.column5}</td>
-            <td>${data.column6}</td>
-            <td>${data.column7}</td>
-            <td>${data.column8}</td>
-            <td>${data.column9}</td>
-            <td>${data.column10}</td>
+    // function addRow(data) {
+    //     var newRow = `<tr>
+    //         <td>${data.column1}</td>
+    //         <td>${data.column2}</td>
+    //         <td>${data.column3}</td>
+    //         <td>${data.column4}</td>
+    //         <td>${data.column5}</td>
+    //         <td>${data.column6}</td>
+    //         <td>${data.column7}</td>
+    //         <td>${data.column8}</td>
+    //         <td>${data.column9}</td>
+    //         <td>${data.column10}</td>
            
-        </tr>`;
+    //     </tr>`;
 
-        // Append the new row to the table body
-        $("#bulktableBody").append(newRow); // Updated here
+    //     // Append the new row to the table body
+    //     $("#bulktableBody").append(newRow); // Updated here
 
-        // Apply styles based on KYC status for the last added row
-        var lastRow = $("#bulktableBody tr:last"); // Updated here
-        var kycStatus = lastRow.find(".kyc-status").text();
-        var selectButton = lastRow.find(".action-column button");
+    //     // Apply styles based on KYC status for the last added row
+    //     var lastRow = $("#bulktableBody tr:last"); // Updated here
+    //     var kycStatus = lastRow.find(".kyc-status").text();
+    //     var selectButton = lastRow.find(".action-column button");
 
-        if (kycStatus === "Active") {
-            // KYC is active, set button color to green
-            selectButton.css("background-color", "green");
+    //     if (kycStatus === "Active") {
+    //         // KYC is active, set button color to green
+    //         selectButton.css("background-color", "green");
 
-            // Attach a click event handler to the "Select" button
-            selectButton.on("click", function () {
-                // Call the function to handle the "Select" button click
-                handleSelectButtonClick(data);
-            });
-        } else {
-            // KYC is not active, disable the button and set a different color
-            selectButton.prop("disabled", true);
-            selectButton.css("background-color", "gray");
-        }
-    }
+    //         // Attach a click event handler to the "Select" button
+    //         selectButton.on("click", function () {
+    //             // Call the function to handle the "Select" button click
+    //             handleSelectButtonClick(data);
+    //         });
+    //     } else {
+    //         // KYC is not active, disable the button and set a different color
+    //         selectButton.prop("disabled", true);
+    //         selectButton.css("background-color", "gray");
+    //     }
+    // }
 
     // Function to handle "Select" button click
-    function handleSelectButtonClick(data) {
-        // Check if KYC status is active
-        if (data.kycStatus === "Active") {
-            // Populate kyc_user_record with student data
-            populateKYCUserRecord(data);
+    // function handleSelectButtonClick(data) {
+    //     // Check if KYC status is active
+    //     if (data.kycStatus === "Active") {
+    //         // Populate kyc_user_record with student data
+    //         populateKYCUserRecord(data);
 
-            // Populate bulk_user_record with student data
-            populateBulkUserRecord(data);
-        } else {
-            console.log("KYC status is not active for this student.");
-        }
-    }
+    //         // Populate bulk_user_record with student data
+    //         populateBulkUserRecord(data);
+    //     } else {
+    //         console.log("KYC status is not active for this student.");
+    //     }
+    // }
 
     // Function to populate KYC user record
     // Function to populate KYC user record with all columns
-    function populateKYCUserRecord(data) {
-        // Example: Assuming kyc_user_record is a div with class 'kyc_user_record'
-        $(".kyc_user_record").empty(); // Clear previous data
-        // Populate KYC user record with the selected student's data
-        var kycUserData = `<p>First Name: ${data.column1}</p>
-                 <p>Last Name: ${data.column2}</p>
-                 <p>Full Name: ${data.column3}</p>
-                 <p>Scl_reg_number: ${data.column4}</p>
-                 <p>Class: ${data.column5}</p>
-                 <p>Medium: ${data.column6}</p>
-                 <p>Religion: ${data.column7}</p>
-                 <p>Parent Name: ${data.column8}</p>
-                 <p>Parent Relation: ${data.column9}</p>
-                 <p>Mobile No: ${data.column10}</p>
-                 <p>KYC Status: ${data.kycStatus}</p>
-                 <p>Action: ${data.action}</p>`;
-        $(".kyc_user_record").append(kycUserData);
-    }
+    // function populateKYCUserRecord(data) {
+    //     // Example: Assuming kyc_user_record is a div with class 'kyc_user_record'
+    //     $(".kyc_user_record").empty(); // Clear previous data
+    //     // Populate KYC user record with the selected student's data
+    //     var kycUserData = `<p>First Name: ${data.column1}</p>
+    //              <p>Last Name: ${data.column2}</p>
+    //              <p>Full Name: ${data.column3}</p>
+    //              <p>Scl_reg_number: ${data.column4}</p>
+    //              <p>Class: ${data.column5}</p>
+    //              <p>Medium: ${data.column6}</p>
+    //              <p>Religion: ${data.column7}</p>
+    //              <p>Parent Name: ${data.column8}</p>
+    //              <p>Parent Relation: ${data.column9}</p>
+    //              <p>Mobile No: ${data.column10}</p>
+    //              <p>KYC Status: ${data.kycStatus}</p>
+    //              <p>Action: ${data.action}</p>`;
+    //     $(".kyc_user_record").append(kycUserData);
+    // }
 
     // Function to populate bulk user record with all columns
-    function populateBulkUserRecord(data) {
-        // Example: Assuming bulk_user_record is a div with class 'bulk_user_record'
-        $(".bulk_user_record").empty(); // Clear previous data
-        // Populate bulk user record with the selected student's data
-        var bulkUserData = `<p>First Name: ${data.column1}</p>
-                  <p>Last Name: ${data.column2}</p>
-                  <p>Full Name: ${data.column3}</p>
-                  <p>Scl_reg_number: ${data.column4}</p>
-                  <p>Class: ${data.column5}</p>
-                  <p>Medium: ${data.column6}</p>
-                  <p>Religion: ${data.column7}</p>
-                  <p>Parent Name: ${data.column8}</p>
-                  <p>Parent Relation: ${data.column9}</p>
-                  <p>Mobile No: ${data.column10}</p>
-                  <p>KYC Status: ${data.kycStatus}</p>
-                  <p>Action: ${data.action}</p>`;
-        $(".bulk_user_record").append(bulkUserData);
-    }
+    // function populateBulkUserRecord(data) {
+    //     // Example: Assuming bulk_user_record is a div with class 'bulk_user_record'
+    //     $(".bulk_user_record").empty(); // Clear previous data
+    //     // Populate bulk user record with the selected student's data
+    //     var bulkUserData = `<p>First Name: ${data.column1}</p>
+    //               <p>Last Name: ${data.column2}</p>
+    //               <p>Full Name: ${data.column3}</p>
+    //               <p>Scl_reg_number: ${data.column4}</p>
+    //               <p>Class: ${data.column5}</p>
+    //               <p>Medium: ${data.column6}</p>
+    //               <p>Religion: ${data.column7}</p>
+    //               <p>Parent Name: ${data.column8}</p>
+    //               <p>Parent Relation: ${data.column9}</p>
+    //               <p>Mobile No: ${data.column10}</p>
+    //               <p>KYC Status: ${data.kycStatus}</p>
+    //               <p>Action: ${data.action}</p>`;
+    //     $(".bulk_user_record").append(bulkUserData);
+    // }
+
     // Function to handle search input
     $(".form-control").on("keyup", function () {
         var value = $(this).val().toLowerCase(); // Get the value of the input and convert it to lowercase
-        $("#bulktableBody tr").filter(function () {
+        $("#bulktablBody tr").filter(function () {
             // Filter table rows
             $(this).toggle(
                 $(this).find("td:nth-child(4)").text().toLowerCase().indexOf(value) > -1
@@ -501,9 +603,6 @@ $(document).ready(function () {
     $.ajax({
         url: `http://localhost:8080/api/v1/admin-bff/register-student`,
         method: 'GET',
-        // data: formData,
-        // processData: false,
-        // contentType: false,
         success: function(data) {
         
             console.log(data);
