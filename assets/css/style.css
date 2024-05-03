@@ -1421,6 +1421,23 @@ td.view_btn {
   /* Initially hide the success message */
 }
 
+.error-message {
+  background-color: #e71c1c;
+  /* Green color */
+  color: #fff;
+  /* White text */
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  display: none;
+  /* Initially hide the success message */
+}
+
 /* Add your styles here */
 .popup {
   display: none;

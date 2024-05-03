@@ -184,6 +184,64 @@ $(document).ready(function () {
     });
 });
 
+function updateStatus(r,s){
+    let id = $(r).attr('data-x');
+    $.ajax({
+        url:`http://localhost:8080/api/v1/admin-bff/request/book/update/${id}/${s}`,
+        method:"PUT",
+        success:(response, textStatus, jqXHR)=>{
+            if(jqXHR.status == 200){
+                let msg = document.getElementById("successMessage")
+                msg.innerHTML = "Bulk Save successful";
+                msg.classList.remove("error-message")
+                msg.classList.add("success-message")
+                msg.style.display = "block";
+                setTimeout(function () {
+                    msg.style.display = "none";
+                }, 3000);
+            }else{
+                let msg = document.getElementById("successMessage")
+                msg.innerHTML = "Something went wrong while saving the information.";
+                msg.classList.remove("success-message")
+                msg.classList.add("error-message")
+                msg.style.display = "block";
+                setTimeout(function () {
+                    msg.style.display = "none";
+                }, 3000);
+            }
+        }
+    })
+}
+
+function updatePaperStatus(r,s){
+    let id = $(r).attr('data-x');
+    $.ajax({
+        url:`http://localhost:8080/api/v1/admin-bff/request/papers/update/${id}/${s}`,
+        method:"PUT",
+        success:(response, textStatus, jqXHR)=>{
+            if(jqXHR.status == 200){
+                let msg = document.getElementById("successMessage")
+                msg.innerHTML = "Bulk Save successful";
+                msg.classList.remove("error-message")
+                msg.classList.add("success-message")
+                msg.style.display = "block";
+                setTimeout(function () {
+                    msg.style.display = "none";
+                }, 3000);
+            }else{
+                let msg = document.getElementById("successMessage")
+                msg.innerHTML = "Something went wrong while saving the information.";
+                msg.classList.remove("success-message")
+                msg.classList.add("error-message")
+                msg.style.display = "block";
+                setTimeout(function () {
+                    msg.style.display = "none";
+                }, 3000);
+            }
+        }
+    })
+}
+
 // Function to add a new row to the table body
 
 //// CSV FILE UPLOADER///////////////
@@ -200,10 +258,60 @@ $(document).ready(function () {
         reader.readAsText(file);
     });
 
+    $("#saveBulkRecodes").on('click',function(){
+        let  recodedData=[];
+        $("#bulktableBody tr").each(function(i,row){
+            recodedData.push({
+                firstName: $(row).find('td')[0].innerHTML,
+                lastName: $(row).find('td')[1].innerHTML,
+                fullName: $(row).find('td')[2].innerHTML,
+                schoolRegNumber: $(row).find('td')[3].innerHTML,
+                className: $(row).find('td')[4].innerHTML,
+                medium: $(row).find('td')[5].innerHTML,
+                religion: $(row).find('td')[6].innerHTML,
+                residenceNumber: $(row).find('td')[7].innerHTML,
+                address: $(row).find('td')[8].innerHTML,
+                parentName: $(row).find('td')[9].innerHTML,
+                parentRelation: $(row).find('td')[10].innerHTML,
+                mobileNumber: $(row).find('td')[11].innerHTML,
+            });
+        })
+        
+        $.ajax({
+            url:"http://localhost:8080/api/v1/admin-bff/bulk-student-records/bulkSave",
+            method:"POST",
+            contentType:"application/json",
+            data:JSON.stringify(recodedData),
+            success:(response, textStatus, jqXHR)=>{
+                if(jqXHR.status == 200){
+                    let msg = document.getElementById("successMessage")
+                    msg.innerHTML = "Bulk Save successful";
+                    msg.classList.remove("error-message")
+                    msg.classList.add("success-message")
+                    msg.style.display = "block";
+                    setTimeout(function () {
+                        msg.style.display = "none";
+                    }, 3000);
+                }else{
+                    let msg = document.getElementById("successMessage")
+                    msg.innerHTML = "Something went wrong while saving the information.";
+                    msg.classList.remove("success-message")
+                    msg.classList.add("error-message")
+                    msg.style.display = "block";
+                    setTimeout(function () {
+                        msg.style.display = "none";
+                    }, 3000);
+                }
+                recodedData = null;
+                $("#bulktableBody").empty();
+            }
+        })
+    })
+
     // Function to populate table with data from CSV
     function populateTable(data) {
         // Clear previous data
-        $("#tableBody").empty();
+        $("#bulktableBody").empty();
 
         // Loop through each row in the CSV data
         for (var i = 0; i < data.length; i++) {
@@ -250,7 +358,7 @@ $(document).ready(function () {
         </tr>`;
 
         // Append the new row to the table body
-        $("#tableBody").append(newRow);
+        $("#bulktableBody").append(newRow);
 
         // Apply styles based on KYC status for the last added row
         var lastRow = $("#tableBody tr:last");
@@ -331,7 +439,7 @@ $(document).ready(function () {
     // Function to handle search input
     $(".form-control").on("keyup", function () {
         var value = $(this).val().toLowerCase(); // Get the value of the input and convert it to lowercase
-        $("#tableBody tr").filter(function () {
+        $("#tableBod tr").filter(function () {
             // Filter table rows
             $(this).toggle(
                 $(this).find("td:nth-child(4)").text().toLowerCase().indexOf(value) > -1
@@ -340,6 +448,113 @@ $(document).ready(function () {
     });
 });
 
+let registerObj = null;
+
+$(document).ready(() => {
+    $('#stdReg').on('click',function(){
+        if(registerObj  == null){
+            let msg = document.getElementById("successMessage")
+            msg.innerHTML = "Please select a Student first";
+            msg.classList.remove("success-message")
+            msg.classList.add("error-message")
+            msg.style.display = "block";
+            setTimeout(function () {
+                msg.style.display = "none";
+              }, 3000);
+            return;
+        }
+
+        $.ajax({
+            url:`http://localhost:8080/api/v1/admin-bff/register-student/reg`,
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                firstName:registerObj.fName,
+                lastName:registerObj.lName,
+                fullName:registerObj.fullName,
+                className: registerObj.sClass,
+                medium: registerObj.medium,
+                religion: registerObj.religion,
+                parentName: registerObj.parentName,
+                parentRelation: registerObj.parentRelation,
+                mobileNumber: registerObj.mobileNumber,
+                studentRegId: registerObj.regNo,
+                studentImage: registerObj.studentImage
+            }),
+            success: (response, textStatus, jqXHR)=>{
+                console.log(response);
+                if(jqXHR.status == 200){
+                    let msg = document.getElementById("successMessage")
+                    msg.innerHTML = "Student successfully registered!";
+                    msg.classList.remove("error-message")
+                    msg.classList.add("success-message")
+                    msg.style.display = "block";
+                    setTimeout(function () {
+                        msg.style.display = "none";
+                    }, 3000);
+                }else{
+                    let msg = document.getElementById("successMessage")
+                    msg.innerHTML = "Something went wrong while saving the information.";
+                    msg.classList.remove("success-message")
+                    msg.classList.add("error-message")
+                    msg.style.display = "block";
+                    setTimeout(function () {
+                        msg.style.display = "none";
+                    }, 3000);
+                }
+                registerObj = null;
+                $('#kycStudentDetails').empty();
+                $("#previewImage").attr('src','#');
+
+            }
+        })
+
+    })
+})
+
+function updateSelectedUser(e){
+    let fName = $(e).closest('tr').find('td')[0].innerText;
+    let lName = $(e).closest('tr').find('td')[1].innerText;
+    let fullName = $(e).closest('tr').find('td')[2].innerText;
+    let regNo = $(e).closest('tr').find('td')[3].innerText;
+    let sClass = $(e).closest('tr').find('td')[4].innerText;
+    let medium = $(e).closest('tr').find('td')[5].innerText;
+    let religion = $(e).closest('tr').find('td')[6].innerText;
+    let parentName = $(e).closest('tr').find('td')[7].innerText;
+    let parentRelation = $(e).closest('tr').find('td')[8].innerText;
+    let mobileNumber = $(e).closest('tr').find('td')[9].innerText;
+    let studentImage = $(e).closest('tr').find('td')[11].innerText;
+
+    registerObj = {
+        fName,
+        lName,
+        fullName,
+        regNo,
+        sClass,
+        medium,
+        religion,
+        parentName,
+        parentRelation,
+        mobileNumber,
+        studentImage
+    }
+
+    $("#previewImage").attr('src',studentImage);
+    let htmlData = `
+        First Name: <b>${fName} </b><br/>
+        Last Name: <b>${lName}</b><br/>
+        Full Name: <b>${fullName}</b><br/>
+        Registration Number : <b>${regNo}</b><br/>
+        Class: <b>${sClass}</b><br/>
+        Medium: <b>${medium}</b><br/>
+        Religion: <b>${religion}</b><br/>
+        Parent/Guardian's Name: <b>${parentName}</b><br/>
+        Relation with Guardian: <b>${parentRelation}</b><br/>
+        Mobile Number: <b>${mobileNumber}</b>
+    `;
+    $('#kycStudentDetails').append(htmlData);
+
+}    
 ////////bulk user record//////////
 $(document).ready(function () {
 
@@ -366,6 +581,8 @@ $(document).ready(function () {
                 row.append($("<td>").text(kycStudentDetailList[i].parentRelation));
                 row.append($("<td>").text(kycStudentDetailList[i].mobileNumber));
                 row.append($("<td>").text('Active'));
+                row.append(`<td style="display:none">${kycStudentDetailList[i].studentImage}</td>`)
+                row.append(`<td class="hidden-column action-column"><button onclick="updateSelectedUser(this)" class="select-button">Action</button></td>`)
 
                 $("#tableBod").append(row);
 

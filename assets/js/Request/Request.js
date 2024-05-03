@@ -34,7 +34,35 @@ $(document).ready(function () {
         );
     });
 
-    
+
+    $.ajax({
+      url: "http://localhost:8080/api/v1/admin-bff/request/book",
+      method: "GET",
+      success: function (data) {
+        let requestList = data;
+
+        $("#requesttable tbody").empty();
+        requestList.forEach(function (item) {
+            let btnApprove = ``
+          var row = `
+                <tr>
+                    <td>${item.registerStudent.registerStuId}</td>
+                    <td>${item.book.bookId}</td>
+                    <td>${item.requestBookId}</td>
+                    <td>${item.registerStudent.fullName}</td>
+                    <td>${item.registerStudent.className}</td>
+                    <td>${item.book.bookName}</td>
+                    <td>${item.requestStatus}</td>
+                    <td class="view_btn">
+                        <button onclick="updateStatus(this,'a')" data-x='${item.requestBookId}' class="approve same_btn">Approve</button>
+                        <button onclick="updateStatus(this,'r')" data-x='${item.requestBookId}' class="reject btn-reject same_btn">Reject</button>
+                    </td>
+                </tr>
+            `;
+            $("#requesttable tbody").append(row);
+        });
+      },
+    });
 
 
 //display the timetable 

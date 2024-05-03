@@ -1,82 +1,61 @@
 $(document).ready(function () {
-  // Dummy data for the table
-  const dummyData = [
-    {
-      bookId: 1,
-      bookName: "paper A",
-      bookType: "Fiction",
-      description: "Lorem ipsum",
-      status: "Available",
-    },
-    {
-      bookId: 2,
-      bookName: "paper B",
-      bookType: "Non-Fiction",
-      description: "Dolor sit amet",
-      status: "Not available",
-      studentName: "John Doe",
-      borrowedDate: "2024-01-29",
-      returnDate: "2024-02-10",
-    },
-    // Add more dummy data as needed
-  ];
+  
+  $.ajax({
+    url: "http://localhost:8080/api/v1/admin-bff/papers",
+    method: "GET",
+    success: (resp) => {
+      const tableBody = $("#choutpaperTable tbody");
 
-  // Function to dynamically add rows to the table
-  function populateTable() {
-    const tableBody = $("#choutpaperTable tbody");
+      resp.forEach((paper) => {
+        const row = $("<tr>");
+        const statusClass =
+          paper.availability == true ? "available-btn" : "not-available-btn";
+        const statusText =
+          paper.availability ==true ? "Available" : "Not available";
 
-    dummyData.forEach((book) => {
-      const row = $("<tr>");
-      const statusClass =
-        book.status === "Available" ? "available-btn" : "not-available-btn";
-      const statusText =
-        book.status === "Available" ? "Available" : "Not available";
-
-      row.html(`
-        <td>${book.bookId}</td>
-        <td>${book.bookName}</td>
-        <td>${book.bookType}</td>
-        <td>${book.description}</td>
+        row.html(`
+        <td>${paper.paperId}</td>
+        <td>${paper.paperName}</td>
+        <td>${paper.paperType}</td>
+        <td>${paper.paperDescription}</td>
         <td style="text-align: center;">
           <button class="status-btn ${statusClass}" ${
-        book.status === "Available" ? "disabled" : ""
-      } 
+          paper.availability == true ? "disabled" : ""
+        } 
             data-bs-toggle="modal" data-bs-target="#courceDetailsModal" data-student="${
-              book.studentName
+              paper.studentName
             }"
-            data-borrowed="${book.borrowedDate}" data-return="${
-        book.returnDate
-      }">
+            data-borrowed="${paper.borrowedDate}" data-return="${
+          paper.returnDate
+        }">
             ${statusText}
           </button>
         </td>
       `);
 
-      // Add click event listener for "Not available" button
-      if (book.status === "Not available") {
-        row.find(".status-btn").on("click", function () {
-          const studentName = $(this).data("student");
-          const borrowedDate = $(this).data("borrowed");
-          const returnDate = $(this).data("return");
+        // Add click event listener for "Not available" button
+        if (paper.availability == true) {
+          row.find(".status-btn").on("click", function () {
+            const studentName = $(this).data("student");
+            const borrowedDate = $(this).data("borrowed");
+            const returnDate = $(this).data("return");
 
-          // Update modal content with book details
-          $("#studentName").text(`Student Name: ${studentName}`);
-          $("#borrowedDate").text(`Borrowed Date: ${borrowedDate}`);
-          $("#returnDate").text(`Return Date: ${returnDate}`);
+            // Update modal content with book details
+            $("#studentName").text(`Student Name: ${studentName}`);
+            $("#borrowedDate").text(`Borrowed Date: ${borrowedDate}`);
+            $("#returnDate").text(`Return Date: ${returnDate}`);
 
-          // Show the modal
-          $("#courceDetailsModal").modal("show");
-        });
-      }
+            // Show the modal
+            $("#courceDetailsModal").modal("show");
+          });
+        }
 
-      tableBody.append(row);
-    });
-  }
+        tableBody.append(row);
+      });
+    },
+  });
 
-  // Call the function to populate the table with dummy data
-  populateTable();
-
-  loadTablePapers();
+ //
 });
 
 /////STUDENT REGISTRATION ////////////////
@@ -111,55 +90,31 @@ function submitRejection() {
 
 ////////////////REQUEST TABLE ///////////////////////
 $(document).ready(function () {
-  // Function to add a row to the table with buttons for approving and rejecting
-  function addRow(requestNo, studentName, className, paperName) {
-    var table = document
-      .getElementById("corerequesttable")
-      .getElementsByTagName("tbody")[0];
-    var newRow = table.insertRow();
+  $.ajax({
+    url: "http://localhost:8080/api/v1/admin-bff/request/papers",
+    method: "GET",
+    success: function (data) {
+      let requestList = data;
 
-    var cell1 = newRow.insertCell(0);
-    var cell2 = newRow.insertCell(1);
-    var cell3 = newRow.insertCell(2);
-    var cell4 = newRow.insertCell(3);
-    var cell5 = newRow.insertCell(4);
-    var cell6 = newRow.insertCell(5);
-
-    cell1.innerHTML = requestNo;
-    cell2.innerHTML = studentName;
-    cell3.innerHTML = className;
-    cell4.innerHTML = paperName;
-    cell5.innerHTML = "Pending"; // Initial status
-    cell6.innerHTML =
-      "<button class='approve same_btn' onclick='approveRequest(this)'>Approve</button>" +
-      "<button class='reject same_btn' onclick='rejectRequest(this)'>Reject</button>";
-  }
-
-  // Sample data to populate the table
-  var requestData = [
-    {
-      requestNo: 1,
-      studentName: "John Doe",
-      className: "Math",
-      paperName: "Algebra",
+      $("#corerequesttable tbody").empty();
+      requestList.forEach(function (item) {
+        console.log(item)
+        var row = `
+              <tr>
+                  <td>${item.requestPaperId}</td>
+                  <td>${item.registerStudentDto.fullName}</td>
+                  <td>${item.registerStudentDto.className}</td>
+                  <td>${item.paperDto.paperName}</td>
+                  <td>${item.requestStatus}</td>
+                  <td class="view_btn">
+                      <button onclick="updatePaperStatus(this,'a')" data-x='${item.requestPaperId}' class="approve same_btn">Approve</button>
+                      <button onclick="updatePaperStatus(this,'r')" data-x='${item.requestPaperId}' class="reject btn-reject same_btn">Reject</button>
+                  </td>
+              </tr>
+          `;
+          $("#corerequesttable tbody").append(row);
+      });
     },
-    {
-      requestNo: 2,
-      studentName: "Jane Smith",
-      className: "Science",
-      paperName: "Physics",
-    },
-    {
-      requestNo: 3,
-      studentName: "Alice Johnson",
-      className: "English",
-      paperName: "Literature",
-    },
-  ];
-
-  // Populate the table with sample data
-  requestData.forEach(function (data) {
-    addRow(data.requestNo, data.studentName, data.className, data.paperName);
   });
 });
 
