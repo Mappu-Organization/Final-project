@@ -8,7 +8,6 @@ $(document).ready(function(){
     var studentIdInput = $("#studentIdInput").val();
     var subject = $("#subjectInput").val();
     var resultsInput = $("#resultsInput").val();
-    alert(studentIdInput)
     let examresults = {
       year: yearInput,
       term: termInput,
@@ -25,13 +24,12 @@ $(document).ready(function(){
       contentType: "application/json",
       success: function (response) {
         $("#examresults tbody").empty();
-        console.log(response)
         response.forEach((examresult) => {
           let row = `
                       <tr>
                           <td>${examresult.year}</td>
                           <td>${examresult.term}</td>
-                          <td>${examresult.registerStudent.registerStuId}</td>
+                          <td>${examresult.registerStudent.studentRegId}</td>
                           <td>${examresult.subject}</td>
                           <td>${examresult.result}</td>
                       </tr>
@@ -53,75 +51,20 @@ $(document).ready(function(){
   })
 })
 
-  var table = document
-    .getElementById("examresults")
-    .getElementsByTagName("tbody")[0];
-  var newRow = table.insertRow(table.rows.length);
-
-  newRow.insertCell(0).innerHTML = year;
-  newRow.insertCell(1).innerHTML = termName;
-  newRow.insertCell(2).innerHTML = studentIdName;
-  newRow.insertCell(3).innerHTML = subject;
-  newRow.insertCell(4).innerHTML = results;
-
-  document.getElementById("yearInput").value = "";
-  document.getElementById("termInput").value = "";
-  document.getElementById("studentIdInput").value = "";
-  document.getElementById("subjectInput").value = "";
-  document.getElementById("resultsInput").value = "";
-
-  alert("Result saved successfully!");
-
-
-function downloadResults() {
-  // Placeholder for functionality to download results
-  alert("Download feature not yet implemented.");
-}
-
-//display the timetable 
-$.ajax({
-  url: `http://localhost:8080/api/v1/admin-bff/examresult`,
-  method: "GET",
-  success: function(data) {
-
-    let examresultList = data;
-
-    const tableBody = $("#timetable_body tbody");
-
-    examresultList.forEach((addresultsd) => {
-      const row = $("<tr>");
-
-      row.html(`
-          <td>${addresultsd.yearInput}</td>
-          <td>${addresultsd.termInput}</td>
-          <td>${addresultsd.studentIdInput}</td>
-          <td>${addresultsd.subjectInput}</td>
-          <td>${addresultsd.resultsInput}</td>`);
-
-          tableBody.append(row);
-
-      });
-
-  },
-  error: function(req, err) {
-    console.log(req);
-  }
-});
-
 $(document).ready(function () {
   
   $.ajax({
     url: "http://localhost:8080/api/v1/admin-bff/examresult",
     method: "GET",
     contentType: "application/json",
-    success: function (data) {
+    success: function (response) {
       $("#examresults tbody").empty();
       response.forEach((examresult) => {
         let row = `
                     <tr>
                         <td>${examresult.year}</td>
                         <td>${examresult.term}</td>
-                        <td>${examresult.registerStudent.registerStuId}</td>
+                        <td>${examresult.registerStudent.studentRegId}</td>
                         <td>${examresult.subject}</td>
                         <td>${examresult.result}</td>
                     </tr>
