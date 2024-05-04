@@ -3,12 +3,12 @@
 $(document).ready(function(){
   $('#addExamResults').click(function () {
 
-    var yearInput = $("yearInput").val();
-    var termInput = $("termInput").val();
-    var studentIdInput = $("studentIdInput").val();
-    var subject = $("subjectInput").val();
-    var resultsInput = $("resultsInput").val();
-  
+    var yearInput = $("#yearInput").val();
+    var termInput = $("#termInput").val();
+    var studentIdInput = $("#studentIdInput").val();
+    var subject = $("#subjectInput").val();
+    var resultsInput = $("#resultsInput").val();
+    alert(studentIdInput)
     let examresults = {
       year: yearInput,
       term: termInput,
