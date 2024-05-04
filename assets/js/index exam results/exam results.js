@@ -1,47 +1,45 @@
 
-$("#addExamResults").click(function(){
-  saveResult();
-});
 
-function saveResult() {
-  var year = document.getElementById("yearInput").value.trim();
-  var termName = document.getElementById("termInput").value.trim();
-  var studentIdName = document.getElementById("studentIdInput").value.trim();
-  var subject = document.getElementById("subjectInput").value.trim();
-  var results = document.getElementById("resultsInput").value.trim();
 
-  if (!year || !termName || !studentIdName || !subject || !results) {
-    alert("Please fill in all required fields.");
-    return;
-  }
+// function saveResult() {
+//   var year = document.getElementById("yearInput").value.trim();
+//   var termName = document.getElementById("termInput").value.trim();
+//   var studentIdName = document.getElementById("studentIdInput").value.trim();
+//   var subject = document.getElementById("subjectInput").value.trim();
+//   var results = document.getElementById("resultsInput").value.trim();
 
-  // Prepare data object to send via AJAX POST request
-  var resultData = {
-    results: results,
-    termName: termName,
-    year: year,
-    studentIdName: studentIdName,
-    subject: subject,
+//   if (!year || !termName || !studentIdName || !subject || !results) {
+//     alert("Please fill in all required fields.");
+//     return;
+//   }
+
+//   // Prepare data object to send via AJAX POST request
+//   var resultData = {
+//     results: results,
+//     termName: termName,
+//     year: year,
+//     studentIdName: studentIdName,
+//     subject: subject,
     
-};
+// };
 
-// AJAX POST request to save exam result
-$.ajax({
-    url: `http://localhost:8080/api/v1/admin-bff/examresults/save`, // Add exam results endpoint
-    method: "POST",
-    data:resultData, // Convert object to JSON string
-    processData: false,
-    contentType: false,
-      success: function(data) {
-        console.log(data);
-    },
-    error: function(xhr, status, error) {
-        console.error("Error saving result:", error);
-        alert("Failed to save result. Please try again.");
-    }
-});
-alert("Result saved successfully!");
-}
+// // AJAX POST request to save exam result
+// $.ajax({
+//     url: `http://localhost:8080/api/v1/admin-bff/examresults/save`, // Add exam results endpoint
+//     method: "POST",
+//     data:resultData, // Convert object to JSON string
+//     processData: false,
+//     contentType: false,
+//       success: function(data) {
+//         console.log(data);
+//     },
+//     error: function(xhr, status, error) {
+//         console.error("Error saving result:", error);
+//         alert("Failed to save result. Please try again.");
+//     }
+// });
+// alert("Result saved successfully!");
+// }
 
 function loadTableAttendance(){
 

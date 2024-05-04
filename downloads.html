@@ -428,9 +428,11 @@
                       <h3>Class Filter</h3>
                       <select id="classSelect" class="form-control">
                         <option value="">Select Class</option>
-                        <option value="Grade 10 A">Grade 10 A</option>
-                        <option value="Grade 10 B">Grade 10 B</option>
-                        <option value="Grade 10 C">Grade 10 C</option>
+                        <option value="13BA">13BA</option>
+                        <option value="13BB">13BB</option>
+                        <option value="13BC">13BC</option>
+                        <option value="12MA">12MA</option>
+                        <option value="12MB">12MB</option>
                       </select>
                     </div>
                     <table id="AtTable" class="table">
@@ -485,11 +487,11 @@
                       </div>
                       <div class="col-md-5">
                         <select class="form-control" id="day">
-                          <option value="Monday">Monday</option>
-                          <option value="Tuesday">Tuesday</option>
-                          <option value="Wednesday">Wednesday</option>
-                          <option value="Thursday">Thursday</option>
-                          <option value="Friday">Friday</option>
+                          <option value="monday">Monday</option>
+                          <option value="tuesday">Tuesday</option>
+                          <option value="wednesday">Wednesday</option>
+                          <option value="thursday">Thursday</option>
+                          <option value="friday">Friday</option>
                         </select>
                       </div>
                       <div class="col-md-5 form-group">
@@ -510,8 +512,12 @@
                       <div class="col-md-5 form-group">
                         <select class="form-control" id="classId" required>
                           <option value="" selected disabled>Select Class Id</option>
-                          <option value="class1">Class 1</option>
-                          <option value="class2">Class 2</option>
+                          <option value="">Select Class</option>
+                          <option value="13BA">13BA</option>
+                          <option value="13BB">13BB</option>
+                          <option value="13BC">13BC</option>
+                          <option value="12MA">12MA</option>
+                          <option value="12MB">12MB</option>
                           <!-- Add more options as needed -->
                         </select>
                         <div class="invalid-feedback">Please select a Class Id.</div>
@@ -528,10 +534,10 @@
                       <div class="col-md-5 form-group">
                         <select class="form-control" id="subject" required>
                           <option value="" selected disabled>Select Subject</option>
-                          <option value="Math">Math</option>
-                          <option value="Science">Science</option>
-                          <option value="History">History</option>
-                          <option value="English">English</option>
+                          <option value="math">Math</option>
+                          <option value="science">Science</option>
+                          <option value="history">History</option>
+                          <option value="english">English</option>
                           <!-- Add more options as needed -->
                         </select>
                         <div class="invalid-feedback">Please select a subject.</div>
@@ -615,7 +621,7 @@
                             only).</div>
                         </div>
                       </div>
-                      <button id="addExamResults" type="button" class="btn btn-primary" onclick="saveResult()">Save</button>
+                      <button id="addExamResults" type="button" class="btn btn-primary">Save</button>
                       <div class="col-md-2">
                         <button id="downloadexBtn" class="btn btn-success" onclick="downloadResults()">Download
                           Results</button>

@@ -45,142 +45,155 @@ $(document).ready(function () {
 
 });
 
-
+function updateAttendance(r, status){
+    let sid = $(r).attr('data-x');
+    $.ajax({
+        url:`http://localhost:8080/api/v1/admin-bff/attendance/mark`,
+        method:"POST",
+        contentType:"application/json",
+        data:JSON.stringify({
+            studentRegId:sid,
+            status:status
+        }),
+        success: (response, textStatus, jqXHR) => {
+            $("#attendanceHistoryTable tbody").empty();
+            response.forEach((att) => {
+              let row = `
+                    <tr>
+                        <td>${att.registerStudent.studentRegId}</td>
+                        <td>${att.registerStudent.fullName}</td>
+                        <td>${att.registerStudent.className}</td>
+                        <td>${att.date}</td>
+                        <td>${att.status}</td>
+                    </tr>
+                `;
+              $("#attendanceHistoryTable tbody").append(row);
+            });
+            
+        }
+    })
+}
 
 $(document).ready(function () {
-    // Function to add a row to the attendance table
-    function addRow(tableID, studentID, studentName, className, date) {
-        var table = $("#" + tableID + " tbody");
-        var newRow = $("<tr>");
 
-        newRow.append("<td>" + studentID + "</td>");
-        newRow.append("<td>" + studentName + "</td>");
-        newRow.append("<td>" + className + "</td>");
-        newRow.append("<td>" + date + "</td>");
-        newRow.append("<td>Pending</td>");
-        newRow.append(
-            "<td><button class='same_btn reject absent'>Absent</button><button class='same_btn present'>Present</button></td>"
-        );
+    $.ajax({
+        url:`http://localhost:8080/api/v1/admin-bff/timetable`,
+        method:"GET",
+        contentType:"application/json",
+        success: (response, textStatus, jqXHR) => {
+            $("#timetable_table tbody").empty();
+            console.log(response);
+            response.forEach((timeTable) => {
+              let row = `
+                    <tr>
+                        <td>${timeTable.timetableId}</td>
+                        <td>${timeTable.day}</td>
+                        <td>${timeTable.period}</td>
+                        <td>${timeTable.stdClass}</td>
+                        <td>${timeTable.year}</td>
+                        <td>${timeTable.subject}</td>
+                    </tr>
+                `;
+              $("#timetable_table tbody").append(row);
+            });
+            
+        }
+    })
 
-        table.append(newRow);
-    }
-
-    // Sample data to populate the current attendance table
-    var currentAttendanceData = [
-        {
-            studentID: 101,
-            studentName: "John Doe",
-            className: "Grade 10 A",
-            date: "2024-02-10",
-        },
-        {
-            studentID: 102,
-            studentName: "Jane Smith",
-            className: "Grade 10 B",
-            date: "2024-02-10",
-        },
-        {
-            studentID: 103,
-            studentName: "Alice Johnson",
-            className: "Grade 10 C",
-            date: "2024-02-10",
-        },
-        {
-            studentID: 104,
-            studentName: "Michael Brown",
-            className: "Grade 10 A",
-            date: "2024-02-10",
-        },
-        {
-            studentID: 105,
-            studentName: "Emma Wilson",
-            className: "Grade 10 B",
-            date: "2024-02-10",
-        },
-        {
-            studentID: 106,
-            studentName: "Daniel Lee",
-            className: "Grade 10 C",
-            date: "2024-02-10",
-        },
-    ];
-
-    // Populate the current attendance table with sample data
-    currentAttendanceData.forEach(function (data) {
-        addRow(
-            "AtTable",
-            data.studentID,
-            data.studentName,
-            data.className,
-            data.date
-        );
-    });
-
-    // Event delegation to handle absent and present buttons for current attendance table
-    $("#AtTable").on("click", ".absent", function () {
-        var row = $(this).closest("tr");
-        var studentID = row.find("td:eq(0)").text();
-        var studentName = row.find("td:eq(1)").text();
-        var className = row.find("td:eq(2)").text();
-        var date = row.find("td:eq(3)").text();
-
-        // Update status in current attendance table
-        var statusCell = row.find("td:eq(4)");
-        statusCell.text("Absent");
-
-        // Update attendance history table
-        updateAttendanceHistory(studentID, studentName, className, date, "Absent");
-    });
-
-    $("#AtTable").on("click", ".present", function () {
-        var row = $(this).closest("tr");
-        var studentID = row.find("td:eq(0)").text();
-        var studentName = row.find("td:eq(1)").text();
-        var className = row.find("td:eq(2)").text();
-        var date = row.find("td:eq(3)").text();
-
-        // Update status in current attendance table
-        var statusCell = row.find("td:eq(4)");
-        statusCell.text("Present");
-
-        // Update attendance history table
-        updateAttendanceHistory(studentID, studentName, className, date, "Present");
-    });
-
-    // Function to update attendance history table
-    function updateAttendanceHistory(
-        studentID,
-        studentName,
-        className,
-        date,
-        status
-    ) {
-        var table = $("#attendanceHistoryTable tbody");
-        var newRow = $("<tr>");
-
-        newRow.append("<td>" + studentID + "</td>");
-        newRow.append("<td>" + studentName + "</td>");
-        newRow.append("<td>" + className + "</td>");
-        newRow.append("<td>" + date + "</td>");
-        newRow.append("<td>" + status + "</td>");
-
-        table.append(newRow);
-    }
+    $("#addRecordBtn").on('click',function(){
+  
+        let day = $('#day').val();
+        let period = $('#period').val();
+        let classId = $('#classId').val();
+        let year = $('#year').val();
+        let subject = $('#subject').val();
+      
+        $.ajax({
+            url:`http://localhost:8080/api/v1/admin-bff/timetable/save`,
+            method:"POST",
+            contentType:"application/json",
+            data:JSON.stringify({
+                stdClass: classId,
+                subject: subject,
+                year: year,
+                day: day,
+                period: period
+            }),
+            success: (response, textStatus, jqXHR) => {
+                $("#timetable_table tbody").empty();
+                response.forEach((timeTable) => {
+                  let row = `
+                        <tr>
+                            <td>${timeTable.timetableId}</td>
+                            <td>${timeTable.day}</td>
+                            <td>${timeTable.period}</td>
+                            <td>${timeTable.stdClass}</td>
+                            <td>${timeTable.year}</td>
+                            <td>${timeTable.subject}</td>
+                        </tr>
+                    `;
+                  $("#timetable_table tbody").append(row);
+                });
+                
+            }
+        })
+        
+      })
+    
+    $.ajax({
+        url:`http://localhost:8080/api/v1/admin-bff/attendance`,
+        method:"GET",
+        contentType:"application/json",
+        success: (response, textStatus, jqXHR) => {
+            $("#attendanceHistoryTable tbody").empty();
+            response.forEach((att) => {
+              let row = `
+                    <tr>
+                        <td>${att.registerStudent.studentRegId}</td>
+                        <td>${att.registerStudent.fullName}</td>
+                        <td>${att.registerStudent.className}</td>
+                        <td>${att.date}</td>
+                        <td>${att.status}</td>
+                    </tr>
+                `;
+              $("#attendanceHistoryTable tbody").append(row);
+            });
+            
+        }
+    })
 
     // Event handler for class filter dropdown
     $("#classSelect").on("change", function () {
         var selectedClass = $(this).val();
-        if (selectedClass === "") {
-            $("#AtTable tbody tr").show();
-        } else {
-            $("#AtTable tbody tr").hide();
-            $("#AtTable tbody tr").each(function () {
-                var className = $(this).find("td:eq(2)").text();
-                if (className === selectedClass) {
-                    $(this).show();
-                }
-            });
+        if(selectedClass == ""){
+            alert("Please select  a class.");
+            return;
         }
+        $.ajax({
+            url: `http://localhost:8080/api/v1/admin-bff/register/class/${selectedClass}`,
+            method:"GET",
+            success: (response, textStatus, jqXHR) => {
+                console.log(response)
+                $("#AtTable tbody").empty();
+                response.forEach((std) => {
+                  let row = `
+                        <tr>
+                            <td>${std.studentRegId}</td>
+                            <td>${std.fullName}</td>
+                            <td>${std.className}</td>
+                            <td>${new Date().toISOString()}</td>
+                            <td>${std.status}</td>
+                            <td>
+                                <button data-x="${std.studentRegId}" onclick='updateAttendance(this,"a")' class='same_btn reject absent'>Absent</button>
+                                <button data-x="${std.studentRegId}" onclick='updateAttendance(this,"p")' class='same_btn present'>Present</button>
+                            </td>   
+                        </tr>
+                    `;
+                  $("#AtTable tbody").append(row);
+                });
+                
+            }
+        })
     });
 });
 
