@@ -1,5 +1,8 @@
 $(document).ready(function () {
   
+  //call student book request API
+  getAllStudentBookRequest();
+
   $.ajax({
     url: "http://localhost:8080/api/v1/admin-bff/papers",
     method: "GET",
@@ -55,8 +58,107 @@ $(document).ready(function () {
     },
   });
 
- //
+   //ajax request get books for user side
+   $.ajax({
+    url:`http://localhost:8080/api/v1/admin-bff/book`,
+    method:"GET",
+    contentType:"application/json",
+    success: (response, textStatus, jqXHR) => {
+      let data = "";
+      response.forEach(books => {
+          data += `
+              <div class="col-lg-4 col-md-6 passpaper_view filter-app">
+                  <div class="card" style="width: 18rem;">
+                      <img src="${books.bookImageLocation}" class="card-img-top" alt="...">
+                      <div class="card-body library_description">
+                          <h5 class="card-title">${books.bookName}</h5>
+                          <h5 class="card-title">${books.bookType}</h5>
+                          <p hidden>${books.bookId}</p>
+                          <p class="card-text">${books.bookDescription}</p>
+                          <a href="#" class="btn btn-primary" id="bookReqBtn">Request</a>
+                      </div>
+                  </div>
+              </div>`;
+      });
+      // Append generated HTML to the container
+      $(".books_co").html(data);
+    },
+    error: (jqXHR, textStatus, errorThrown) => {
+        console.error("Error:", errorThrown);
+    }
+  }); 
+
+  // Attach click event handler to the container element that exists in the DOM when the page loads
+  $(".books_co").on('click', '#bookReqBtn', function(event) {
+    event.preventDefault(); // Prevent default behavior of the anchor tag
+    
+    console.log('btn clicked!!!');
+    
+    // Get the value of the first <p> element relative to the clicked button
+    var bookId = $(this).closest('.card-body').find('p').first().text();
+    var stuId = $("#stuid").text();
+
+    //ajax call to save student book request
+    $.ajax({
+      url:`http://localhost:8080/api/v1/admin-bff/request/book/save`,
+      method:"POST",
+      contentType:"application/json",
+      data:JSON.stringify({
+          registerStudent: {
+            registerStuId: stuId
+          },
+          book: {
+            bookId: bookId
+          },
+          requestStatus: "Pending"
+      }),
+      success: (response, textStatus, jqXHR) => {
+          console.log(response);
+          getAllStudentBookRequest();
+      }
+    });
+
+  });
+
 });
+
+function getAllStudentBookRequest() {
+
+    var stuId = $("#stuid").text();
+    // ajax call to get all requested Books
+    $.ajax({
+      url: `http://localhost:8080/api/v1/admin-bff/request/book/${stuId}`,
+      method: "GET",
+      success: function(data) {
+
+        console.log(data);
+        
+        let bookRequestList = data;
+
+        const tableBody = $("#libraryTable");
+
+        tableBody.empty();
+
+        bookRequestList.forEach((bookRequest) => {
+          const row = $("<tr>");
+
+          row.html(`
+              <td>${bookRequest.requestBookId}</td>
+              <td>${bookRequest.book.bookId}</td>
+              <td>${bookRequest.book.bookName}</td>
+              <td>${bookRequest.book.bookType}</td>
+              <td>${bookRequest.requestStatus}</td>`);
+
+              tableBody.append(row);
+
+          });
+
+      },
+      error: function(req, err) {
+        console.log(req);
+      }
+  });
+}
 
 /////STUDENT REGISTRATION ////////////////
 function registerStudent() {

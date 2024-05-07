@@ -247,8 +247,6 @@ function getRandomColor() {
   return "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
 
-
-
 ////////////end results sheet
 
 
@@ -459,63 +457,6 @@ $(document).ready(function () {
   populateTableWithDummyData();
 });
 
- 
-//////////// REQUEST ///////////
-
-function addNotification() {
-  var request_type = document.getElementById("requestType").value;
-  var request_date = document.getElementById("date").value;
-  var request_description = document.getElementById("description").value;
-  // var userId = document.getElementById("stuid").value;
-  // var userId = $("#stuid").val();
-  const stuInfoString = localStorage.getItem("studentInfo");
-  // Parse the JSON string back to an object
-  const studentInfo = JSON.parse(stuInfoString);
-
-  let notificationRequestDto = {
-    userDto:{
-      userId:studentInfo.userId
-    },
-    requestType:request_type,
-    date:request_date,
-    description:request_description
-  }
-
-  console.log(notificationRequestDto);
-
-
-  // AJAX call to add the student record
-  $.ajax({
-    url: "http://localhost:8080/api/v1/admin-bff/request/notification/save",
-    method: "POST",
-    data: JSON.stringify(notificationRequestDto),
-    contentType: 'application/json',
-    success: function(data) {
-        console.log("Response from Server:", data);
-        // clearData();
-        // window.location.href = "dashboard.html";
-    },
-    error: function(req, err) {
-        console.log("Error:", req, err);
-    }
-  });
-
-  // var tableBody = document.getElementById("notificationTableBody");
-  // var newRow = tableBody.insertRow();
-
-  // var cell1 = newRow.insertCell(0);
-  // var cell2 = newRow.insertCell(1);
-  // var cell3 = newRow.insertCell(2);
-  // var cell4 = newRow.insertCell(3);
-
-  // cell1.innerHTML = title;
-  // cell2.innerHTML = date;
-  // cell3.innerHTML = description;
-  // cell4.innerHTML = "Pending";
-}
-//////////end Request
-
-
 // page change
 const activeButtons = document.querySelectorAll(".sec_button");
 const panels = document.querySelectorAll(".pannel");
@@ -542,131 +483,6 @@ activeButtons.forEach((button) => {
         panel.classList.add("d-none");
       }
     });
-  });
-});
-
-////////TABLE TO LOAD DATA ADD BOOK//////////////////
-
-//  function updateTableAddBook() {
-//    // Get form values
-//    var bookId = document.getElementById("bookId").value.trim();
-//    var bookName = document.getElementById("bookName").value.trim();
-//    var bookDescription = document
-//      .getElementById("bookDescription")
-//      .value.trim();
-//    var bookType = document.getElementById("bookType").value;
-
-//    // Check if any field is missing
-//    if (!bookId || !bookName || !bookDescription || bookType === "none") {
-//      alert("Please fill in all required fields.");
-//      return false; // Stop execution and prevent form submission if any field is missing
-//    }
-
-//    // Proceed with adding to the table
-//    var table = document
-//      .getElementById("bookTable")
-//      .getElementsByTagName("tbody")[0];
-//    var newRow = table.insertRow();
-
-//    // Insert cells and assign them the input values
-//    var cell1 = newRow.insertCell(0);
-//    var cell2 = newRow.insertCell(1);
-//    var cell3 = newRow.insertCell(2);
-//    var cell4 = newRow.insertCell(3);
-
-//    cell1.innerHTML = bookId;
-//    cell2.innerHTML = bookName;
-//    cell3.innerHTML = bookDescription;
-//    // Optionally show a user-friendly value for the book type
-//    cell4.innerHTML = bookType === "pdf" ? "PDF" : "Hard Copy";
-
-//    // Reset form for next input, ensuring book type defaults back properly
-//    document.getElementById("bookId").value = "";
-//    document.getElementById("bookName").value = "";
-//    document.getElementById("bookDescription").value = "";
-//    document.getElementById("bookType").selectedIndex = 0; // Reset to the first option
-
-//    // Optionally, you might want to hide the file uploader if it's not relevant
-//    document.getElementById("fileUploader").style.display = "none";
-
-//    alert("Book details saved successfully!");
-//    return false; // Prevent form submission
-//  }
-
-
-$(document).ready(function () {
-
-  console.log('second ready');
-
-  // Initialize slick slider
-  var slider = $(".form_slide");
-
-  slider.slick({
-    // Slick options
-    dots: false,
-    customPaging: function (slider, i) {
-      return '<button class="custom-dot"></button>';
-    },
-    prevArrow:
-      '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
-    nextArrow:
-      '<button class="slick-next" aria-label="Next" type="button">Next</button>',
-    autoplaySpeed: 2500,
-    autoplay: false,
-    fade: true,
-    fadeSpeed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1000,
-        settings: {
-          prevArrow:
-            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
-          nextArrow:
-            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          prevArrow:
-            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
-          nextArrow:
-            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          prevArrow:
-            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
-          nextArrow:
-            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  });
-
-  // Set the "Next" button to trigger the slider's next slide action
-  $("#nextBtn1").click(function () {
-    slider.slick("slickNext");
-  });
-
-  $("#nextBtn2").click(function () {
-    slider.slick("slickNext");
-  });
-
-  $("#nextBtn3").click(function () {
-    slider.slick("slickNext");
   });
 });
 
@@ -811,18 +627,18 @@ function upload() {
 
   $(document).ready(function () {
     // AJAX request to fetch data
-    $.ajax({
-      url: "your_backend_endpoint_url_here", // Replace with your backend endpoint URL
-      method: "GET", // Use GET method to fetch data
-      success: function (response) {
-        // On success, populate the table with received data
-        populateAttendanceTable(response);
-      },
-      error: function (xhr, status, error) {
-        // Handle errors if any
-        console.error(error);
-      },
-    });
+    // $.ajax({
+    //   url: "your_backend_endpoint_url_here", // Replace with your backend endpoint URL
+    //   method: "GET", // Use GET method to fetch data
+    //   success: function (response) {
+    //     // On success, populate the table with received data
+    //     populateAttendanceTable(response);
+    //   },
+    //   error: function (xhr, status, error) {
+    //     // Handle errors if any
+    //     console.error(error);
+    //   },
+    // });
 
     // Function to populate the attendance table with received data
     function populateAttendanceTable(data) {
@@ -1020,3 +836,117 @@ $(document).ready(function () {
     $("#address").text(studentInfo.address);
   });
 });
+
+$(document).ready(function () {
+
+  console.log('second ready');
+
+  getStudentAttendenceDetails();
+
+  // Initialize slick slider
+  var slider = $(".form_slide");
+
+  slider.slick({
+    // Slick options
+    dots: false,
+    customPaging: function (slider, i) {
+      return '<button class="custom-dot"></button>';
+    },
+    prevArrow:
+      '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
+    nextArrow:
+      '<button class="slick-next" aria-label="Next" type="button">Next</button>',
+    autoplaySpeed: 2500,
+    autoplay: false,
+    fade: true,
+    fadeSpeed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          prevArrow:
+            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
+          nextArrow:
+            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          prevArrow:
+            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
+          nextArrow:
+            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          prevArrow:
+            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
+          nextArrow:
+            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  });
+
+  // Set the "Next" button to trigger the slider's next slide action
+  $("#nextBtn1").click(function () {
+    slider.slick("slickNext");
+  });
+
+  $("#nextBtn2").click(function () {
+    slider.slick("slickNext");
+  });
+
+  $("#nextBtn3").click(function () {
+    slider.slick("slickNext");
+  });
+});
+
+function getStudentAttendenceDetails() {
+  var stuId = $("#stuid").text();
+  // ajax call to get all papers
+  $.ajax({
+    url: `http://localhost:8080/api/v1/admin-bff/attendance/${stuId}`,
+    method: "GET",
+    success: function(data) {
+
+      console.log(data);
+      
+      let attendanceList = data;
+
+      const tableBody = $("#stuAttendenceTable");
+
+      tableBody.empty();
+
+      attendanceList.forEach((attendance) => {
+        const row = $("<tr>");
+
+        row.html(`
+            <td>${attendance.date}</td>
+            <td>${attendance.status}</td>`);
+
+            tableBody.append(row);
+
+        });
+
+    },
+    error: function(req, err) {
+      console.log(req);
+    }
+  });
+
+}
+
