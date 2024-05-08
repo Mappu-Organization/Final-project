@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-  <title>School Sysytem</title>
+  <title>School System</title>
 
   <!-- Favicons -->
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
@@ -79,8 +79,13 @@
           </div>
         </div>
         <!-- Icon -->
+        <!-- registerStuId -->
+        <h1 hidden id="regStuId" class="text-light"></h1>
+        <!-- userId -->
+        <h1 hidden id="userId" class="text-light"></h1>
         <h1 id="stuFullName" class="text-light"></h1>
-        <!-- <h1 id="stuid" class="text-light"></h1> -->
+        <!-- studentRegisterId -->
+        <h1 hidden id="stuid" class="text-light"></h1>
       </div>
 
 
@@ -147,22 +152,13 @@
                                     <th>Attendance</th>
                                   </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="stuAttendenceTable">
                                   <!-- Populate this section with attendance data -->
-                                  <tr>
+                                  <!-- <tr>
                                     <td>2023-12-01</td>
                                     <td>Present</td>
-
-                                  </tr>
-                                  <tr>
-                                    <td>2023-12-02</td>
-                                    <td>Absent</td>
-                                  </tr>
-                                  <tr>
-                                    <td>2023-12-01</td>
-                                    <td>Present</td>
-                                  </tr>
-                                  <tr>
+                                  </tr> -->
+                                  <!-- <tr>
                                     <td>2023-12-02</td>
                                     <td>Absent</td>
                                   </tr>
@@ -175,9 +171,17 @@
                                     <td>Absent</td>
                                   </tr>
                                   <tr>
+                                    <td>2023-12-01</td>
+                                    <td>Present</td>
+                                  </tr>
+                                  <tr>
                                     <td>2023-12-02</td>
                                     <td>Absent</td>
                                   </tr>
+                                  <tr>
+                                    <td>2023-12-02</td>
+                                    <td>Absent</td>
+                                  </tr> -->
                                   <!-- Add more rows as needed -->
                                 </tbody>
                               </table>
@@ -226,14 +230,15 @@
                             <div class="table-responsive">
                               <div class="time_table">
                                 <h4>Time Table</h4>
+                                <h4 id="currDateTime">Date</h4>
                                 <table class="timetable_table">
                                   <thead>
                                     <tr>
                                       <th>Time</th>
-                                      <th>Monday</th>
+                                      <th>Subject</th>
                                     </tr>
                                   </thead>
-                                  <tbody>
+                                  <tbody id="tblTimrTable">
                                     <tr>
                                       <td>8:00 AM - 9:00 AM</td>
                                       <td>Mathematics</td>
@@ -321,143 +326,19 @@
                     </div>
 
                     <div class="row passpaper_co" data-aos="fade-up" data-aos-delay="100">
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card passpaper_wr" style="width: 18rem;">
-                          <img src="assets/img/images (1).jpg" class="card-img-top" alt="...">
-                          <div class="card-body pdf_description">
-
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                              bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card passpaper_wr" style="width: 18rem;">
-                          <img src="assets/img/images (2).jpg" class="card-img-top" alt="...">
-                          <div class="card-body pdf_description">
-
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                              bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card passpaper_wr" style="width: 18rem;">
-                          <img src="assets/img/images (3).jpg" class="card-img-top" alt="...">
-                          <div class="card-body pdf_description">
-
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                              bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card passpaper_wr" style="width: 18rem;">
-                          <img src="assets/img/7-Sinhala-Bashawa-Sahithya-Rs_300.jpg" class="card-img-top" alt="...">
-                          <div class="card-body pdf_description">
-
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                              bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card passpaper_wr" style="width: 18rem;">
-                          <img src="assets/img/2_483976.jpg" class="card-img-top" alt="...">
-                          <div class="card-body pdf_description">
-
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                              bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card passpaper_wr" style="width: 18rem;">
-                          <img src="assets/img/images.png" class="card-img-top" alt="...">
-                          <div class="card-body pdf_description">
-
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                              bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card passpaper_wr" style="width: 18rem;">
-                          <img src="assets/img/images (4).png" class="card-img-top" alt="...">
-                          <div class="card-body pdf_description">
-
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                              bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card passpaper_wr" style="width: 18rem;">
-                          <img src="assets/img/images (1).png" class="card-img-top" alt="...">
-                          <div class="card-body pdf_description">
-
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                              bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-
-                          </div>
-                        </div>
-                      </div>
+                      <!-- add dynamic data to this section addpaper.js file-->
                     </div>
                     <div class="col-lg-12">
                       <div class="table-responsive">
                         <table class="table">
                           <thead>
                             <tr>
+                              <th>Passpaper Request Id</th>
                               <th>Passpaper Id</th>
                               <th>Passpaper Name</th>
                               <th>Passpaper Type</th>
                               <th>Status</th>
+                              <th>Action</th>
                             </tr>
                           </thead>
                           <tbody id="paperTableBody">
@@ -487,121 +368,20 @@
                       </div> -->
                     </div>
 
-                    <div class="row passpaper_co" data-aos="fade-up" data-aos-delay="100">
-
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card" style="width: 18rem;">
-                          <img src="assets/img/download.jfif" class="card-img-top" alt="...">
-                          <div class="card-body library_description">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card" style="width: 18rem;">
-                          <img src="assets/img/book-cover-template-design_1201-30.avif" class="card-img-top" alt="...">
-                          <div class="card-body library_description">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card" style="width: 18rem;">
-                          <img src="assets/img/a7916230aedcdce47a4dfbff5247f0ce.jpg" class="card-img-top" alt="...">
-                          <div class="card-body library_description">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card" style="width: 18rem;">
-                          <img src="assets/img/images (1).jfif" class="card-img-top" alt="...">
-                          <div class="card-body library_description">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card" style="width: 18rem;">
-                          <img src="assets/img/Spell_of_RowansFinalblend23-640x1024.jpg" class="card-img-top" alt="...">
-                          <div class="card-body library_description">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card" style="width: 18rem;">
-                          <img src="assets/img/Spell_of_RowansFinalblend23-640x1024 (1).jpg" class="card-img-top"
-                            alt="...">
-                          <div class="card-body library_description">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card" style="width: 18rem;">
-                          <img
-                            src="assets/img/Fantasy-book-cover-design-P1475560878FAB-Dark-Sky-And-Moon-dreams-dreams-in-the-nigntDark-Sky-and-moon.jpg"
-                            class="card-img-top" alt="...">
-                          <div class="card-body library_description">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-                      <div class="col-lg-4 col-md-6 passpaper_view filter-app">
-                        <div class="card" style="width: 18rem;">
-                          <img src="assets/img/book163.jpg" class="card-img-top" alt="...">
-                          <div class="card-body library_description">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                              of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Request</a>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="row books_co" data-aos="fade-up" data-aos-delay="100">
+                      <!-- add dynamic data to this section in courcematerial.js file-->
                     </div>
                     <div class="col-lg-12">
                       <div class="table-responsive">
                         <table class="table">
                           <thead>
                             <tr>
+                              <th>Book Request Id</th>
                               <th>Book Id</th>
                               <th>Book Name</th>
                               <th>Book Type</th>
                               <th>Avalability</th>
+                              <th>Action</th>
                             </tr>
                           </thead>
                           <tbody id="libraryTable">
@@ -639,9 +419,9 @@
                         <span>
                           Term
                           <select id="termSelection">
-                            <option value="term1">Term 1</option>
-                            <option value="term2">Term 2</option>
-                            <option value="term3">Term 3</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                             <!-- Add more options for different terms -->
                           </select></span>
 
@@ -656,53 +436,12 @@
                               <th>Percentage</th>
                             </tr>
                           </thead>
-                          <tbody>
+                          <tbody id="stuExamResultTbl">
                             <tr>
                               <td>Mathematics</td>
                               <td>85</td>
                               <td></td>
                             </tr>
-                            <tr>
-                              <td>Science</td>
-                              <td>78</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>English</td>
-                              <td>10</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>History</td>
-                              <td>70</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>Geography</td>
-                              <td>65</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>Sinhala</td>
-                              <td>18</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>Tamil</td>
-                              <td>75</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>Art</td>
-                              <td>80</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>Information Technology</td>
-                              <td>20</td>
-                              <td></td>
-                            </tr>
-                            <!-- Add more rows for other subjects -->
                           </tbody>
                           <tfoot>
                             <tr>
@@ -721,19 +460,18 @@
               <div id="pannel_4_content" class="pannel d-none  col-12">
                 <h3>Attendence</h3>
                 <div class="row">
-                  <div class="col-md-5 attendance">
+                  <!-- <div class="col-md-5 attendance">
                     <canvas id="attendanceChart" width="100%" height="100%"></canvas>
-                  </div>
+                  </div> -->
                   <div class="col-md-6 attendance">
-                    <table id="attendanceTable">
+                    <table>
                       <thead>
                         <tr>
                           <th>Date</th>
                           <th>Attendance</th>
-                          <th>Description</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="attendanceTableSection">
                         <!-- Attendance data will be populated here -->
                       </tbody>
                     </table>
@@ -777,6 +515,7 @@
                       <table id="notificationTable" class="table table-bordered">
                         <thead>
                           <tr>
+                            <th>Notification Request Id</th>
                             <th>Notification Title</th>
                             <th>Date</th>
                             <th>Description</th>
@@ -836,6 +575,9 @@
   <!-- <script src="assets/js/main.js"></script> -->
   <script src="assets/js/index page/index.js"></script>
   <script src="assets/js/index exam results/exam results.js"></script>
+  <script src="assets/js/download_add paper/addpaper.js"></script>
+  <script src="assets/js/cource material/courcematerial.js"></script>
+  <script src="assets/js/Request/Request.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,4 @@
 //////////////// passpaper table body dynamicaly change/////////////////
-
 document.addEventListener("DOMContentLoaded", function () {
   let paperIdCounter = 1; // Counter to generate unique IDs for papers
 
@@ -38,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 //////////// Exam Results And Attendence////////////////
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -54,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Initial rendering of table and chart
-  updateResults("2022", "term1"); // Initial year and term
+  // updateResults("2022", "term1"); // Initial year and term
 });
 
 function updateResults(selectedYear, selectedTerm) {
@@ -72,84 +70,22 @@ function updateResults(selectedYear, selectedTerm) {
 function fetchResults(year, term) {
   return new Promise((resolve, reject) => {
     // Simulated data for different years and terms
+    let regStuId = $("#regStuId").text();
+    console.log(regStuId);
     let data = [];
 
-    if (year === "2022" && term === "term1") {
-      data = [
-        { subject: "Mathematics", result: 85 },
-        { subject: "Science", result: 20 },
-        { subject: "English", result: 20 },
-        { subject: "History", result: 75 },
-        { subject: "Geography", result: 80 },
-        { subject: "Sinhala", result: 60 },
-        { subject: "Tamil", result: 88 },
-        { subject: "Art", result: 76 },
-        { subject: "Information Technology", result: 92 },
-      ];
-    } else if (year === "2022" && term === "term2") {
-      data = [
-        { subject: "Mathematics", result: 85 },
-        { subject: "Science", result: 78 },
-        { subject: "English", result: 70 },
-        { subject: "History", result: 75 },
-        { subject: "Geography", result: 80 },
-        { subject: "Sinhala", result: 60 },
-        { subject: "Tamil", result: 88 },
-        { subject: "Art", result: 76 },
-        { subject: "Information Technology", result: 92 },
-      ];
-    } else if (year === "2022" && term === "term3") {
-      data = [
-        { subject: "Mathematics", result: 85 },
-        { subject: "Science", result: 78 },
-        { subject: "English", result: 70 },
-        { subject: "History", result: 75 },
-        { subject: "Geography", result: 80 },
-        { subject: "Sinhala", result: 60 },
-        { subject: "Tamil", result: 88 },
-        { subject: "Art", result: 76 },
-        { subject: "Information Technology", result: 92 },
-      ];
-    }
-
-    if (year === "2023" && term === "term1") {
-      data = [
-        { subject: "Mathematics", result: 85 },
-        { subject: "Science", result: 78 },
-        { subject: "English", result: 70 },
-        { subject: "History", result: 75 },
-        { subject: "Geography", result: 80 },
-        { subject: "Sinhala", result: 60 },
-        { subject: "Tamil", result: 88 },
-        { subject: "Art", result: 76 },
-        { subject: "Information Technology", result: 92 },
-      ];
-    } else if (year === "2023" && term === "term2") {
-      data = [
-        { subject: "Mathematics", result: 85 },
-        { subject: "Science", result: 78 },
-        { subject: "English", result: 70 },
-        { subject: "History", result: 75 },
-        { subject: "Geography", result: 80 },
-        { subject: "Sinhala", result: 60 },
-        { subject: "Tamil", result: 88 },
-        { subject: "Art", result: 76 },
-        { subject: "Information Technology", result: 92 },
-      ];
-    } else if (year === "2023" && term === "term3") {
-      data = [
-        { subject: "Mathematics", result: 85 },
-        { subject: "Science", result: 50 },
-        { subject: "English", result: 49 },
-        { subject: "History", result: 75 },
-        { subject: "Geography", result: 80 },
-        { subject: "Sinhala", result: 60 },
-        { subject: "Tamil", result: 44 },
-        { subject: "Art", result: 49 },
-        { subject: "Information Technology", result: 92 },
-      ];
-    }
-    // Add conditions for other years and terms if needed
+    // ajax call to get all papers
+    $.ajax({
+      url: `http://localhost:8080/api/v1/admin-bff/examresult/${regStuId}/${year}/${term}`,
+      method: "GET",
+      success: function(response) {
+        console.log(response);
+        data = response;
+      },
+      error: function(req, err) {
+        console.log(req);
+      }
+    });
 
     // Simulate a delay in fetching data (remove this in actual implementation)
     setTimeout(() => {
@@ -194,7 +130,7 @@ function updateChartWithData(data) {
       } else if (item.result > 50) {
         return "#0000FF"; // Set blue color for results greater than 50
       } else {
-        return generateRandomColor(); // Use a random color for other cases (if result equals 50)
+        return "#cfb018"; // Use a random color for other cases (if result equals 50)
       }
     }),
   };
@@ -247,46 +183,12 @@ function getRandomColor() {
   return "#" + Math.floor(Math.random() * 16777215).toString(16);
 }
 
-
-
 ////////////end results sheet
 
 
 //////////////////// Attendece table /////////////////////////////
 
-// Sample data for 7 days (you can replace this with your actual data)
-const attendanceData = [];
 
-// Generating attendance data for 7 days
-for (let i = 1; i <= 7; i++) {
-  const day = i < 10 ? `Day 0${i}` : `Day ${i}`;
-  const attended = Math.random() < 0.5; // Adjust this probability as needed
-  const description = `Description for ${day}`; // Replace this with your description logic
-  attendanceData.push({
-    date: day,
-    attended: attended,
-    description: description,
-  });
-}
-
-// Function to populate the table with attendance data
-function populateTable(data) {
-  const tableBody = document.querySelector("#attendanceTable tbody");
-  tableBody.innerHTML = "";
-
-  data.forEach((entry) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${entry.date}</td>
-      <td>${entry.attended ? "Present" : "Absent"}</td>
-      <td>${entry.description}</td>
-    `;
-    tableBody.appendChild(row);
-  });
-}
-
-// Call the populateTable function with attendanceData
-populateTable(attendanceData);
 
 ///////////LOGING PAGE AND INDEX LINK
 function login() {
@@ -331,14 +233,15 @@ function generateChart(data) {
   });
 }
 
-// Usage:
-// Populate the table and generate the chart with the attendance data
-populateTable(attendanceData);
-generateChart(attendanceData);
 
 $(document).ready(function () {
 
-  console.log('first ready');
+  // console.log('first ready');
+
+  $('#currDateTime').text(new Date().toLocaleString());
+
+  // getStudentTimeTable();
+
 
   const numVisibleColumns = 8;
   const columnWidth = 100; // Set the width of each column
@@ -382,139 +285,7 @@ $(document).ready(function () {
   // Initial visibility setup
   updateVisibility();
 
-  // Function to populate the table with dummy data
-  function populateTableWithDummyData() {
-    // Dummy data array
-    var dummyData = [
-      {
-        column1: "Data 1",
-        column2: "Data 2",
-        column3: "Data 3",
-        column4: "Data 4",
-        column5: "Data 5",
-        column6: "Data 6",
-        column7: "Data 7",
-        column8: "Data 8",
-        column9: "Data 9",
-        column10: "Data 10",
-        kycStatus: "Active",
-        action: "Action Data",
-      },
-      // Add more dummy data objects as needed
-    ];
-
-    // Iterate through the dummy data and add rows to the table
-    dummyData.forEach((item) => {
-      addRow(item);
-    });
-  }
-
-  // Function to add a new row to the table body
-  function addRow(data) {
-    var newRow =
-      "<tr>" +
-      "<td>" +
-      data.column1 +
-      "</td>" +
-      "<td>" +
-      data.column2 +
-      "</td>" +
-      "<td>" +
-      data.column3 +
-      "</td>" +
-      "<td>" +
-      data.column4 +
-      "</td>" +
-      "<td>" +
-      data.column5 +
-      "</td>" +
-      "<td>" +
-      data.column6 +
-      "</td>" +
-      "<td>" +
-      data.column7 +
-      "</td>" +
-      "<td>" +
-      data.column8 +
-      "</td>" +
-      '<td class="hidden-column">' +
-      data.column9 +
-      "</td>" +
-      '<td class="hidden-column">' +
-      data.column10 +
-      "</td>" +
-      '<td class="hidden-column">' +
-      data.kycStatus +
-      "</td>" +
-      '<td class="hidden-column">' +
-      data.action +
-      "</td>" +
-      "</tr>";
-
-    // Append the new row to the table body
-    $("#tableBody").append(newRow);
-  }
-
-  // Call the function to populate the table with dummy data
-  populateTableWithDummyData();
 });
-
- 
-//////////// REQUEST ///////////
-
-function addNotification() {
-  var request_type = document.getElementById("requestType").value;
-  var request_date = document.getElementById("date").value;
-  var request_description = document.getElementById("description").value;
-  // var userId = document.getElementById("stuid").value;
-  // var userId = $("#stuid").val();
-  const stuInfoString = localStorage.getItem("studentInfo");
-  // Parse the JSON string back to an object
-  const studentInfo = JSON.parse(stuInfoString);
-
-  let notificationRequestDto = {
-    userDto:{
-      userId:studentInfo.userId
-    },
-    requestType:request_type,
-    date:request_date,
-    description:request_description
-  }
-
-  console.log(notificationRequestDto);
-
-
-  // AJAX call to add the student record
-  $.ajax({
-    url: "http://localhost:8080/api/v1/admin-bff/request/notification/save",
-    method: "POST",
-    data: JSON.stringify(notificationRequestDto),
-    contentType: 'application/json',
-    success: function(data) {
-        console.log("Response from Server:", data);
-        // clearData();
-        // window.location.href = "dashboard.html";
-    },
-    error: function(req, err) {
-        console.log("Error:", req, err);
-    }
-  });
-
-  // var tableBody = document.getElementById("notificationTableBody");
-  // var newRow = tableBody.insertRow();
-
-  // var cell1 = newRow.insertCell(0);
-  // var cell2 = newRow.insertCell(1);
-  // var cell3 = newRow.insertCell(2);
-  // var cell4 = newRow.insertCell(3);
-
-  // cell1.innerHTML = title;
-  // cell2.innerHTML = date;
-  // cell3.innerHTML = description;
-  // cell4.innerHTML = "Pending";
-}
-//////////end Request
-
 
 // page change
 const activeButtons = document.querySelectorAll(".sec_button");
@@ -542,131 +313,6 @@ activeButtons.forEach((button) => {
         panel.classList.add("d-none");
       }
     });
-  });
-});
-
-////////TABLE TO LOAD DATA ADD BOOK//////////////////
-
-//  function updateTableAddBook() {
-//    // Get form values
-//    var bookId = document.getElementById("bookId").value.trim();
-//    var bookName = document.getElementById("bookName").value.trim();
-//    var bookDescription = document
-//      .getElementById("bookDescription")
-//      .value.trim();
-//    var bookType = document.getElementById("bookType").value;
-
-//    // Check if any field is missing
-//    if (!bookId || !bookName || !bookDescription || bookType === "none") {
-//      alert("Please fill in all required fields.");
-//      return false; // Stop execution and prevent form submission if any field is missing
-//    }
-
-//    // Proceed with adding to the table
-//    var table = document
-//      .getElementById("bookTable")
-//      .getElementsByTagName("tbody")[0];
-//    var newRow = table.insertRow();
-
-//    // Insert cells and assign them the input values
-//    var cell1 = newRow.insertCell(0);
-//    var cell2 = newRow.insertCell(1);
-//    var cell3 = newRow.insertCell(2);
-//    var cell4 = newRow.insertCell(3);
-
-//    cell1.innerHTML = bookId;
-//    cell2.innerHTML = bookName;
-//    cell3.innerHTML = bookDescription;
-//    // Optionally show a user-friendly value for the book type
-//    cell4.innerHTML = bookType === "pdf" ? "PDF" : "Hard Copy";
-
-//    // Reset form for next input, ensuring book type defaults back properly
-//    document.getElementById("bookId").value = "";
-//    document.getElementById("bookName").value = "";
-//    document.getElementById("bookDescription").value = "";
-//    document.getElementById("bookType").selectedIndex = 0; // Reset to the first option
-
-//    // Optionally, you might want to hide the file uploader if it's not relevant
-//    document.getElementById("fileUploader").style.display = "none";
-
-//    alert("Book details saved successfully!");
-//    return false; // Prevent form submission
-//  }
-
-
-$(document).ready(function () {
-
-  console.log('second ready');
-
-  // Initialize slick slider
-  var slider = $(".form_slide");
-
-  slider.slick({
-    // Slick options
-    dots: false,
-    customPaging: function (slider, i) {
-      return '<button class="custom-dot"></button>';
-    },
-    prevArrow:
-      '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
-    nextArrow:
-      '<button class="slick-next" aria-label="Next" type="button">Next</button>',
-    autoplaySpeed: 2500,
-    autoplay: false,
-    fade: true,
-    fadeSpeed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1000,
-        settings: {
-          prevArrow:
-            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
-          nextArrow:
-            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          prevArrow:
-            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
-          nextArrow:
-            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          prevArrow:
-            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
-          nextArrow:
-            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  });
-
-  // Set the "Next" button to trigger the slider's next slide action
-  $("#nextBtn1").click(function () {
-    slider.slick("slickNext");
-  });
-
-  $("#nextBtn2").click(function () {
-    slider.slick("slickNext");
-  });
-
-  $("#nextBtn3").click(function () {
-    slider.slick("slickNext");
   });
 });
 
@@ -803,44 +449,6 @@ function upload() {
       if (select(window.location.hash)) {
         scrollto(window.location.hash);
       }
-    }
-  });
-
-
-  /////// WEEKLY ATTENDECE TO DATA ADD
-
-  $(document).ready(function () {
-    // AJAX request to fetch data
-    $.ajax({
-      url: "your_backend_endpoint_url_here", // Replace with your backend endpoint URL
-      method: "GET", // Use GET method to fetch data
-      success: function (response) {
-        // On success, populate the table with received data
-        populateAttendanceTable(response);
-      },
-      error: function (xhr, status, error) {
-        // Handle errors if any
-        console.error(error);
-      },
-    });
-
-    // Function to populate the attendance table with received data
-    function populateAttendanceTable(data) {
-      const tableBody = $("#attendance_table_body");
-
-      // Clear existing table rows
-      tableBody.empty();
-
-      // Loop through received data and add rows to the table
-      data.forEach((item) => {
-        const row = `
-          <tr>
-            <td>${item.date}</td>
-            <td>${item.attendance}</td>
-          </tr>
-        `;
-        tableBody.append(row);
-      });
     }
   });
 
@@ -990,10 +598,12 @@ $(document).ready(function () {
   // Parse the JSON string back to an object
   const studentInfo = JSON.parse(stuInfoString);
 
-  console.log('thired ready');
+  // console.log('thired ready');
 
   $("#stuFullName").text(studentInfo.fullName);
-  $("#stuid").text(studentInfo.userId);
+  $("#userId").text(studentInfo.userId);
+  $("#stuRegId").text(studentInfo.studentRegisterId);
+  $("#regStuId").text(studentInfo.registerStuId);
 
   let imgElement = document.getElementById("prImageField").getElementsByTagName("img")[0];
   // Set the src attribute of the img element to the URL of the image
@@ -1020,3 +630,187 @@ $(document).ready(function () {
     $("#address").text(studentInfo.address);
   });
 });
+
+$(document).ready(function () {
+
+  // console.log('second ready');
+
+  getStudentAttendenceDetails();
+  getAttendenceForSection();
+
+  // Initialize slick slider
+  var slider = $(".form_slide");
+
+  slider.slick({
+    // Slick options
+    dots: false,
+    customPaging: function (slider, i) {
+      return '<button class="custom-dot"></button>';
+    },
+    prevArrow:
+      '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
+    nextArrow:
+      '<button class="slick-next" aria-label="Next" type="button">Next</button>',
+    autoplaySpeed: 2500,
+    autoplay: false,
+    fade: true,
+    fadeSpeed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          prevArrow:
+            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
+          nextArrow:
+            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          prevArrow:
+            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
+          nextArrow:
+            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          prevArrow:
+            '<button class="slick-prev" aria-label="Previous" type="button">Previous</button>',
+          nextArrow:
+            '<button class="slick-next" aria-label="Next" type="button">Next</button>',
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  });
+
+  // Set the "Next" button to trigger the slider's next slide action
+  $("#nextBtn1").click(function () {
+    slider.slick("slickNext");
+  });
+
+  $("#nextBtn2").click(function () {
+    slider.slick("slickNext");
+  });
+
+  $("#nextBtn3").click(function () {
+    slider.slick("slickNext");
+  });
+});
+
+function getStudentAttendenceDetails() {
+  var stuId = $("#regStuId").text();
+  // ajax call to get all papers
+  $.ajax({
+    url: `http://localhost:8080/api/v1/admin-bff/attendance/${stuId}`,
+    method: "GET",
+    success: function(data) {
+
+      // console.log(data);
+      
+      let attendanceList = data;
+
+      const tableBody = $("#stuAttendenceTable");
+
+      tableBody.empty();
+
+      attendanceList.forEach((attendance) => {
+        const row = $("<tr>");
+
+        row.html(`
+            <td>${attendance.date}</td>
+            <td>${attendance.status}</td>`);
+
+            tableBody.append(row);
+
+        });
+
+    },
+    error: function(req, err) {
+      console.log(req);
+    }
+  });
+
+}
+
+function getStudentTimeTable() {
+  var stuRegId = $("#regStuId").text();
+  // ajax call to get all papers
+  // $.ajax({
+    // url: `http://localhost:8080/api/v1/admin-bff/timetable/${stuRegId}`,
+    // method: "GET",
+    // success: function(data) {
+
+      // console.log(data);
+      
+      // let attendanceList = data;
+
+      // const tableBody = $("#tblTimrTable");
+
+      // tableBody.empty();
+
+      // attendanceList.forEach((attendance) => {
+      //   const row = $("<tr>");
+
+      //   row.html(`
+      //       <td>${attendance.date}</td>
+      //       <td>${attendance.status}</td>`);
+
+      //       tableBody.append(row);
+
+      //   });
+
+    // },
+    // error: function(req, err) {
+      // console.log(req);
+    // }
+  // });
+}
+
+function getAttendenceForSection() {
+  var stuId = $("#regStuId").text();
+  console.log(stuId);
+  // ajax call to get all papers
+  $.ajax({
+    url: `http://localhost:8080/api/v1/admin-bff/attendance/${stuId}`,
+    method: "GET",
+    success: function(data) {
+
+      console.log('attendance section data');
+      console.log(data);
+      
+      let attendanceList = data;
+
+      const tableBody = $("#attendanceTableSection");
+
+      tableBody.empty();
+
+      attendanceList.forEach((attendance) => {
+        const row = $("<tr>");
+
+        row.html(`
+            <td>${attendance.date}</td>
+            <td>${attendance.status}</td>`);
+
+            tableBody.append(row);
+
+        });
+
+    },
+    error: function(req, err) {
+      console.log(req);
+    }
+  });
+}

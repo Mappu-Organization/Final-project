@@ -45,144 +45,215 @@ $(document).ready(function () {
 
 });
 
-
+function updateAttendance(r, status){
+    let sid = $(r).attr('data-x');
+    $.ajax({
+        url:`http://localhost:8080/api/v1/admin-bff/attendance/mark`,
+        method:"POST",
+        contentType:"application/json",
+        data:JSON.stringify({
+            studentRegId:sid,
+            status:status
+        }),
+        success: (response, textStatus, jqXHR) => {
+            $("#attendanceHistoryTable tbody").empty();
+            response.forEach((att) => {
+              let row = `
+                    <tr>
+                        <td>${att.registerStudent.studentRegId}</td>
+                        <td>${att.registerStudent.fullName}</td>
+                        <td>${att.registerStudent.className}</td>
+                        <td>${att.date}</td>
+                        <td>${att.status}</td>
+                    </tr>
+                `;
+              $("#attendanceHistoryTable tbody").append(row);
+            });
+            
+        }
+    })
+}
 
 $(document).ready(function () {
-    // Function to add a row to the attendance table
-    function addRow(tableID, studentID, studentName, className, date) {
-        var table = $("#" + tableID + " tbody");
-        var newRow = $("<tr>");
 
-        newRow.append("<td>" + studentID + "</td>");
-        newRow.append("<td>" + studentName + "</td>");
-        newRow.append("<td>" + className + "</td>");
-        newRow.append("<td>" + date + "</td>");
-        newRow.append("<td>Pending</td>");
-        newRow.append(
-            "<td><button class='same_btn reject absent'>Absent</button><button class='same_btn present'>Present</button></td>"
-        );
+    $.ajax({
+        url:`http://localhost:8080/api/v1/admin-bff/timetable`,
+        method:"GET",
+        contentType:"application/json",
+        success: (response, textStatus, jqXHR) => {
+            $("#timetable_table tbody").empty();
+            console.log(response);
+            response.forEach((timeTable) => {
+              let row = `
+                    <tr>
+                        <td>${timeTable.timetableId}</td>
+                        <td>${timeTable.day}</td>
+                        <td>${timeTable.period}</td>
+                        <td>${timeTable.stdClass}</td>
+                        <td>${timeTable.year}</td>
+                        <td>${timeTable.subject}</td>
+                    </tr>
+                `;
+              $("#timetable_table tbody").append(row);
+            });
+            
+        }
+    })
 
-        table.append(newRow);
-    }
-
-    // Sample data to populate the current attendance table
-    var currentAttendanceData = [
-        {
-            studentID: 101,
-            studentName: "John Doe",
-            className: "Grade 10 A",
-            date: "2024-02-10",
-        },
-        {
-            studentID: 102,
-            studentName: "Jane Smith",
-            className: "Grade 10 B",
-            date: "2024-02-10",
-        },
-        {
-            studentID: 103,
-            studentName: "Alice Johnson",
-            className: "Grade 10 C",
-            date: "2024-02-10",
-        },
-        {
-            studentID: 104,
-            studentName: "Michael Brown",
-            className: "Grade 10 A",
-            date: "2024-02-10",
-        },
-        {
-            studentID: 105,
-            studentName: "Emma Wilson",
-            className: "Grade 10 B",
-            date: "2024-02-10",
-        },
-        {
-            studentID: 106,
-            studentName: "Daniel Lee",
-            className: "Grade 10 C",
-            date: "2024-02-10",
-        },
-    ];
-
-    // Populate the current attendance table with sample data
-    currentAttendanceData.forEach(function (data) {
-        addRow(
-            "AtTable",
-            data.studentID,
-            data.studentName,
-            data.className,
-            data.date
-        );
-    });
-
-    // Event delegation to handle absent and present buttons for current attendance table
-    $("#AtTable").on("click", ".absent", function () {
-        var row = $(this).closest("tr");
-        var studentID = row.find("td:eq(0)").text();
-        var studentName = row.find("td:eq(1)").text();
-        var className = row.find("td:eq(2)").text();
-        var date = row.find("td:eq(3)").text();
-
-        // Update status in current attendance table
-        var statusCell = row.find("td:eq(4)");
-        statusCell.text("Absent");
-
-        // Update attendance history table
-        updateAttendanceHistory(studentID, studentName, className, date, "Absent");
-    });
-
-    $("#AtTable").on("click", ".present", function () {
-        var row = $(this).closest("tr");
-        var studentID = row.find("td:eq(0)").text();
-        var studentName = row.find("td:eq(1)").text();
-        var className = row.find("td:eq(2)").text();
-        var date = row.find("td:eq(3)").text();
-
-        // Update status in current attendance table
-        var statusCell = row.find("td:eq(4)");
-        statusCell.text("Present");
-
-        // Update attendance history table
-        updateAttendanceHistory(studentID, studentName, className, date, "Present");
-    });
-
-    // Function to update attendance history table
-    function updateAttendanceHistory(
-        studentID,
-        studentName,
-        className,
-        date,
-        status
-    ) {
-        var table = $("#attendanceHistoryTable tbody");
-        var newRow = $("<tr>");
-
-        newRow.append("<td>" + studentID + "</td>");
-        newRow.append("<td>" + studentName + "</td>");
-        newRow.append("<td>" + className + "</td>");
-        newRow.append("<td>" + date + "</td>");
-        newRow.append("<td>" + status + "</td>");
-
-        table.append(newRow);
-    }
+    $("#addRecordBtn").on('click',function(){
+  
+        let day = $('#day').val();
+        let period = $('#period').val();
+        let classId = $('#classId').val();
+        let year = $('#year').val();
+        let subject = $('#subject').val();
+      
+        $.ajax({
+            url:`http://localhost:8080/api/v1/admin-bff/timetable/save`,
+            method:"POST",
+            contentType:"application/json",
+            data:JSON.stringify({
+                stdClass: classId,
+                subject: subject,
+                year: year,
+                day: day,
+                period: period
+            }),
+            success: (response, textStatus, jqXHR) => {
+                $("#timetable_table tbody").empty();
+                response.forEach((timeTable) => {
+                  let row = `
+                        <tr>
+                            <td>${timeTable.timetableId}</td>
+                            <td>${timeTable.day}</td>
+                            <td>${timeTable.period}</td>
+                            <td>${timeTable.stdClass}</td>
+                            <td>${timeTable.year}</td>
+                            <td>${timeTable.subject}</td>
+                        </tr>
+                    `;
+                  $("#timetable_table tbody").append(row);
+                });
+                
+            }
+        })
+        
+      })
+    
+    $.ajax({
+        url:`http://localhost:8080/api/v1/admin-bff/attendance`,
+        method:"GET",
+        contentType:"application/json",
+        success: (response, textStatus, jqXHR) => {
+            $("#attendanceHistoryTable tbody").empty();
+            response.forEach((att) => {
+              let row = `
+                    <tr>
+                        <td>${att.registerStudent.studentRegId}</td>
+                        <td>${att.registerStudent.fullName}</td>
+                        <td>${att.registerStudent.className}</td>
+                        <td>${att.date}</td>
+                        <td>${att.status}</td>
+                    </tr>
+                `;
+              $("#attendanceHistoryTable tbody").append(row);
+            });
+            
+        }
+    })
 
     // Event handler for class filter dropdown
     $("#classSelect").on("change", function () {
         var selectedClass = $(this).val();
-        if (selectedClass === "") {
-            $("#AtTable tbody tr").show();
-        } else {
-            $("#AtTable tbody tr").hide();
-            $("#AtTable tbody tr").each(function () {
-                var className = $(this).find("td:eq(2)").text();
-                if (className === selectedClass) {
-                    $(this).show();
-                }
-            });
+        if(selectedClass == ""){
+            alert("Please select  a class.");
+            return;
         }
+        $.ajax({
+            url: `http://localhost:8080/api/v1/admin-bff/register/class/${selectedClass}`,
+            method:"GET",
+            success: (response, textStatus, jqXHR) => {
+                console.log(response)
+                $("#AtTable tbody").empty();
+                response.forEach((std) => {
+                  let row = `
+                        <tr>
+                            <td>${std.studentRegId}</td>
+                            <td>${std.fullName}</td>
+                            <td>${std.className}</td>
+                            <td>${new Date().toISOString()}</td>
+                            <td>${std.status}</td>
+                            <td>
+                                <button data-x="${std.studentRegId}" onclick='updateAttendance(this,"a")' class='same_btn reject absent'>Absent</button>
+                                <button data-x="${std.studentRegId}" onclick='updateAttendance(this,"p")' class='same_btn present'>Present</button>
+                            </td>   
+                        </tr>
+                    `;
+                  $("#AtTable tbody").append(row);
+                });
+                
+            }
+        })
     });
 });
+
+function updateStatus(r,s){
+    let id = $(r).attr('data-x');
+    $.ajax({
+        url:`http://localhost:8080/api/v1/admin-bff/request/book/update/${id}/${s}`,
+        method:"PUT",
+        success:(response, textStatus, jqXHR)=>{
+            if(jqXHR.status == 200){
+                let msg = document.getElementById("successMessage")
+                msg.innerHTML = "Bulk Save successful";
+                msg.classList.remove("error-message")
+                msg.classList.add("success-message")
+                msg.style.display = "block";
+                setTimeout(function () {
+                    msg.style.display = "none";
+                }, 3000);
+            }else{
+                let msg = document.getElementById("successMessage")
+                msg.innerHTML = "Something went wrong while saving the information.";
+                msg.classList.remove("success-message")
+                msg.classList.add("error-message")
+                msg.style.display = "block";
+                setTimeout(function () {
+                    msg.style.display = "none";
+                }, 3000);
+            }
+        }
+    })
+}
+
+function updatePaperStatus(r,s){
+    let id = $(r).attr('data-x');
+    $.ajax({
+        url:`http://localhost:8080/api/v1/admin-bff/request/papers/update/${id}/${s}`,
+        method:"PUT",
+        success:(response, textStatus, jqXHR)=>{
+            if(jqXHR.status == 200){
+                let msg = document.getElementById("successMessage")
+                msg.innerHTML = "Bulk Save successful";
+                msg.classList.remove("error-message")
+                msg.classList.add("success-message")
+                msg.style.display = "block";
+                setTimeout(function () {
+                    msg.style.display = "none";
+                }, 3000);
+            }else{
+                let msg = document.getElementById("successMessage")
+                msg.innerHTML = "Something went wrong while saving the information.";
+                msg.classList.remove("success-message")
+                msg.classList.add("error-message")
+                msg.style.display = "block";
+                setTimeout(function () {
+                    msg.style.display = "none";
+                }, 3000);
+            }
+        }
+    })
+}
 
 // Function to add a new row to the table body
 
@@ -200,10 +271,60 @@ $(document).ready(function () {
         reader.readAsText(file);
     });
 
+    $("#saveBulkRecodes").on('click',function(){
+        let  recodedData=[];
+        $("#bulktableBody tr").each(function(i,row){
+            recodedData.push({
+                firstName: $(row).find('td')[0].innerHTML,
+                lastName: $(row).find('td')[1].innerHTML,
+                fullName: $(row).find('td')[2].innerHTML,
+                schoolRegNumber: $(row).find('td')[3].innerHTML,
+                className: $(row).find('td')[4].innerHTML,
+                medium: $(row).find('td')[5].innerHTML,
+                religion: $(row).find('td')[6].innerHTML,
+                residenceNumber: $(row).find('td')[7].innerHTML,
+                address: $(row).find('td')[8].innerHTML,
+                parentName: $(row).find('td')[9].innerHTML,
+                parentRelation: $(row).find('td')[10].innerHTML,
+                mobileNumber: $(row).find('td')[11].innerHTML,
+            });
+        })
+        
+        $.ajax({
+            url:"http://localhost:8080/api/v1/admin-bff/bulk-student-records/bulkSave",
+            method:"POST",
+            contentType:"application/json",
+            data:JSON.stringify(recodedData),
+            success:(response, textStatus, jqXHR)=>{
+                if(jqXHR.status == 200){
+                    let msg = document.getElementById("successMessage")
+                    msg.innerHTML = "Bulk Save successful";
+                    msg.classList.remove("error-message")
+                    msg.classList.add("success-message")
+                    msg.style.display = "block";
+                    setTimeout(function () {
+                        msg.style.display = "none";
+                    }, 3000);
+                }else{
+                    let msg = document.getElementById("successMessage")
+                    msg.innerHTML = "Something went wrong while saving the information.";
+                    msg.classList.remove("success-message")
+                    msg.classList.add("error-message")
+                    msg.style.display = "block";
+                    setTimeout(function () {
+                        msg.style.display = "none";
+                    }, 3000);
+                }
+                recodedData = null;
+                $("#bulktableBody").empty();
+            }
+        })
+    })
+
     // Function to populate table with data from CSV
     function populateTable(data) {
         // Clear previous data
-        $("#tableBody").empty();
+        $("#bulktableBody").empty();
 
         // Loop through each row in the CSV data
         for (var i = 0; i < data.length; i++) {
@@ -250,7 +371,7 @@ $(document).ready(function () {
         </tr>`;
 
         // Append the new row to the table body
-        $("#tableBody").append(newRow);
+        $("#bulktableBody").append(newRow);
 
         // Apply styles based on KYC status for the last added row
         var lastRow = $("#tableBody tr:last");
@@ -331,7 +452,7 @@ $(document).ready(function () {
     // Function to handle search input
     $(".form-control").on("keyup", function () {
         var value = $(this).val().toLowerCase(); // Get the value of the input and convert it to lowercase
-        $("#tableBody tr").filter(function () {
+        $("#tableBod tr").filter(function () {
             // Filter table rows
             $(this).toggle(
                 $(this).find("td:nth-child(4)").text().toLowerCase().indexOf(value) > -1
@@ -340,6 +461,113 @@ $(document).ready(function () {
     });
 });
 
+let registerObj = null;
+
+$(document).ready(() => {
+    $('#stdReg').on('click',function(){
+        if(registerObj  == null){
+            let msg = document.getElementById("successMessage")
+            msg.innerHTML = "Please select a Student first";
+            msg.classList.remove("success-message")
+            msg.classList.add("error-message")
+            msg.style.display = "block";
+            setTimeout(function () {
+                msg.style.display = "none";
+              }, 3000);
+            return;
+        }
+
+        $.ajax({
+            url:`http://localhost:8080/api/v1/admin-bff/register-student/reg`,
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                firstName:registerObj.fName,
+                lastName:registerObj.lName,
+                fullName:registerObj.fullName,
+                className: registerObj.sClass,
+                medium: registerObj.medium,
+                religion: registerObj.religion,
+                parentName: registerObj.parentName,
+                parentRelation: registerObj.parentRelation,
+                mobileNumber: registerObj.mobileNumber,
+                studentRegId: registerObj.regNo,
+                studentImage: registerObj.studentImage
+            }),
+            success: (response, textStatus, jqXHR)=>{
+                console.log(response);
+                if(jqXHR.status == 200){
+                    let msg = document.getElementById("successMessage")
+                    msg.innerHTML = "Student successfully registered!";
+                    msg.classList.remove("error-message")
+                    msg.classList.add("success-message")
+                    msg.style.display = "block";
+                    setTimeout(function () {
+                        msg.style.display = "none";
+                    }, 3000);
+                }else{
+                    let msg = document.getElementById("successMessage")
+                    msg.innerHTML = "Something went wrong while saving the information.";
+                    msg.classList.remove("success-message")
+                    msg.classList.add("error-message")
+                    msg.style.display = "block";
+                    setTimeout(function () {
+                        msg.style.display = "none";
+                    }, 3000);
+                }
+                registerObj = null;
+                $('#kycStudentDetails').empty();
+                $("#previewImage").attr('src','#');
+
+            }
+        })
+
+    })
+})
+
+function updateSelectedUser(e){
+    let fName = $(e).closest('tr').find('td')[0].innerText;
+    let lName = $(e).closest('tr').find('td')[1].innerText;
+    let fullName = $(e).closest('tr').find('td')[2].innerText;
+    let regNo = $(e).closest('tr').find('td')[3].innerText;
+    let sClass = $(e).closest('tr').find('td')[4].innerText;
+    let medium = $(e).closest('tr').find('td')[5].innerText;
+    let religion = $(e).closest('tr').find('td')[6].innerText;
+    let parentName = $(e).closest('tr').find('td')[7].innerText;
+    let parentRelation = $(e).closest('tr').find('td')[8].innerText;
+    let mobileNumber = $(e).closest('tr').find('td')[9].innerText;
+    let studentImage = $(e).closest('tr').find('td')[11].innerText;
+
+    registerObj = {
+        fName,
+        lName,
+        fullName,
+        regNo,
+        sClass,
+        medium,
+        religion,
+        parentName,
+        parentRelation,
+        mobileNumber,
+        studentImage
+    }
+
+    $("#previewImage").attr('src',studentImage);
+    let htmlData = `
+        First Name: <b>${fName} </b><br/>
+        Last Name: <b>${lName}</b><br/>
+        Full Name: <b>${fullName}</b><br/>
+        Registration Number : <b>${regNo}</b><br/>
+        Class: <b>${sClass}</b><br/>
+        Medium: <b>${medium}</b><br/>
+        Religion: <b>${religion}</b><br/>
+        Parent/Guardian's Name: <b>${parentName}</b><br/>
+        Relation with Guardian: <b>${parentRelation}</b><br/>
+        Mobile Number: <b>${mobileNumber}</b>
+    `;
+    $('#kycStudentDetails').append(htmlData);
+
+}    
 ////////bulk user record//////////
 $(document).ready(function () {
 
@@ -366,6 +594,8 @@ $(document).ready(function () {
                 row.append($("<td>").text(kycStudentDetailList[i].parentRelation));
                 row.append($("<td>").text(kycStudentDetailList[i].mobileNumber));
                 row.append($("<td>").text('Active'));
+                row.append(`<td style="display:none">${kycStudentDetailList[i].studentImage}</td>`)
+                row.append(`<td class="hidden-column action-column"><button onclick="updateSelectedUser(this)" class="select-button">Action</button></td>`)
 
                 $("#tableBod").append(row);
 

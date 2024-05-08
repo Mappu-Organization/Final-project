@@ -114,7 +114,7 @@ jQuery(document).ready(function ($) {
           method: "GET",
           // dataType: "json",
           success: function(data) {
-            console.log(data);
+            // console.log(data);
             const stringifiedObj = JSON.stringify(data)
             localStorage.setItem("userInfo",stringifiedObj);
             window.location.href = "downloads.html"
