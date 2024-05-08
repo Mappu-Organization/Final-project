@@ -1,5 +1,59 @@
 $(document).ready(function () {
   
+    // Function to handle the click event of the "Download" buttons
+    $(document).on("click", ".approveBook", function() {
+      var location = $(this).attr("data-location");
+      if (location) {
+        // Open the paper location in a new tab
+        window.open(location, '_blank');
+      } else {
+        // Handle case when location is not available
+        console.log("Paper location not available");
+      }
+    });
+
+    function getAllStudentBookRequest() {
+
+      var stuId = $("#regStuId").text();
+      // ajax call to get all requested Books
+      $.ajax({
+        url: `http://localhost:8080/api/v1/admin-bff/request/book/${stuId}`,
+        method: "GET",
+        success: function(data) {
+
+          // console.log(data);
+          
+          let bookRequestList = data;
+
+          const tableBody = $("#libraryTable");
+
+          tableBody.empty();
+
+          bookRequestList.forEach((bookRequest) => {
+            const row = $("<tr>");
+
+            row.html(`
+                <td>${bookRequest.requestBookId}</td>
+                <td>${bookRequest.book.bookId}</td>
+                <td>${bookRequest.book.bookName}</td>
+                <td>${bookRequest.book.bookType}</td>
+                <td>${bookRequest.requestStatus}</td>
+                <td class="view_btn">
+                  <button class="approveBook same_btn" ${bookRequest.requestStatus === 'approve' ? '' : 'disabled'}
+                  data-location="${bookRequest.book.bookLocationPath}">Download</button>  
+                </td>`);
+
+                tableBody.append(row);
+
+            });
+
+        },
+        error: function(req, err) {
+          console.log(req);
+        }
+    });
+  }
+
   //call student book request API
   getAllStudentBookRequest();
 
@@ -92,11 +146,11 @@ $(document).ready(function () {
   $(".books_co").on('click', '#bookReqBtn', function(event) {
     event.preventDefault(); // Prevent default behavior of the anchor tag
     
-    console.log('btn clicked!!!');
+    // console.log('btn clicked!!!');
     
     // Get the value of the first <p> element relative to the clicked button
     var bookId = $(this).closest('.card-body').find('p').first().text();
-    var stuId = $("#stuid").text();
+    var stuId = $("#regStuId").text();
 
     //ajax call to save student book request
     $.ajax({
@@ -122,43 +176,7 @@ $(document).ready(function () {
 
 });
 
-function getAllStudentBookRequest() {
 
-    var stuId = $("#stuid").text();
-    // ajax call to get all requested Books
-    $.ajax({
-      url: `http://localhost:8080/api/v1/admin-bff/request/book/${stuId}`,
-      method: "GET",
-      success: function(data) {
-
-        console.log(data);
-        
-        let bookRequestList = data;
-
-        const tableBody = $("#libraryTable");
-
-        tableBody.empty();
-
-        bookRequestList.forEach((bookRequest) => {
-          const row = $("<tr>");
-
-          row.html(`
-              <td>${bookRequest.requestBookId}</td>
-              <td>${bookRequest.book.bookId}</td>
-              <td>${bookRequest.book.bookName}</td>
-              <td>${bookRequest.book.bookType}</td>
-              <td>${bookRequest.requestStatus}</td>`);
-
-              tableBody.append(row);
-
-          });
-
-      },
-      error: function(req, err) {
-        console.log(req);
-      }
-  });
-}
 
 /////STUDENT REGISTRATION ////////////////
 function registerStudent() {
@@ -200,7 +218,7 @@ $(document).ready(function () {
 
       $("#corerequesttable tbody").empty();
       requestList.forEach(function (item) {
-        console.log(item)
+        // console.log(item)
         var row = `
               <tr>
                   <td>${item.requestPaperId}</td>

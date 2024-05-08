@@ -1,8 +1,61 @@
 /////////GET ALL PAPERS FOR USER SIDE//////////////////////
 $(document).ready(function () {
-
-  console.log('add paper js init in index.js');
   
+  // Function to handle the click event of the "Download" buttons
+  $(document).on("click", ".approvePaper", function() {
+    var location = $(this).attr("data-location");
+    if (location) {
+      // Open the paper location in a new tab
+      window.open(location, '_blank');
+    } else {
+      // Handle case when location is not available
+      console.log("Paper location not available");
+    }
+  });
+
+  function getAllStudentPaperRequest() {
+
+    var stuId = $("#regStuId").text();
+    // ajax call to get all papers
+    $.ajax({
+      url: `http://localhost:8080/api/v1/admin-bff/request/papers/${stuId}`,
+      method: "GET",
+      success: function(data) {
+  
+        console.log(data);
+        
+        let paperRequestList = data;
+  
+        const tableBody = $("#paperTableBody");
+  
+        tableBody.empty();
+  
+        paperRequestList.forEach((paperRequest) => {
+          const row = $("<tr>");
+  
+          row.html(`
+              <td>${paperRequest.requestPaperId}</td>
+              <td>${paperRequest.paperDto.paperId}</td>
+              <td>${paperRequest.paperDto.paperName}</td>
+              <td>${paperRequest.paperDto.paperType}</td>
+              <td>${paperRequest.requestStatus}</td>
+              <td class="view_btn">
+                <button class="approvePaper same_btn" ${paperRequest.requestStatus === 'approve' ? '' : 'disabled'}
+                data-location="${paperRequest.paperDto.paperLocation}">Download</button>  
+              </td>`);
+  
+              tableBody.append(row);
+  
+          });
+  
+      },
+      error: function(req, err) {
+        console.log(req);
+      }
+    });
+  }
+
+
   getAllStudentPaperRequest();
 
   //ajax request get all papers for user side
@@ -42,7 +95,7 @@ $(document).ready(function () {
     
     // Get the value of the first <p> element relative to the clicked button
     var paperId = $(this).closest('.card-body').find('p').first().text();
-    var stuId = $("#stuid").text();
+    var stuId = $("#regStuId").text();
 
     //ajax call to save student paper request
     $.ajax({
@@ -65,47 +118,8 @@ $(document).ready(function () {
     });
 
   });
-  
 
 });
-
-function getAllStudentPaperRequest() {
-
-  var stuId = $("#stuid").text();
-  // ajax call to get all papers
-  $.ajax({
-    url: `http://localhost:8080/api/v1/admin-bff/request/papers/${stuId}`,
-    method: "GET",
-    success: function(data) {
-
-      console.log(data);
-      
-      let paperRequestList = data;
-
-      const tableBody = $("#paperTableBody");
-
-      tableBody.empty();
-
-      paperRequestList.forEach((paperRequest) => {
-        const row = $("<tr>");
-
-        row.html(`
-            <td>${paperRequest.requestPaperId}</td>
-            <td>${paperRequest.paperDto.paperId}</td>
-            <td>${paperRequest.paperDto.paperName}</td>
-            <td>${paperRequest.paperDto.paperType}</td>
-            <td>${paperRequest.requestStatus}</td>`);
-
-            tableBody.append(row);
-
-        });
-
-    },
-    error: function(req, err) {
-      console.log(req);
-    }
-  });
-}
 
 function uploadImage(event) {
   var input = event.target;

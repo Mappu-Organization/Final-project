@@ -221,7 +221,7 @@ function updateTableAddBook() {
     processData: false,
     contentType: false,
     success: function (data) {
-      console.log(data);
+      // console.log(data);
       loadTableBooks();
     },
     error: function (req, err) {

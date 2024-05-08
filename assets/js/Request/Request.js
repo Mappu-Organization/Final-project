@@ -105,7 +105,7 @@ function addNotification() {
     var request_type = document.getElementById("requestType").value;
     var request_date = document.getElementById("date").value;
     var request_description = document.getElementById("description").value;
-    var userId = $("#stuid").text();
+    var userId = $("#userId").text();
   
     let notificationRequestDto = {
       userDto:{
@@ -136,7 +136,7 @@ function addNotification() {
 
 function getAllUserNotificationRequest() {
 
-    var userId = $("#stuid").text();
+    var userId = $("#userId").text();
 
     //display the timetable 
     $.ajax({
