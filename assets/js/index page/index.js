@@ -285,6 +285,13 @@ $(document).ready(function () {
   // Initial visibility setup
   updateVisibility();
 
+  $("#logOutBtn").on("click", function() {
+    console.log("log out btn click");
+    // Remove the userInfo item from localStorage
+    localStorage.removeItem("studentInfo");
+    window.location.href = "logingform.html";
+});
+
 });
 
 // page change

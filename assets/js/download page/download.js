@@ -36,12 +36,12 @@ $(document).ready(function () {
         console.log("Absent button clicked");
     });
 
-    // $("#logOutBtn").on("click", function() {
-    //     console.log("log out btn click");
-    //     // Remove the userInfo item from localStorage
-    //     // localStorage.removeItem("userInfo");
-    //     // window.location.href = "logingformforadmin.html";
-    // });
+    $("#logOutBtn").on("click", function() {
+        console.log("log out btn click");
+        // Remove the userInfo item from localStorage
+        localStorage.removeItem("userInfo");
+        window.location.href = "logingformforadmin.html";
+    });
 
 });
 

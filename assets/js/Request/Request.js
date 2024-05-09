@@ -67,6 +67,50 @@ $(document).ready(function () {
       },
     });
 
+    // When the "Approve" button is clicked
+$('#requestTableBody').on('click', '.approve', function() {
+    console.log('Approve button clicked');
+    // Get the row of the clicked button
+    var row = $(this).closest('tr');
+    // Get the requestId from the first column of the row
+    var requestId = row.find('td:eq(0)').text();
+    // Perform any action you want with the requestId here
+    console.log('Approve button clicked for requestId:', requestId);
+
+    $.ajax({
+        url: `http://localhost:8080/api/v1/admin-bff/request/notification/update/${requestId}/approve`,
+        method: "PUT",
+        success: function (data) {
+          console.log(data);
+        },
+        error: function(req, err) {
+            console.log(req);
+        }
+    });
+
+});
+
+// When the "Reject" button is clicked
+$('#requestTableBody').on('click', '.reject', function() {
+    console.log('Reject button clicked');
+    // Get the row of the clicked button
+    var row = $(this).closest('tr');
+    // Get the requestId from the first column of the row
+    var requestId = row.find('td:eq(0)').text();
+    // Perform any action you want with the requestId here
+    console.log('Reject button clicked for requestId:', requestId);
+
+    $.ajax({
+        url: `http://localhost:8080/api/v1/admin-bff/request/notification/update/${requestId}/reject`,
+        method: "PUT",
+        success: function (data) {
+          console.log(data);
+        },
+        error: function(req, err) {
+            console.log(req);
+        }
+    });
+});
 
     //display the timetable 
     $.ajax({
@@ -86,9 +130,10 @@ $(document).ready(function () {
                 <td>${item.requestType}</td>
                 <td>${item.userDto.fullName}</td>
                 <td>${item.description}</td>
+                <td>${item.approvedStatus}</td>
                 <td class="view_btn">
-                    <button class="approve same_btn">Approve</button>
-                    <button class="reject btn-reject same_btn" data-toggle="modal" data-target="#commentModal">Reject</button>
+                    <button class="approve same_btn" id="notiReqBtn">Approve</button>
+                    <button class="reject btn-reject same_btn" data-toggle="modal" data-target="#commentModal" id="notiReqBtn2">Reject</button>
                 </td>
             </tr>
         `;
