@@ -10,6 +10,60 @@ $(document).ready(function () {
     $("#userId").text(userInfo.userId);
     $("#userName").text(userInfo.fullName);
 
+    // Retrieve user role from local storage
+    const userRole = userInfo.rolesDto.roleName.toLowerCase();// Assuming you save the user role as 'userRole' in local storage
+
+    console.log(userRole);
+
+    // Function to show or hide navigation sections based on user role
+    function showHideNavSections(role) {
+        // document.getElementById('pannel_888').style.display = 'none';
+        // Hide all navigation sections initially
+        const navSections = document.querySelectorAll('.nav-menu .dropdown');
+        navSections.forEach(section => {
+            section.style.display = 'none';
+        });
+
+        // Show navigation sections based on user role
+        switch (role) {
+            case 'admin':{
+                // Show all navigation sections for Admin
+                navSections.forEach(section => {
+                    section.style.display = 'block';
+                });
+                break;
+            }
+            case 'staff':{
+                console.log('switch staff');
+                // Show only Library Management and Cource Material Management for Staff
+                // document.getElementById('libraryCollapse').style.display = 'block';
+                document.getElementById('pannel_888').style.display = 'none';
+                document.getElementById('pannel_9').style.display = 'none';
+                document.getElementById('pannel_10').style.display = 'none';
+                document.getElementById('navLiberyManagement').style.display = 'block';
+                document.getElementById('navCourceMaterial').style.display = 'block';
+                
+                break;
+            }
+            case 'teacher':{
+                // Show specific sections for Teacher (if needed)
+                document.getElementById('navStudentManagement').style.display = 'block';
+                document.getElementById('navAttendence').style.display = 'block';
+                document.getElementById('pannel_888').style.display = 'block';
+                document.getElementById('pannel_9').style.display = 'block';
+                document.getElementById('pannel_10').style.display = 'block';
+                break;
+            }
+            // Add cases for other roles if needed
+            default:
+            // Default behavior if role is not recognized
+            break;
+        }
+    }
+
+    // Call the function to show/hide navigation sections based on the user's role
+    showHideNavSections(userRole);
+
     // Handle the Reject button click to show modal
     $(document).on("click", ".btn-reject", function () {
         // Clear the textarea inside the modal when the Reject button is clicked
